@@ -5,12 +5,16 @@ name: Validate blueprints index
       - blueprints.yaml
       - blueprints.schema.json
       - bin/validate_index.py
+      - bin/render_index.py
+      - profile/README.md
       - .github/workflows/validate-index.yaml
   pull_request:
     paths:
       - blueprints.yaml
       - blueprints.schema.json
       - bin/validate_index.py
+      - bin/render_index.py
+      - profile/README.md
       - .github/workflows/validate-index.yaml
   workflow_dispatch:
 permissions:
@@ -27,3 +31,8 @@ jobs:
         run: pip install --quiet pyyaml jsonschema
       - name: Validate blueprints.yaml
         run: python bin/validate_index.py
+      - name: Check that the organisation page has been rendered
+        # On main the page is rendered and committed by render-index.yaml, so only
+        # pull requests have to bring it along themselves.
+        if: github.event_name == 'pull_request'
+        run: python bin/render_index.py --check
