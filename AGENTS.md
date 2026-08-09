@@ -60,8 +60,24 @@ blueprints stays readable only if they agree.
     └── AggregateRepository.java
 ```
 
-BPMN files live in the workflow module's resources, in a directory named after the workflow
-module ID.
+### Two namespaces per workflow module
+
+There is **no classloader isolation between workflow modules** — they end up in one runtime,
+on one classpath. Two modules therefore have to differ in two namespaces, and both are
+derived from the same identifier:
+
+| | Rule | Example |
+|---|---|---|
+| Classes | a unique Java package for the whole module | `com.acme.orders.shipment` |
+| Resources | **every** resource in one subdirectory named after the workflow module ID | `src/main/resources/shipment/…` |
+
+"Every resource" means every one: BPMN models (`<module-id>/processes/<adapter-id>/`), the
+module's configuration file (`<module-id>/<module-id>.yaml`), templates, documents, schemas.
+A resource placed at the classpath root works fine until a second workflow module ships a
+file of the same name — then one of them silently wins.
+
+The single exception is the marker file `META-INF/workflow-module` containing the module ID.
+It has to sit at that exact path, which is how the module is recognised at all.
 
 ## Placeholders
 
