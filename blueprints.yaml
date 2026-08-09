@@ -20,7 +20,9 @@ blueprints:
       files, an integration test against the workflow module and a smoke test of the
       application.
     category: module
-    bpms: [camunda7, camunda8, process-engine-api]
+    # No process-engine-api yet: that adapter is developed mock-first and has no engine
+    # behind it, so a blueprint could not execute a workflow on it.
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
