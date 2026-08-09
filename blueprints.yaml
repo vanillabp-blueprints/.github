@@ -1,0 +1,701 @@
+# The single source of truth about the VanillaBP blueprints.
+#
+# profile/README.md (the organisation page) is generated from this file - do not edit
+# the generated part of that file. AI agents read this file to pick the blueprints
+# matching a BPMN they have to implement, which is what 'covers.bpmn' is for.
+#
+# Validated against blueprints.schema.json by .github/workflows/validate-index.yml.
+version: 2
+blueprints:
+
+  # ----------------------------------------------------------------------------------
+  # Workflow module structure and runtime
+  # ----------------------------------------------------------------------------------
+
+  - id: module-single
+    title: Application plus one workflow module
+    summary: >
+      The normal case and the entry point into VanillaBP: an application module plus one
+      workflow module packaged as a JAR, including the workflow module's own configuration
+      files, an integration test against the workflow module and a smoke test of the
+      application.
+    category: module
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:ServiceTask
+      spi:
+        - "@WorkflowService"
+        - "@WorkflowTask"
+        - "ProcessService#startWorkflow"
+    composes_with: [module-multi, module-packaging]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules-in-Spring-Boot#defining-a-workflow-module
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: module-multi
+    title: Several workflow modules in one application
+    summary: >
+      An application module pulling in several workflow module JARs. Shows how the modules
+      stay independent of each other and how name clashes between them are avoided.
+    category: module
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi:
+        - "@WorkflowService"
+        - "@BpmnProcess"
+    composes_with: [module-interaction, module-shared-code]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#how-name-clashes-are-avoided
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules-in-Spring-Boot#defining-a-workflow-module
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: module-standalone
+    title: The application is the workflow module
+    summary: >
+      If it is clear that there will never be more than one workflow module, the
+      application itself can be the workflow module. Zero configuration - adding the
+      adapter dependency is all it takes.
+    category: module
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi:
+        - "@WorkflowService"
+        - "@WorkflowTask"
+    composes_with: [showcase-standalone]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#do-i-need-to-define-a-workflow-module
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration#zero-configuration-the-classpath-is-the-configuration
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: module-interaction
+    title: Interaction between workflow modules
+    summary: >
+      Two workflow modules interacting without coupling their processes: the outgoing
+      module sends a BPMN message which is translated into an internal API call, the
+      incoming module waits for a message delivered by its own API. Shown as an
+      alternative: an asynchronous service task completed by a callback.
+    category: module
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:IntermediateThrowEvent
+        - bpmn:IntermediateCatchEvent
+        - bpmn:SendTask
+      spi:
+        - "ProcessService#correlateMessage"
+        - "ProcessService#completeTask"
+        - "@TaskId"
+    composes_with: [module-multi, bpmn-message-correlation, bpmn-async-task]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Message-correlation
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: module-shared-code
+    title: Shared code between workflow modules
+    summary: >
+      How workflow modules share code without becoming coupled, and which kind of code may
+      be shared at all.
+    category: module
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi:
+        - "@WorkflowService"
+    composes_with: [module-multi]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#how-name-clashes-are-avoided
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#building-a-workflow-module
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: module-packaging
+    title: Packaging and running the application
+    summary: >
+      Executable artifact, container image, native build and configuration per
+      environment - everything needed to take a workflow module from the IDE into
+      operations.
+    category: module
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi:
+        - "@WorkflowService"
+    composes_with: [module-single]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules-in-Spring-Boot#runtime-considerations
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#configuration
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: module-bpms-migration
+    title: Migrating running workflows to another BPMS
+    summary: >
+      Two adapters configured in parallel: new workflows start in the new BPMS while
+      running workflows are completed in the old one. Shows the adapter priorities down to
+      the level of a single workflow.
+    category: module
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi:
+        - "@WorkflowService"
+        - "ProcessService#startWorkflow"
+    composes_with: [module-single]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/BPMS-migration
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration#configure-the-adapters
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  # ----------------------------------------------------------------------------------
+  # Persistence of workflow aggregates
+  # ----------------------------------------------------------------------------------
+
+  - id: persistence-mongodb
+    title: Workflow aggregates in MongoDB
+    summary: >
+      The workflow aggregate persisted in MongoDB instead of a relational database, which
+      also changes the transaction outbox used to start workflows reliably.
+    category: persistence
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [mongodb]
+    covers:
+      bpmn: []
+      spi:
+        - "@WorkflowService"
+        - "ProcessService#startWorkflow"
+    composes_with: [module-single]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#persistence-technologies-supported
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration#configure-the-transaction-outbox
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: persistence-custom
+    title: A persistence of your own
+    summary: >
+      An in-memory reference implementation showing what VanillaBP needs from a
+      persistence technology it does not support out of the box.
+    category: persistence
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [custom]
+    covers:
+      bpmn: []
+      spi:
+        - "@WorkflowService"
+        - "ProcessService#startWorkflow"
+    composes_with: [module-single]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#persistence-technologies-supported
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  # ----------------------------------------------------------------------------------
+  # BPMN scenarios
+  # ----------------------------------------------------------------------------------
+
+  - id: bpmn-service-task
+    title: Service tasks
+    summary: >
+      A service task calling business code, including what happens when the handler
+      throws, how the BPMS retries and where the transaction boundaries are.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:ServiceTask
+      spi:
+        - "@WorkflowTask"
+        - "@TaskParam"
+        - "TaskException"
+    composes_with: [bpmn-error-escalation, bpmn-gateways]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#the-execution-contract
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#what-happens-when-my-handler-throws
+      - https://github.com/vanillabp/spi-for-java#wire-up-a-task
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-user-task
+    title: User tasks
+    summary: >
+      A user task is created, its task ID is stored in the workflow aggregate and the task
+      is later completed or canceled through the API.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:UserTask
+      spi:
+        - "@WorkflowTask"
+        - "@TaskId"
+        - "@TaskEvent"
+        - "ProcessService#completeUserTask"
+        - "ProcessService#cancelUserTask"
+    composes_with: [bpmn-boundary-events, bpmn-async-task]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#user-tasks
+      - https://github.com/vanillabp/spi-for-java#user-tasks-and-asynchronous-tasks
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-async-task
+    title: Asynchronous tasks
+    summary: >
+      Tasks which are not user tasks but still complete asynchronously - the handler
+      returns immediately and the task is completed once the surrounding system answers.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:SendTask
+        - bpmn:ReceiveTask
+      spi:
+        - "@WorkflowTask"
+        - "@TaskId"
+        - "@TaskEvent"
+        - "ProcessService#completeTask"
+        - "ProcessService#cancelTask"
+    composes_with: [bpmn-user-task, bpmn-boundary-events, module-interaction]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
+      - https://github.com/vanillabp/spi-for-java#user-tasks-and-asynchronous-tasks
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-message-correlation
+    title: Messages for running workflows
+    summary: >
+      Delivering a message to a running workflow, how the workflow is found, what a
+      correlation ID is needed for and why message handling has to be idempotent.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:IntermediateCatchEvent
+        - bpmn:MessageEventDefinition
+      spi:
+        - "ProcessService#correlateMessage"
+        - "@WorkflowService"
+    composes_with: [bpmn-message-start, bpmn-boundary-events, module-interaction]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Message-correlation
+      - https://github.com/vanillabp/spi-for-java#correlate-an-incoming-message
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-message-start
+    title: Starting a workflow by message
+    summary: >
+      A workflow started by a message instead of an explicit call, and what that means for
+      the workflow aggregate.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:StartEvent
+        - bpmn:MessageEventDefinition
+      spi:
+        - "ProcessService#startWorkflowByMessage"
+    composes_with: [bpmn-message-correlation]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Message-correlation#starting-a-workflow-by-message
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-timer
+    title: Timers
+    summary: >
+      Timer events in the sequence flow and as boundary events, and how a workflow reacts
+      to a timer having fired.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:IntermediateCatchEvent
+        - bpmn:BoundaryEvent
+        - bpmn:TimerEventDefinition
+      spi:
+        - "@WorkflowTask"
+        - "@TaskEvent"
+    composes_with: [bpmn-boundary-events, bpmn-user-task]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-boundary-events
+    title: Boundary events
+    summary: >
+      Interrupting and non-interrupting boundary events on a task, and how business code
+      learns that a task was canceled.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:BoundaryEvent
+      spi:
+        - "@WorkflowTask"
+        - "@TaskId"
+        - "@TaskEvent"
+    composes_with: [bpmn-user-task, bpmn-async-task, bpmn-timer]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
+      - https://github.com/vanillabp/spi-for-java#user-tasks-and-asynchronous-tasks
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-error-escalation
+    title: BPMN errors and escalations
+    summary: >
+      Raising a BPMN error or an escalation from a task handler and catching it in the
+      process, as opposed to a technical failure which is retried.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:ErrorEventDefinition
+        - bpmn:EscalationEventDefinition
+        - bpmn:BoundaryEvent
+      spi:
+        - "TaskException"
+        - "@WorkflowTask"
+    composes_with: [bpmn-service-task, bpmn-boundary-events]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#what-happens-when-my-handler-throws
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-gateways
+    title: Gateways and conditional sequence flows
+    summary: >
+      Decisions in the process based on the workflow aggregate: gateways, conditional
+      sequence flows and the expressions wired to business code.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:ExclusiveGateway
+        - bpmn:SequenceFlow
+      spi:
+        - "@WorkflowTask"
+    composes_with: [bpmn-service-task]
+    docs:
+      - https://github.com/vanillabp/spi-for-java#wire-up-an-expression
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-call-activity-decomposition
+    title: Call activities to reduce complexity
+    summary: >
+      A large process split into a calling and a called process sharing one workflow
+      aggregate - decomposition without introducing a second business object.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:CallActivity
+      spi:
+        - "@WorkflowService"
+        - "@BpmnProcess"
+        - "@WorkflowTask"
+    composes_with: [bpmn-multi-instance-subprocess]
+    docs:
+      - https://github.com/vanillabp/spi-for-java#call-activities
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Viewing-workflows#digging-into-call-activities
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-call-activity-reuse
+    title: Call activities to reuse a process
+    summary: >
+      A process reused by other processes, having a workflow aggregate of its own. To be
+      clarified before this blueprint is built: reuse couples the processes involved, so it
+      may be neither supported nor wanted.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:CallActivity
+      spi:
+        - "@WorkflowService"
+        - "@BpmnProcess"
+    composes_with: [bpmn-call-activity-decomposition]
+    docs:
+      - https://github.com/vanillabp/spi-for-java#call-activities
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-multi-instance-task
+    title: Multi-instance tasks
+    summary: >
+      A task executed once per element of a collection, with the current element, its
+      index and the total number available to business code.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:MultiInstanceLoopCharacteristics
+        - bpmn:ServiceTask
+      spi:
+        - "@MultiInstanceElement"
+        - "@MultiInstanceIndex"
+        - "@MultiInstanceTotal"
+        - "MultiInstanceElementResolver"
+    composes_with: [bpmn-multi-instance-subprocess]
+    docs:
+      - https://github.com/vanillabp/spi-for-java#multi-instance
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-multi-instance-subprocess
+    title: Multi-instance subprocesses
+    summary: >
+      A subprocess executed once per element of a collection, including nested
+      multi-instance and how business code addresses the element it is called for.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:SubProcess
+        - bpmn:MultiInstanceLoopCharacteristics
+      spi:
+        - "@MultiInstanceElement"
+        - "@MultiInstanceIndex"
+        - "@MultiInstanceTotal"
+        - "MultiInstanceElementResolver"
+    composes_with: [bpmn-multi-instance-task, bpmn-call-activity-decomposition]
+    docs:
+      - https://github.com/vanillabp/spi-for-java#multi-instance
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-versioning
+    title: Versioning BPMN processes
+    summary: >
+      Changing a process while instances of the previous version are still running, and
+      how business code serves both versions at the same time.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi:
+        - "@WorkflowTask"
+        - "@WorkflowTasks"
+    composes_with: [module-bpms-migration]
+    docs:
+      - https://github.com/vanillabp/spi-for-java#versioning-of-bpmn-business-processes
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-aggregate-decoupling
+    title: Decoupling BPMN from the data model
+    summary: >
+      Keeping the BPMN independent of the business data model: natural IDs, attributes
+      synchronized to the BPMS on purpose and those deliberately kept out of it.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi:
+        - "@SyncWithBPMS"
+        - "@NoSyncWithBPMS"
+        - "@WorkflowService"
+    composes_with: [module-single, persistence-mongodb]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#decoupling-bpmn-from-the-data-model
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#fine-grained-control-over-attributes-synchronized-to-the-bpms
+      - https://github.com/vanillabp/spi-for-java#natural-ids
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-history-and-diagram
+    title: Showing BPMN and execution history
+    summary: >
+      Serving the BPMN XML of a workflow and the elements it has passed, which is what a
+      UI needs to draw the diagram of a running workflow.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi:
+        - "ProcessService#getBpmnXml"
+        - "ProcessService#getWorkflowHistory"
+        - "ProcessService#getProcessDefinitions"
+        - "WorkflowElementType"
+    composes_with: [bpmn-call-activity-decomposition]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Viewing-workflows
+      - https://github.com/vanillabp/spi-for-java#viewing-bpmn-and-execution-history-of-workflows
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  # ----------------------------------------------------------------------------------
+  # Showcase
+  # ----------------------------------------------------------------------------------
+
+  - id: showcase-standalone
+    title: A complete application
+    summary: >
+      A complete business process application without a UI, combining the aspects the
+      other blueprints show one by one. Meant as a reference, not as an entry point - for
+      that, start with module-single.
+    category: showcase
+    base: module-standalone
+    bpms: [camunda7, camunda8, process-engine-api]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:ServiceTask
+        - bpmn:UserTask
+        - bpmn:ExclusiveGateway
+        - bpmn:BoundaryEvent
+        - bpmn:TimerEventDefinition
+      spi:
+        - "@WorkflowService"
+        - "@WorkflowTask"
+        - "@TaskId"
+        - "@TaskEvent"
+        - "ProcessService#startWorkflow"
+        - "ProcessService#completeUserTask"
+    composes_with: [module-standalone]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Home
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned

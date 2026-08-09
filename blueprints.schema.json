@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/vanillabp-blueprints/.github/main/blueprints.schema.json",
+  "title": "VanillaBP blueprints index",
+  "description": "Machine readable index of all VanillaBP blueprints. This file is the single source of truth: the organisation page is generated from it and AI agents select blueprints by matching a parsed BPMN against 'covers.bpmn'.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "blueprints"],
+  "properties": {
+    "version": {
+      "description": "Version of this index format.",
+      "const": 2
+    },
+    "blueprints": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/blueprint" }
+    }
+  },
+  "$defs": {
+    "blueprintId": {
+      "type": "string",
+      "description": "'<category>-<aspect>', lower case, hyphens.",
+      "pattern": "^(module|persistence|bpmn|showcase)-[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "text": {
+      "type": "string",
+      "pattern": "^\\S(.*\\S)?$"
+    },
+    "platform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "description": "'available' means the blueprint has been split into its own repository; 'planned' makes the gap visible instead of hiding it.",
+          "enum": ["available", "planned"]
+        },
+        "repo": { "$ref": "#/$defs/url" },
+        "agents_md": { "$ref": "#/$defs/url" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": ["status"],
+            "properties": { "status": { "const": "available" } }
+          },
+          "then": {
+            "required": ["repo", "agents_md"]
+          },
+          "else": {
+            "not": {
+              "anyOf": [{ "required": ["repo"] }, { "required": ["agents_md"] }]
+            }
+          }
+        }
+      ]
+    },
+    "blueprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "summary",
+        "category",
+        "bpms",
+        "persistence",
+        "covers",
+        "docs",
+        "platforms"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/blueprintId" },
+        "title": { "$ref": "#/$defs/text" },
+        "summary": {
+          "description": "Two or three sentences describing what the blueprint shows.",
+          "$ref": "#/$defs/text"
+        },
+        "category": {
+          "description": "Has to match the prefix of 'id'.",
+          "enum": ["module", "persistence", "bpmn", "showcase"]
+        },
+        "base": {
+          "description": "The blueprint this one is a delta of. Omitted by blueprints which are a base themselves.",
+          "$ref": "#/$defs/blueprintId"
+        },
+        "bpms": {
+          "description": "The BPMS this blueprint is built and tested against, given as Maven profile IDs.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["camunda7", "camunda8", "process-engine-api"] }
+        },
+        "persistence": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["jpa", "mongodb", "custom"] }
+        },
+        "covers": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["bpmn", "spi"],
+          "properties": {
+            "bpmn": {
+              "description": "BPMN element types shown, as they appear in a BPMN XML. This is what an agent matches a parsed BPMN against. Empty if the blueprint is not about a BPMN element.",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^bpmn:[A-Za-z]+$"
+              }
+            },
+            "spi": {
+              "description": "The SPI elements used, e.g. '@WorkflowTask' or 'ProcessService#completeUserTask'.",
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/text" }
+            }
+          }
+        },
+        "composes_with": {
+          "description": "Blueprints which are typically combined with this one. Every entry has to be the ID of another blueprint.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/blueprintId" }
+        },
+        "docs": {
+          "description": "Reference documentation this blueprint links instead of repeating it.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/url" }
+        },
+        "platforms": {
+          "description": "Both platforms are required: a platform a blueprint is not available for is documented as 'planned'.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["springboot", "quarkus"],
+          "properties": {
+            "springboot": { "$ref": "#/$defs/platform" },
+            "quarkus": { "$ref": "#/$defs/platform" }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": ["id"],
+            "properties": { "id": { "pattern": "^module-" } }
+          },
+          "then": { "properties": { "category": { "const": "module" } } }
+        },
+        {
+          "if": {
+            "required": ["id"],
+            "properties": { "id": { "pattern": "^persistence-" } }
+          },
+          "then": { "properties": { "category": { "const": "persistence" } } }
+        },
+        {
+          "if": {
+            "required": ["id"],
+            "properties": { "id": { "pattern": "^bpmn-" } }
+          },
+          "then": { "properties": { "category": { "const": "bpmn" } } }
+        },
+        {
+          "if": {
+            "required": ["id"],
+            "properties": { "id": { "pattern": "^showcase-" } }
+          },
+          "then": { "properties": { "category": { "const": "showcase" } } }
+        }
+      ]
+    }
+  }
+}
