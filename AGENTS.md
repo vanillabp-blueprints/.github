@@ -91,9 +91,26 @@ The seam costs nothing while a process is trivial and is what keeps the business
 readable once it is not; and a structure which is the same in every blueprint is one an
 agent can extend instead of having to rebuild.
 
-Do **not** let `Workflow` call back into `Service`: the direction is `ApiController` →
-`Service` → `Workflow` → domain services. A `@WorkflowTask` method that needs real work
-done delegates to a domain service, not to the business service that started the workflow.
+### A `@WorkflowTask` method contains no business logic
+
+It translates, and that is all: it turns what the BPMS delivers — the aggregate, `@TaskId`,
+`@TaskEvent`, the multi-instance element and its index — into a call to business code, and
+it logs which point the process reached. In a single service task that leaves almost
+nothing; in a multi-instance task or a user task it is real work (pick the element this
+invocation is about, keep the task ID, react to the task having been canceled), and that
+work is exactly what belongs here.
+
+Where the business code lives:
+
+- **on the workflow aggregate**, for logic about the business object itself
+  (`loanApproval.assessCreditRating(scale)`). It is a normal entity — giving it behaviour is
+  not only allowed, it is where behaviour belongs;
+- **in a domain service**, for anything reaching beyond one business object.
+
+Not in `Service`: that class injects `Workflow` in order to trigger the process, so
+injecting it back would be a circular dependency — which Spring Boot rejects at startup by
+default. The direction stays `ApiController` → `Service` → `Workflow` → aggregate / domain
+services.
 
 ### Two namespaces per workflow module
 
