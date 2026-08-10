@@ -52,20 +52,33 @@ blueprints stays readable only if they agree.
 
 ```
 <base-package>.<usecase>
-├── ApiController.java               <- talks to Service only
+├── ApiController.java               <- driving adapter: HTTP calls in
 ├── Service.java                     <- business code, never touches VanillaBP
-├── Workflow.java                    <- @WorkflowService, @WorkflowTask, ProcessService
+├── Workflow.java                    <- outgoing: the application tells the process
+├── WorkflowTaskHandler.java         <- incoming: the process tells the application
 ├── config/<UseCase>Properties.java
 └── model/
     ├── Aggregate.java
     └── AggregateRepository.java
 ```
 
-### Business code and BPMN wiring are two classes
+### One class per direction
 
-`ProcessService` is injected in `Workflow` and nowhere else, and every `@WorkflowTask`
-method is a method of `Workflow`. The business service calls in, naming what happened **in
-business terms**, and `Workflow` decides what that means for the process:
+Talking to a BPMS happens in both directions, and the two are different architectural
+things. Keep them apart:
+
+```
+ApiController ──────────┐
+                        ├──→ Service ──→ Workflow ──→ ProcessService     outgoing
+BPMS ──→ WorkflowTaskHandler ──┘                                         incoming
+```
+
+- **`Workflow`** — the outgoing half. `ProcessService` is injected here and nowhere else.
+  `Service` calls in, naming what happened **in business terms**, and this class translates
+  it into what the process needs.
+- **`WorkflowTaskHandler`** — the incoming half. It carries `@WorkflowService` and every
+  `@WorkflowTask` method, and it calls `Service`. It is a driving adapter, the same kind of
+  thing as `ApiController`: that the caller is a BPMS rather than a browser changes nothing.
 
 ```java
 // Service.java - what happened
@@ -79,6 +92,12 @@ public void submitRiskAssessment(final String id, final boolean acceptable) {
 public void riskAssessmentSubmitted(final Aggregate loanApproval) {
   processService.correlateMessage(loanApproval, "RiskAssessed");
 }
+
+// WorkflowTaskHandler.java - what the process wants from the application
+@WorkflowTask
+public void assessRisk(final Aggregate loanApproval, @TaskId final String taskId) {
+  service.riskAssessmentRequested(loanApproval, taskId);
+}
 ```
 
 Name the methods of `Workflow` after the business event (`riskAssessmentSubmitted`), never
@@ -86,31 +105,35 @@ after the BPMN element (`correlateRiskAssessedMessage`). The BPMN may be remodel
 message becomes a timer, a task becomes a call activity — without the business code
 noticing, and that is the whole point.
 
-Keep both classes even where the translation is a single line, as it is in `module-single`.
-The seam costs nothing while a process is trivial and is what keeps the business code
-readable once it is not; and a structure which is the same in every blueprint is one an
-agent can extend instead of having to rebuild.
+**Do not merge the two classes.** Putting both directions into one makes it depend on
+`Service` while `Service` depends on it — a circular bean reference, which Spring Boot
+rejects at startup unless it is worked around with `@Lazy`. An interface implemented by
+`Service` does not help either: the cycle is between beans, not between types. Splitting by
+direction removes it instead of hiding it.
+
+Keep both classes even where the translation is a single line. The seam costs nothing while
+a process is trivial and is what keeps the business code readable once it is not; and a
+structure which is the same in every blueprint is one an agent can extend instead of having
+to rebuild.
+
+If the business service is to be unit-testable without a BPMS, let `Workflow` implement an
+interface owned by the application and inject that. Do it on the **outgoing** side only —
+the incoming adapter may depend on the application directly, exactly as `ApiController`
+does.
 
 ### A `@WorkflowTask` method contains no business logic
 
 It translates, and that is all: it turns what the BPMS delivers — the aggregate, `@TaskId`,
-`@TaskEvent`, the multi-instance element and its index — into a call to business code, and
-it logs which point the process reached. In a single service task that leaves almost
-nothing; in a multi-instance task or a user task it is real work (pick the element this
-invocation is about, keep the task ID, react to the task having been canceled), and that
-work is exactly what belongs here.
+`@TaskEvent`, the multi-instance element and its index — into a call to `Service`. With a
+single service task that leaves one line, which is honest: there is nothing to translate. In
+a multi-instance task or a user task it is real work — pick the element this invocation is
+about, keep the task ID, react to the task having been canceled — and that work belongs
+there rather than in the business code.
 
-Where the business code lives:
-
-- **on the workflow aggregate**, for logic about the business object itself
-  (`loanApproval.assessCreditRating(scale)`). It is a normal entity — giving it behaviour is
-  not only allowed, it is where behaviour belongs;
-- **in a domain service**, for anything reaching beyond one business object.
-
-Not in `Service`: that class injects `Workflow` in order to trigger the process, so
-injecting it back would be a circular dependency — which Spring Boot rejects at startup by
-default. The direction stays `ApiController` → `Service` → `Workflow` → aggregate / domain
-services.
+The work behind a task is business code and lives in `Service`, which the handler may call
+because the directions are split (see above). Logic about the business object itself may of
+course sit on the aggregate — it is a normal entity — but that is a matter of taste, not the
+rule here. The rule is that nothing computes inside a `@WorkflowTask` method.
 
 ### Two namespaces per workflow module
 
