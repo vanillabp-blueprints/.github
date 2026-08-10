@@ -40,7 +40,9 @@ def platforms_cell(blueprint):
             parts.append(f"[{label}]({entry['repo']})")
         else:
             parts.append(f"{label} *(planned)*")
-    return " · ".join(parts)
+    # A line break rather than a separator: the entries line up below each other, which a
+    # trailing '(planned)' on one of them would otherwise push out of alignment.
+    return "<br>".join(parts)
 
 
 def render(blueprints):
