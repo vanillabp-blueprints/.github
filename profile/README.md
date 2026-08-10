@@ -18,6 +18,12 @@ Blueprints are meant to be copied. They all use the same package structure, the 
 placeholders and the same test setup, so understanding one means understanding all of them,
 and combining two of them means applying two deltas.
 
+Every blueprint is built and tested on every business process engine it claims, on each
+change and again each night against the current state of VanillaBP:
+
+[![Build](https://github.com/vanillabp-blueprints/blueprints/actions/workflows/build.yaml/badge.svg)](https://github.com/vanillabp-blueprints/blueprints/actions/workflows/build.yaml)
+[![Nightly](https://github.com/vanillabp-blueprints/blueprints/actions/workflows/nightly.yaml/badge.svg)](https://github.com/vanillabp-blueprints/blueprints/actions/workflows/nightly.yaml)
+
 ### How to use a blueprint
 
 1. Pick the blueprints matching what you are building. Start with `module-single`, the base
