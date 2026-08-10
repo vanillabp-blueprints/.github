@@ -38,7 +38,9 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-single-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-single-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
