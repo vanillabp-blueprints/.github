@@ -50,7 +50,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-Available today, of 26 blueprints: 1 for Spring Boot, none for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
+Available today, of 26 blueprints: 2 for Spring Boot, none for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
 
 ### Workflow module structure and runtime
 
@@ -75,7 +75,7 @@ Available today, of 26 blueprints: 1 for Spring Boot, none for Quarkus. A bluepr
 
 | Blueprint | What it shows | BPMN elements | Platforms |
 |---|---|---|---|
-| `bpmn-service-task` | Service tasks | `bpmn:ServiceTask` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `bpmn-service-task` | Service tasks | `bpmn:ServiceTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-service-task-springboot)<br>Quarkus *(planned)* |
 | `bpmn-user-task` | User tasks | `bpmn:UserTask` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-async-task` | Asynchronous tasks | `bpmn:SendTask`, `bpmn:ReceiveTask` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-message-correlation` | Messages for running workflows | `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
