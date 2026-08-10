@@ -52,13 +52,48 @@ blueprints stays readable only if they agree.
 
 ```
 <base-package>.<usecase>
-├── ApiController.java
-├── Service.java                     <- @WorkflowService
+├── ApiController.java               <- talks to Service only
+├── Service.java                     <- business code, never touches VanillaBP
+├── Workflow.java                    <- @WorkflowService, @WorkflowTask, ProcessService
 ├── config/<UseCase>Properties.java
 └── model/
     ├── Aggregate.java
     └── AggregateRepository.java
 ```
+
+### Business code and BPMN wiring are two classes
+
+`ProcessService` is injected in `Workflow` and nowhere else, and every `@WorkflowTask`
+method is a method of `Workflow`. The business service calls in, naming what happened **in
+business terms**, and `Workflow` decides what that means for the process:
+
+```java
+// Service.java - what happened
+public void submitRiskAssessment(final String id, final boolean acceptable) {
+  final var loanApproval = loanApprovals.findById(id).orElseThrow();
+  loanApproval.setRiskAcceptable(acceptable);
+  workflow.riskAssessmentSubmitted(loanApproval);
+}
+
+// Workflow.java - what it means for the process
+public void riskAssessmentSubmitted(final Aggregate loanApproval) {
+  processService.correlateMessage(loanApproval, "RiskAssessed");
+}
+```
+
+Name the methods of `Workflow` after the business event (`riskAssessmentSubmitted`), never
+after the BPMN element (`correlateRiskAssessedMessage`). The BPMN may be remodelled — a
+message becomes a timer, a task becomes a call activity — without the business code
+noticing, and that is the whole point.
+
+Keep both classes even where the translation is a single line, as it is in `module-single`.
+The seam costs nothing while a process is trivial and is what keeps the business code
+readable once it is not; and a structure which is the same in every blueprint is one an
+agent can extend instead of having to rebuild.
+
+Do **not** let `Workflow` call back into `Service`: the direction is `ApiController` →
+`Service` → `Workflow` → domain services. A `@WorkflowTask` method that needs real work
+done delegates to a domain service, not to the business service that started the workflow.
 
 ### Two namespaces per workflow module
 
