@@ -273,7 +273,9 @@ blueprints:
       - https://github.com/vanillabp/spi-for-java#wire-up-a-task
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-service-task-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-service-task-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
