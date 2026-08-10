@@ -8,7 +8,7 @@ and AI agents read the files it describes.
 | `blueprints.yaml` | **The single source of truth.** Every blueprint with the BPMN elements it covers, the SPI it uses, and its repository per platform. |
 | `blueprints.schema.json` | JSON schema `blueprints.yaml` is validated against. |
 | `AGENTS.md` | The rules valid for all blueprints, so that the `AGENTS.md` of a single blueprint stays short. |
-| `profile/README.md` | The organisation page. Everything between the `BEGIN GENERATED` and `END GENERATED` markers is rendered from `blueprints.yaml` — edit the index, not the page. |
+| `profile/README.md` | The organisation page. Everything between the `BEGIN GENERATED` and `END GENERATED` markers is rendered from `blueprints.yaml` — edit the index, not the page. One table per category, with a column linking the repository of each platform. |
 
 ## Changing the catalogue
 

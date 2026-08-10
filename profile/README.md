@@ -20,11 +20,12 @@ and combining two of them means applying two deltas.
 
 ### How to use a blueprint
 
-1. **Pick your platform** — Spring Boot or Quarkus. Each blueprint is a repository of its
-   own per platform, so you never see the code of the other one.
-2. **Pick the blueprints matching what you are building.** Start with `module-single`; it is
+1. **Pick the blueprints matching what you are building.** Start with `module-single`; it is
    the base every other blueprint is a delta of. Then add the BPMN scenarios your process
    needs.
+2. **Follow your platform's link.** Every blueprint is a repository of its own per platform,
+   so you never see the code of the other one — the *Platforms* column links the repository
+   for Spring Boot and for Quarkus separately.
 3. **Clone and run it.** Every blueprint builds with `mvn verify` and is operable in a
    browser alone: its README names one URL to start the process, and at every wait state the
    application logs the URLs to continue with.
@@ -49,105 +50,53 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-## Spring Boot
-
-1 of 26 blueprints are available for Spring Boot. Clone the one you need - each is a repository of its own.
+Available today, of 26 blueprints: 1 for Spring Boot, none for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
 
 ### Workflow module structure and runtime
 
-| Blueprint | What it shows | BPMN elements |
-|---|---|---|
-| [`module-single`](https://github.com/vanillabp-blueprints/module-single-springboot) | Application plus one workflow module | `bpmn:ServiceTask` |
-| `module-multi` *(planned)* | Several workflow modules in one application | — |
-| `module-standalone` *(planned)* | The application is the workflow module | — |
-| `module-interaction` *(planned)* | Interaction between workflow modules | `bpmn:IntermediateThrowEvent`, `bpmn:IntermediateCatchEvent`, `bpmn:SendTask` |
-| `module-shared-code` *(planned)* | Shared code between workflow modules | — |
-| `module-packaging` *(planned)* | Packaging and running the application | — |
-| `module-bpms-migration` *(planned)* | Migrating running workflows to another BPMS | — |
+| Blueprint | What it shows | BPMN elements | Platforms |
+|---|---|---|---|
+| `module-single` | Application plus one workflow module | `bpmn:ServiceTask` | [Spring Boot](https://github.com/vanillabp-blueprints/module-single-springboot) · Quarkus *(planned)* |
+| `module-multi` | Several workflow modules in one application | — | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `module-standalone` | The application is the workflow module | — | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `module-interaction` | Interaction between workflow modules | `bpmn:IntermediateThrowEvent`, `bpmn:IntermediateCatchEvent`, `bpmn:SendTask` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `module-shared-code` | Shared code between workflow modules | — | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `module-packaging` | Packaging and running the application | — | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `module-bpms-migration` | Migrating running workflows to another BPMS | — | Spring Boot *(planned)* · Quarkus *(planned)* |
 
 ### Persistence of workflow aggregates
 
-| Blueprint | What it shows | BPMN elements |
-|---|---|---|
-| `persistence-mongodb` *(planned)* | Workflow aggregates in MongoDB | — |
-| `persistence-custom` *(planned)* | A persistence of your own | — |
+| Blueprint | What it shows | BPMN elements | Platforms |
+|---|---|---|---|
+| `persistence-mongodb` | Workflow aggregates in MongoDB | — | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `persistence-custom` | A persistence of your own | — | Spring Boot *(planned)* · Quarkus *(planned)* |
 
 ### BPMN scenarios
 
-| Blueprint | What it shows | BPMN elements |
-|---|---|---|
-| `bpmn-service-task` *(planned)* | Service tasks | `bpmn:ServiceTask` |
-| `bpmn-user-task` *(planned)* | User tasks | `bpmn:UserTask` |
-| `bpmn-async-task` *(planned)* | Asynchronous tasks | `bpmn:SendTask`, `bpmn:ReceiveTask` |
-| `bpmn-message-correlation` *(planned)* | Messages for running workflows | `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` |
-| `bpmn-message-start` *(planned)* | Starting a workflow by message | `bpmn:StartEvent`, `bpmn:MessageEventDefinition` |
-| `bpmn-timer` *(planned)* | Timers | `bpmn:IntermediateCatchEvent`, `bpmn:BoundaryEvent`, `bpmn:TimerEventDefinition` |
-| `bpmn-boundary-events` *(planned)* | Boundary events | `bpmn:BoundaryEvent` |
-| `bpmn-error-escalation` *(planned)* | BPMN errors and escalations | `bpmn:ErrorEventDefinition`, `bpmn:EscalationEventDefinition`, `bpmn:BoundaryEvent` |
-| `bpmn-gateways` *(planned)* | Gateways and conditional sequence flows | `bpmn:ExclusiveGateway`, `bpmn:SequenceFlow` |
-| `bpmn-call-activity-decomposition` *(planned)* | Call activities to reduce complexity | `bpmn:CallActivity` |
-| `bpmn-call-activity-reuse` *(planned)* | Call activities to reuse a process | `bpmn:CallActivity` |
-| `bpmn-multi-instance-task` *(planned)* | Multi-instance tasks | `bpmn:MultiInstanceLoopCharacteristics`, `bpmn:ServiceTask` |
-| `bpmn-multi-instance-subprocess` *(planned)* | Multi-instance subprocesses | `bpmn:SubProcess`, `bpmn:MultiInstanceLoopCharacteristics` |
-| `bpmn-versioning` *(planned)* | Versioning BPMN processes | — |
-| `bpmn-aggregate-decoupling` *(planned)* | Decoupling BPMN from the data model | — |
-| `bpmn-history-and-diagram` *(planned)* | Showing BPMN and execution history | — |
+| Blueprint | What it shows | BPMN elements | Platforms |
+|---|---|---|---|
+| `bpmn-service-task` | Service tasks | `bpmn:ServiceTask` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-user-task` | User tasks | `bpmn:UserTask` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-async-task` | Asynchronous tasks | `bpmn:SendTask`, `bpmn:ReceiveTask` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-message-correlation` | Messages for running workflows | `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-message-start` | Starting a workflow by message | `bpmn:StartEvent`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-timer` | Timers | `bpmn:IntermediateCatchEvent`, `bpmn:BoundaryEvent`, `bpmn:TimerEventDefinition` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-boundary-events` | Boundary events | `bpmn:BoundaryEvent` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-error-escalation` | BPMN errors and escalations | `bpmn:ErrorEventDefinition`, `bpmn:EscalationEventDefinition`, `bpmn:BoundaryEvent` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-gateways` | Gateways and conditional sequence flows | `bpmn:ExclusiveGateway`, `bpmn:SequenceFlow` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-call-activity-decomposition` | Call activities to reduce complexity | `bpmn:CallActivity` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-call-activity-reuse` | Call activities to reuse a process | `bpmn:CallActivity` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-multi-instance-task` | Multi-instance tasks | `bpmn:MultiInstanceLoopCharacteristics`, `bpmn:ServiceTask` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-multi-instance-subprocess` | Multi-instance subprocesses | `bpmn:SubProcess`, `bpmn:MultiInstanceLoopCharacteristics` | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-versioning` | Versioning BPMN processes | — | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-aggregate-decoupling` | Decoupling BPMN from the data model | — | Spring Boot *(planned)* · Quarkus *(planned)* |
+| `bpmn-history-and-diagram` | Showing BPMN and execution history | — | Spring Boot *(planned)* · Quarkus *(planned)* |
 
 ### Showcase
 
-| Blueprint | What it shows | BPMN elements |
-|---|---|---|
-| `showcase-standalone` *(planned)* | A complete application | `bpmn:ServiceTask`, `bpmn:UserTask`, `bpmn:ExclusiveGateway`, `bpmn:BoundaryEvent`, `bpmn:TimerEventDefinition` |
-
-## Quarkus
-
-No blueprint has been published for Quarkus yet. The catalogue below is what is planned.
-
-### Workflow module structure and runtime
-
-| Blueprint | What it shows | BPMN elements |
-|---|---|---|
-| `module-single` *(planned)* | Application plus one workflow module | `bpmn:ServiceTask` |
-| `module-multi` *(planned)* | Several workflow modules in one application | — |
-| `module-standalone` *(planned)* | The application is the workflow module | — |
-| `module-interaction` *(planned)* | Interaction between workflow modules | `bpmn:IntermediateThrowEvent`, `bpmn:IntermediateCatchEvent`, `bpmn:SendTask` |
-| `module-shared-code` *(planned)* | Shared code between workflow modules | — |
-| `module-packaging` *(planned)* | Packaging and running the application | — |
-| `module-bpms-migration` *(planned)* | Migrating running workflows to another BPMS | — |
-
-### Persistence of workflow aggregates
-
-| Blueprint | What it shows | BPMN elements |
-|---|---|---|
-| `persistence-mongodb` *(planned)* | Workflow aggregates in MongoDB | — |
-| `persistence-custom` *(planned)* | A persistence of your own | — |
-
-### BPMN scenarios
-
-| Blueprint | What it shows | BPMN elements |
-|---|---|---|
-| `bpmn-service-task` *(planned)* | Service tasks | `bpmn:ServiceTask` |
-| `bpmn-user-task` *(planned)* | User tasks | `bpmn:UserTask` |
-| `bpmn-async-task` *(planned)* | Asynchronous tasks | `bpmn:SendTask`, `bpmn:ReceiveTask` |
-| `bpmn-message-correlation` *(planned)* | Messages for running workflows | `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` |
-| `bpmn-message-start` *(planned)* | Starting a workflow by message | `bpmn:StartEvent`, `bpmn:MessageEventDefinition` |
-| `bpmn-timer` *(planned)* | Timers | `bpmn:IntermediateCatchEvent`, `bpmn:BoundaryEvent`, `bpmn:TimerEventDefinition` |
-| `bpmn-boundary-events` *(planned)* | Boundary events | `bpmn:BoundaryEvent` |
-| `bpmn-error-escalation` *(planned)* | BPMN errors and escalations | `bpmn:ErrorEventDefinition`, `bpmn:EscalationEventDefinition`, `bpmn:BoundaryEvent` |
-| `bpmn-gateways` *(planned)* | Gateways and conditional sequence flows | `bpmn:ExclusiveGateway`, `bpmn:SequenceFlow` |
-| `bpmn-call-activity-decomposition` *(planned)* | Call activities to reduce complexity | `bpmn:CallActivity` |
-| `bpmn-call-activity-reuse` *(planned)* | Call activities to reuse a process | `bpmn:CallActivity` |
-| `bpmn-multi-instance-task` *(planned)* | Multi-instance tasks | `bpmn:MultiInstanceLoopCharacteristics`, `bpmn:ServiceTask` |
-| `bpmn-multi-instance-subprocess` *(planned)* | Multi-instance subprocesses | `bpmn:SubProcess`, `bpmn:MultiInstanceLoopCharacteristics` |
-| `bpmn-versioning` *(planned)* | Versioning BPMN processes | — |
-| `bpmn-aggregate-decoupling` *(planned)* | Decoupling BPMN from the data model | — |
-| `bpmn-history-and-diagram` *(planned)* | Showing BPMN and execution history | — |
-
-### Showcase
-
-| Blueprint | What it shows | BPMN elements |
-|---|---|---|
-| `showcase-standalone` *(planned)* | A complete application | `bpmn:ServiceTask`, `bpmn:UserTask`, `bpmn:ExclusiveGateway`, `bpmn:BoundaryEvent`, `bpmn:TimerEventDefinition` |
+| Blueprint | What it shows | BPMN elements | Platforms |
+|---|---|---|---|
+| `showcase-standalone` | A complete application | `bpmn:ServiceTask`, `bpmn:UserTask`, `bpmn:ExclusiveGateway`, `bpmn:BoundaryEvent`, `bpmn:TimerEventDefinition` | Spring Boot *(planned)* · Quarkus *(planned)* |
 
 <!-- END GENERATED -->
 

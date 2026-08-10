@@ -5,6 +5,10 @@ Everything between the two markers below is generated; the prose around them is 
 by hand. This is why blueprints.yaml is the single source of truth: prose and index
 cannot drift apart if one of them is produced by the other.
 
+There is one table per category, not one per platform: the catalogue is the same for
+both, and repeating it twice made the page long without saying more. Which platforms a
+blueprint exists for is a column, and each platform links its own repository.
+
 Usage: bin/render_index.py [--check]
        --check exits non-zero if the file is not up to date, without writing it.
 """
@@ -27,25 +31,34 @@ CATEGORIES = [
 ]
 
 
-def render(blueprints, platform, label):
-    available = [
-        blueprint
-        for blueprint in blueprints
-        if blueprint["platforms"][platform]["status"] == "available"
+def platforms_cell(blueprint):
+    """One cell naming every platform, linking the ones which exist."""
+    parts = []
+    for platform, label in PLATFORMS:
+        entry = blueprint["platforms"][platform]
+        if entry["status"] == "available":
+            parts.append(f"[{label}]({entry['repo']})")
+        else:
+            parts.append(f"{label} *(planned)*")
+    return " · ".join(parts)
+
+
+def render(blueprints):
+    total = len(blueprints)
+    counts = []
+    for platform, label in PLATFORMS:
+        available = sum(
+            1
+            for blueprint in blueprints
+            if blueprint["platforms"][platform]["status"] == "available"
+        )
+        counts.append(f"{available or 'none'} for {label}")
+
+    lines = [
+        f"Available today, of {total} blueprints: {', '.join(counts)}. A blueprint which"
+        " is not published for a platform yet is listed as planned rather than left out.",
+        "",
     ]
-    lines = [f"## {label}", ""]
-    if available:
-        lines += [
-            f"{len(available)} of {len(blueprints)} blueprints are available for"
-            f" {label}. Clone the one you need - each is a repository of its own.",
-            "",
-        ]
-    else:
-        lines += [
-            f"No blueprint has been published for {label} yet. The catalogue below is"
-            " what is planned.",
-            "",
-        ]
 
     for category, category_label in CATEGORIES:
         of_category = [
@@ -56,20 +69,18 @@ def render(blueprints, platform, label):
         lines += [
             f"### {category_label}",
             "",
-            "| Blueprint | What it shows | BPMN elements |",
-            "|---|---|---|",
+            "| Blueprint | What it shows | BPMN elements | Platforms |",
+            "|---|---|---|---|",
         ]
         for blueprint in of_category:
-            entry = blueprint["platforms"][platform]
-            if entry["status"] == "available":
-                name = f"[`{blueprint['id']}`]({entry['repo']})"
-            else:
-                name = f"`{blueprint['id']}` *(planned)*"
             elements = (
                 ", ".join(f"`{element}`" for element in blueprint["covers"]["bpmn"])
                 or "—"
             )
-            lines.append(f"| {name} | {blueprint['title']} | {elements} |")
+            lines.append(
+                f"| `{blueprint['id']}` | {blueprint['title']} | {elements}"
+                f" | {platforms_cell(blueprint)} |"
+            )
         lines.append("")
 
     return lines
@@ -89,9 +100,7 @@ def main():
         )
         sys.exit(2)
 
-    generated = []
-    for platform, label in PLATFORMS:
-        generated += render(blueprints, platform, label)
+    generated = render(blueprints)
 
     head, rest = readme.split(BEGIN, 1)
     _, tail = rest.split(END, 1)
