@@ -9,7 +9,7 @@ For more infos check out [https://www.vanillabp.io](https://www.vanillabp.io).
 ## Blueprints
 
 A blueprint is a small, runnable application showing **one** aspect of building business
-process software with VanillaBP — how a workflow module is structured, how a user task is
+process software with VanillaBP: how a workflow module is structured, how a user task is
 completed, how a message reaches a running workflow. Instead of a few large examples that
 show everything and explain nothing, there are many small ones, each with a README
 explaining its aspect and linking the reference documentation rather than repeating it.
@@ -20,30 +20,29 @@ and combining two of them means applying two deltas.
 
 ### How to use a blueprint
 
-1. **Pick the blueprints matching what you are building.** Start with `module-single`; it is
-   the base every other blueprint is a delta of. Then add the BPMN scenarios your process
-   needs.
-2. **Follow your platform's link.** Every blueprint is a repository of its own per platform,
-   so you never see the code of the other one — the *Platforms* column links the repository
-   for Spring Boot and for Quarkus separately.
-3. **Clone and run it.** Every blueprint builds with `mvn verify` and is operable in a
-   browser alone: its README names one URL to start the process, and at every wait state the
+1. Pick the blueprints matching what you are building. Start with `module-single`, the base
+   every other blueprint is a delta of, then add the BPMN scenarios your process needs.
+2. Follow your platform's link. Every blueprint is a repository of its own per platform, so
+   you never see the code of the other one. The *Platforms* column links the repository for
+   Spring Boot and for Quarkus separately.
+3. Clone and run it. Every blueprint builds with `mvn verify` and is operable in a browser
+   alone: its README names one URL to start the process, and at every wait state the
    application logs the URLs to continue with.
-4. **Choose the BPMS.** Which business process engine a blueprint runs on is a Maven
-   profile — `-Pcamunda7`, `-Pcamunda8` or `-Pprocess-engine-api` — never a code change.
-   That is the point VanillaBP is making.
+4. Choose the BPMS. Which business process engine a blueprint runs on is a Maven profile,
+   `-Pcamunda7`, `-Pcamunda8` or `-Pprocess-engine-api`, and never a code change. That is
+   the point VanillaBP is making.
 
 ### For AI agents
 
 The catalogue below is generated from a machine readable index. An agent implementing a
 modelled BPMN reads these two files and needs nothing else:
 
-- [`blueprints.yaml`](https://raw.githubusercontent.com/vanillabp-blueprints/.github/main/blueprints.yaml) —
+- [`blueprints.yaml`](https://raw.githubusercontent.com/vanillabp-blueprints/.github/main/blueprints.yaml):
   every blueprint with the BPMN element types it covers (`covers.bpmn`), the SPI it uses,
   which blueprints it composes with and the repository per platform.
-- [`AGENTS.md`](https://raw.githubusercontent.com/vanillabp-blueprints/.github/main/AGENTS.md) —
-  the rules valid for all blueprints: reference structure, placeholders, the procedure and
-  the list of things never to do.
+- [`AGENTS.md`](https://raw.githubusercontent.com/vanillabp-blueprints/.github/main/AGENTS.md):
+  the rules valid for all blueprints, meaning the reference structure, the placeholders, the
+  procedure and the list of things never to do.
 
 Each blueprint repository carries an `AGENTS.md` of its own describing its placeholders, its
 core files and how to graft it onto an existing project.
@@ -104,5 +103,5 @@ Available today, of 26 blueprints: 2 for Spring Boot, none for Quarkus. A bluepr
 
 Blueprints are developed in the monorepo
 [`blueprints`](https://github.com/vanillabp-blueprints/blueprints) and delivered as one
-repository per blueprint and platform. Those repositories are read-only mirrors — **issues
-and pull requests belong into the monorepo.**
+repository per blueprint and platform. Those repositories are read-only mirrors, so
+**issues and pull requests belong into the monorepo.**
