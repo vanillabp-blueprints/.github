@@ -51,13 +51,13 @@ core files and how to graft it onto an existing project.
 
 ## Spring Boot
 
-No blueprint has been published for Spring Boot yet. The catalogue below is what is planned.
+1 of 26 blueprints are available for Spring Boot. Clone the one you need - each is a repository of its own.
 
 ### Workflow module structure and runtime
 
 | Blueprint | What it shows | BPMN elements |
 |---|---|---|
-| `module-single` *(planned)* | Application plus one workflow module | `bpmn:ServiceTask` |
+| [`module-single`](https://github.com/vanillabp-blueprints/module-single-springboot) | Application plus one workflow module | `bpmn:ServiceTask` |
 | `module-multi` *(planned)* | Several workflow modules in one application | — |
 | `module-standalone` *(planned)* | The application is the workflow module | — |
 | `module-interaction` *(planned)* | Interaction between workflow modules | `bpmn:IntermediateThrowEvent`, `bpmn:IntermediateCatchEvent`, `bpmn:SendTask` |
