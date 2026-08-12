@@ -303,7 +303,9 @@ blueprints:
       - https://github.com/vanillabp/spi-for-java#user-tasks-and-asynchronous-tasks
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-user-task-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-user-task-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
@@ -386,6 +388,33 @@ blueprints:
       quarkus:
         status: planned
 
+  # The three blueprints below show features which are being built right now. Their
+  # documentation link is the wiki itself until the page describing the feature exists.
+  - id: bpmn-bpms-initiated-start
+    title: Workflows the BPMS starts
+    summary: >
+      A workflow the engine starts on its own, triggered by a timer or a signal. Nobody
+      called startWorkflow, so the workflow aggregate comes into being on the way in.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:StartEvent
+        - bpmn:TimerEventDefinition
+        - bpmn:SignalEventDefinition
+      spi:
+        - "@WorkflowStartedByBpms"
+    composes_with: [bpmn-timer, bpmn-signals]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   - id: bpmn-timer
     title: Timers
     summary: >
@@ -406,6 +435,53 @@ blueprints:
     composes_with: [bpmn-boundary-events, bpmn-user-task]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-signals
+    title: Signals
+    summary: >
+      A signal broadcast by the application and caught elsewhere in the same or another
+      workflow, including what a broadcast means for workflows nobody addressed.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:SignalEventDefinition
+        - bpmn:IntermediateCatchEvent
+      spi:
+        - "ProcessService#sendSignal"
+    composes_with: [bpmn-bpms-initiated-start, bpmn-boundary-events]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: bpmn-workflow-ended
+    title: Learning that a workflow ended
+    summary: >
+      How an application is told that a workflow reached its end, without modelling a
+      service task in front of every end event.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:EndEvent
+      spi:
+        - "@WorkflowEnded"
+    composes_with: [bpmn-boundary-events, bpmn-error-escalation]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks
     platforms:
       springboot:
         status: planned
