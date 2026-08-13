@@ -441,7 +441,9 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-timer-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-timer-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
