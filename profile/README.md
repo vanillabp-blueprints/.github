@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-Available today, of 29 blueprints: 3 for Spring Boot, none for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
+Available today, of 29 blueprints: 5 for Spring Boot, none for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
 
 ### Workflow module structure and runtime
 
@@ -82,7 +82,7 @@ Available today, of 29 blueprints: 3 for Spring Boot, none for Quarkus. A bluepr
 |---|---|---|---|
 | `bpmn-service-task` | Service tasks | `bpmn:ServiceTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-service-task-springboot)<br>Quarkus *(planned)* |
 | `bpmn-user-task` | User tasks | `bpmn:UserTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-user-task-springboot)<br>Quarkus *(planned)* |
-| `bpmn-async-task` | Asynchronous tasks | `bpmn:SendTask`, `bpmn:ReceiveTask` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `bpmn-async-task` | Asynchronous tasks | `bpmn:SendTask`, `bpmn:ReceiveTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-async-task-springboot)<br>Quarkus *(planned)* |
 | `bpmn-message-correlation` | Messages for running workflows | `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-message-start` | Starting a workflow by message | `bpmn:StartEvent`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-bpms-initiated-start` | Workflows the BPMS starts | `bpmn:StartEvent`, `bpmn:TimerEventDefinition`, `bpmn:SignalEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
@@ -91,7 +91,7 @@ Available today, of 29 blueprints: 3 for Spring Boot, none for Quarkus. A bluepr
 | `bpmn-workflow-ended` | Learning that a workflow ended | `bpmn:EndEvent` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-boundary-events` | Boundary events | `bpmn:BoundaryEvent` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-error-escalation` | BPMN errors and escalations | `bpmn:ErrorEventDefinition`, `bpmn:EscalationEventDefinition`, `bpmn:BoundaryEvent` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
-| `bpmn-gateways` | Gateways and conditional sequence flows | `bpmn:ExclusiveGateway`, `bpmn:SequenceFlow` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `bpmn-gateways` | Gateways and conditional sequence flows | `bpmn:ExclusiveGateway`, `bpmn:SequenceFlow` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-gateways-springboot)<br>Quarkus *(planned)* |
 | `bpmn-call-activity-decomposition` | Call activities to reduce complexity | `bpmn:CallActivity` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-call-activity-reuse` | Call activities to reuse a process | `bpmn:CallActivity` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-multi-instance-task` | Multi-instance tasks | `bpmn:MultiInstanceLoopCharacteristics`, `bpmn:ServiceTask` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
