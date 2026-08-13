@@ -516,7 +516,9 @@ blueprints:
       - https://github.com/vanillabp/spi-for-java#user-tasks-and-asynchronous-tasks
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-boundary-events-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-boundary-events-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
