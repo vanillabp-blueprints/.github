@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-Available today, of 29 blueprints: 5 for Spring Boot, none for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
+Available today, of 29 blueprints: 6 for Spring Boot, none for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
 
 ### Workflow module structure and runtime
 
@@ -86,7 +86,7 @@ Available today, of 29 blueprints: 5 for Spring Boot, none for Quarkus. A bluepr
 | `bpmn-message-correlation` | Messages for running workflows | `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-message-start` | Starting a workflow by message | `bpmn:StartEvent`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-bpms-initiated-start` | Workflows the BPMS starts | `bpmn:StartEvent`, `bpmn:TimerEventDefinition`, `bpmn:SignalEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
-| `bpmn-timer` | Timers | `bpmn:IntermediateCatchEvent`, `bpmn:BoundaryEvent`, `bpmn:TimerEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `bpmn-timer` | Timers | `bpmn:IntermediateCatchEvent`, `bpmn:BoundaryEvent`, `bpmn:TimerEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-timer-springboot)<br>Quarkus *(planned)* |
 | `bpmn-signals` | Signals | `bpmn:SignalEventDefinition`, `bpmn:IntermediateCatchEvent` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-workflow-ended` | Learning that a workflow ended | `bpmn:EndEvent` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-boundary-events` | Boundary events | `bpmn:BoundaryEvent` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
