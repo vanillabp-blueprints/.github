@@ -334,7 +334,9 @@ blueprints:
       - https://github.com/vanillabp/spi-for-java#user-tasks-and-asynchronous-tasks
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-async-task-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-async-task-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
@@ -560,7 +562,9 @@ blueprints:
       - https://github.com/vanillabp/spi-for-java#wire-up-an-expression
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-gateways-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-gateways-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
