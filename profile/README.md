@@ -82,7 +82,7 @@ Available today, of 29 blueprints: 5 for Spring Boot, none for Quarkus. A bluepr
 |---|---|---|---|
 | `bpmn-service-task` | Service tasks | `bpmn:ServiceTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-service-task-springboot)<br>Quarkus *(planned)* |
 | `bpmn-user-task` | User tasks | `bpmn:UserTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-user-task-springboot)<br>Quarkus *(planned)* |
-| `bpmn-async-task` | Asynchronous tasks | `bpmn:SendTask`, `bpmn:ReceiveTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-async-task-springboot)<br>Quarkus *(planned)* |
+| `bpmn-async-task` | Asynchronous tasks | `bpmn:SendTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-async-task-springboot)<br>Quarkus *(planned)* |
 | `bpmn-message-correlation` | Messages for running workflows | `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-message-start` | Starting a workflow by message | `bpmn:StartEvent`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-bpms-initiated-start` | Workflows the BPMS starts | `bpmn:StartEvent`, `bpmn:TimerEventDefinition`, `bpmn:SignalEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |

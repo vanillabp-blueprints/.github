@@ -320,8 +320,10 @@ blueprints:
     persistence: [jpa]
     covers:
       bpmn:
+        # A receive task waits for a BPMN message and is completed by correlating one,
+        # which is bpmn-message-correlation. This blueprint shows the task that stays open
+        # until the application completes it by its id.
         - bpmn:SendTask
-        - bpmn:ReceiveTask
       spi:
         - "@WorkflowTask"
         - "@TaskId"
