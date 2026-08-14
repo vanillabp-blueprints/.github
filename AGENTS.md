@@ -202,8 +202,17 @@ Those logged URLs are also the cheapest way for you to see which state a workflo
    message to a process of another workflow module, that couples them. Use the way
    `module-interaction` shows: an outgoing message becomes an internal API call, and the
    receiving module delivers a message through its own API.
-7. **Do not copy reference documentation into the generated project.** Link it.
-8. **Do not invent BPMS-specific configuration.** If something appears to need it, it belongs
+7. **Do not let two branches of one workflow write the aggregate carelessly.** A parallel
+   gateway, a non-interrupting boundary event and a multi-instance task each add a token, so
+   a second writer exists next to whatever the application writes from its API. JPA saves the
+   whole row, so the branch committing second puts back what it read at its start and the
+   other branch's work is gone, without an exception and without a log line. Pick a strategy
+   and say which one: an entity per phase in a 1:1 relation to the aggregate, `@DynamicUpdate`
+   while the branches write different attributes, `@Version` plus a retry, or a relation of
+   its own that is only ever appended to. The blueprint `persistence-parallel-branches` shows
+   the first and explains when the others fit.
+8. **Do not copy reference documentation into the generated project.** Link it.
+9. **Do not invent BPMS-specific configuration.** If something appears to need it, it belongs
    into the adapter's wiki, not into the application.
 
 ## Where the documentation is
