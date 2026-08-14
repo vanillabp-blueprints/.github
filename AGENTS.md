@@ -211,9 +211,17 @@ Those logged URLs are also the cheapest way for you to see which state a workflo
    while the branches write different attributes, `@Version` plus a retry, or a relation of
    its own that is only ever appended to. The blueprint `persistence-parallel-branches` shows
    the first and explains when the others fit.
-8. **Do not copy reference documentation into the generated project.** Link it.
-9. **Do not invent BPMS-specific configuration.** If something appears to need it, it belongs
-   into the adapter's wiki, not into the application.
+8. **One `@WorkflowService` class per workflow aggregate class.** When a second process works
+   on the same aggregate, name it in `secondaryBpmnProcesses` of the existing class and put
+   its `@WorkflowTask` methods there. Do not annotate a second class with `@WorkflowService`
+   for that aggregate: VanillaBP builds one `ProcessService` per aggregate class and starts
+   the process of whichever class the classpath scan found first, so `startWorkflow` may
+   start the wrong process. Nothing says so - the workflow runs, and the aggregate ends up
+   half filled. This is easy to walk into when two blueprints are composed, because each
+   brings a handler class of its own.
+9. **Do not copy reference documentation into the generated project.** Link it.
+10. **Do not invent BPMS-specific configuration.** If something appears to need it, it belongs
+    into the adapter's wiki, not into the application.
 
 ## Where the documentation is
 
