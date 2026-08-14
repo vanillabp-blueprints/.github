@@ -246,6 +246,32 @@ blueprints:
       quarkus:
         status: planned
 
+  - id: persistence-parallel-branches
+    title: Two branches writing one aggregate
+    summary: >
+      What happens when two branches of one workflow write the same workflow aggregate at
+      the same time, and the four ways out - one of them shown as code, the others as the
+      decision behind it.
+    category: persistence
+    base: module-single
+    bpms: [camunda7, camunda8]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:ParallelGateway
+        - bpmn:BoundaryEvent
+      spi:
+        - "@WorkflowTask"
+        - "ProcessService#completeTask"
+    composes_with: [bpmn-boundary-events, bpmn-multi-instance-task, bpmn-call-activity-decomposition]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   # ----------------------------------------------------------------------------------
   # BPMN scenarios
   # ----------------------------------------------------------------------------------
