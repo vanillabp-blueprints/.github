@@ -364,7 +364,9 @@ blueprints:
       - https://github.com/vanillabp/spi-for-java#correlate-an-incoming-message
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-message-correlation-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-message-correlation-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
@@ -469,7 +471,9 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-signals-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-signals-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
@@ -546,7 +550,9 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#what-happens-when-my-handler-throws
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-error-escalation-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-error-escalation-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
