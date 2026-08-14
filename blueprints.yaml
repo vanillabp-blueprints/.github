@@ -626,36 +626,12 @@ blueprints:
       spi:
         - "@WorkflowService"
         - "@BpmnProcess"
+        - "@WorkflowService#secondaryBpmnProcesses"
         - "@WorkflowTask"
     composes_with: [bpmn-multi-instance-subprocess]
     docs:
       - https://github.com/vanillabp/spi-for-java#call-activities
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Viewing-workflows#digging-into-call-activities
-    platforms:
-      springboot:
-        status: planned
-      quarkus:
-        status: planned
-
-  - id: bpmn-call-activity-reuse
-    title: Call activities to reuse a process
-    summary: >
-      A process reused by other processes, having a workflow aggregate of its own. To be
-      clarified before this blueprint is built: reuse couples the processes involved, so it
-      may be neither supported nor wanted.
-    category: bpmn
-    base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
-    persistence: [jpa]
-    covers:
-      bpmn:
-        - bpmn:CallActivity
-      spi:
-        - "@WorkflowService"
-        - "@BpmnProcess"
-    composes_with: [bpmn-call-activity-decomposition]
-    docs:
-      - https://github.com/vanillabp/spi-for-java#call-activities
     platforms:
       springboot:
         status: planned
