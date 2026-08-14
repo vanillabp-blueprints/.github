@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-Available today, of 30 blueprints: 11 for Spring Boot, none for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
+Available today, of 30 blueprints: 12 for Spring Boot, none for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
 
 ### Workflow module structure and runtime
 
@@ -86,7 +86,7 @@ Available today, of 30 blueprints: 11 for Spring Boot, none for Quarkus. A bluep
 | `bpmn-async-task` | Asynchronous tasks | `bpmn:SendTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-async-task-springboot)<br>Quarkus *(planned)* |
 | `bpmn-message-correlation` | Messages for running workflows | `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-message-correlation-springboot)<br>Quarkus *(planned)* |
 | `bpmn-message-start` | Starting a workflow by message | `bpmn:StartEvent`, `bpmn:MessageEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-message-start-springboot)<br>Quarkus *(planned)* |
-| `bpmn-bpms-initiated-start` | Workflows the BPMS starts | `bpmn:StartEvent`, `bpmn:TimerEventDefinition`, `bpmn:SignalEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `bpmn-bpms-initiated-start` | Workflows the BPMS starts | `bpmn:StartEvent`, `bpmn:TimerEventDefinition`, `bpmn:SignalEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-bpms-initiated-start-springboot)<br>Quarkus *(planned)* |
 | `bpmn-timer` | Timers | `bpmn:IntermediateCatchEvent`, `bpmn:BoundaryEvent`, `bpmn:TimerEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-timer-springboot)<br>Quarkus *(planned)* |
 | `bpmn-signals` | Signals | `bpmn:SignalEventDefinition`, `bpmn:IntermediateCatchEvent` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-signals-springboot)<br>Quarkus *(planned)* |
 | `bpmn-workflow-ended` | Learning that a workflow ended | `bpmn:EndEvent` | Spring Boot *(planned)*<br>Quarkus *(planned)* |

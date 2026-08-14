@@ -442,7 +442,8 @@ blueprints:
         - "@WorkflowStartedByBpms"
     composes_with: [bpmn-timer, bpmn-signals]
     docs:
-      - https://github.com/vanillabp/adapter-platform-integration/wiki
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Starting-workflows#the-bpms-starts-it
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates
     platforms:
       springboot:
         status: available
