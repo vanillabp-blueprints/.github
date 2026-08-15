@@ -769,7 +769,9 @@ blueprints:
       - https://github.com/vanillabp/spi-for-java#viewing-bpmn-and-execution-history-of-workflows
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-history-and-diagram-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-history-and-diagram-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
