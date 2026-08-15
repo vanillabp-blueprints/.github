@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-Available today, of 29 blueprints: 16 for Spring Boot, none for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
+Available today, of 29 blueprints: 17 for Spring Boot, none for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
 
 ### Workflow module structure and runtime
 
@@ -89,7 +89,7 @@ Available today, of 29 blueprints: 16 for Spring Boot, none for Quarkus. A bluep
 | `bpmn-bpms-initiated-start` | Workflows the BPMS starts | `bpmn:StartEvent`, `bpmn:TimerEventDefinition`, `bpmn:SignalEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-bpms-initiated-start-springboot)<br>Quarkus *(planned)* |
 | `bpmn-timer` | Timers | `bpmn:IntermediateCatchEvent`, `bpmn:BoundaryEvent`, `bpmn:TimerEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-timer-springboot)<br>Quarkus *(planned)* |
 | `bpmn-signals` | Signals | `bpmn:SignalEventDefinition`, `bpmn:IntermediateCatchEvent` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-signals-springboot)<br>Quarkus *(planned)* |
-| `bpmn-workflow-ended` | Learning that a workflow ended | `bpmn:EndEvent` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `bpmn-workflow-ended` | Learning that a workflow ended | `bpmn:EndEvent` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-workflow-ended-springboot)<br>Quarkus *(planned)* |
 | `bpmn-boundary-events` | Boundary events | `bpmn:BoundaryEvent` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-boundary-events-springboot)<br>Quarkus *(planned)* |
 | `bpmn-error-escalation` | BPMN errors and escalations | `bpmn:ErrorEventDefinition`, `bpmn:EscalationEventDefinition`, `bpmn:BoundaryEvent` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-error-escalation-springboot)<br>Quarkus *(planned)* |
 | `bpmn-gateways` | Gateways and conditional sequence flows | `bpmn:ExclusiveGateway`, `bpmn:SequenceFlow` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-gateways-springboot)<br>Quarkus *(planned)* |
