@@ -692,7 +692,9 @@ blueprints:
       - https://github.com/vanillabp/spi-for-java#multi-instance
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-multi-instance-subprocess-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-multi-instance-subprocess-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
