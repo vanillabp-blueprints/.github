@@ -261,10 +261,12 @@ blueprints:
     covers:
       bpmn:
         - bpmn:ParallelGateway
-        - bpmn:BoundaryEvent
+        - bpmn:UserTask
       spi:
         - "@WorkflowTask"
-        - "ProcessService#completeTask"
+        - "@TaskId"
+        - "@TaskEvent"
+        - "ProcessService#completeUserTask"
     composes_with: [bpmn-boundary-events, bpmn-multi-instance-task, bpmn-call-activity-decomposition]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates
@@ -749,7 +751,7 @@ blueprints:
       bpmn: []
       spi:
         - "@WorkflowTask"
-        - "@WorkflowTasks"
+        - "@WorkflowTask(version)"
     composes_with: [module-bpms-migration]
     docs:
       - https://github.com/vanillabp/spi-for-java#versioning-of-bpmn-business-processes
