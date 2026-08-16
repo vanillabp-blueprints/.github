@@ -42,8 +42,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/module-single-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-single-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/module-single-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-single-quarkus/main/AGENTS.md
   - id: module-multi
     title: Several workflow modules in one application
     summary: >
@@ -303,8 +305,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-service-task-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-service-task-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-service-task-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-service-task-quarkus/main/AGENTS.md
   - id: bpmn-user-task
     title: User tasks
     summary: >
@@ -333,8 +337,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-user-task-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-user-task-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-user-task-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-user-task-quarkus/main/AGENTS.md
   - id: bpmn-async-task
     title: Asynchronous tasks
     summary: >
@@ -366,8 +372,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-async-task-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-async-task-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-async-task-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-async-task-quarkus/main/AGENTS.md
   - id: bpmn-message-correlation
     title: Messages for running workflows
     summary: >
@@ -394,8 +402,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-message-correlation-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-message-correlation-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-message-correlation-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-message-correlation-quarkus/main/AGENTS.md
   - id: bpmn-message-start
     title: Starting a workflow by message
     summary: >
@@ -420,10 +430,12 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-message-start-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-message-start-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
   # The three blueprints below show features which are being built right now. Their
   # documentation link is the wiki itself until the page describing the feature exists.
+        repo: https://github.com/vanillabp-blueprints/bpmn-message-start-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-message-start-quarkus/main/AGENTS.md
   - id: bpmn-bpms-initiated-start
     title: Workflows the BPMS starts
     summary: >
@@ -450,8 +462,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-bpms-initiated-start-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-bpms-initiated-start-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-bpms-initiated-start-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-bpms-initiated-start-quarkus/main/AGENTS.md
   - id: bpmn-timer
     title: Timers
     summary: >
@@ -478,8 +492,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-timer-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-timer-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-timer-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-timer-quarkus/main/AGENTS.md
   - id: bpmn-signals
     title: Signals
     summary: >
@@ -504,8 +520,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-signals-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-signals-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-signals-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-signals-quarkus/main/AGENTS.md
   - id: bpmn-workflow-ended
     title: Learning that a workflow ended
     summary: >
@@ -529,8 +547,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-workflow-ended-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-workflow-ended-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-workflow-ended-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-workflow-ended-quarkus/main/AGENTS.md
   - id: bpmn-boundary-events
     title: Boundary events
     summary: >
@@ -557,8 +577,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-boundary-events-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-boundary-events-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-boundary-events-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-boundary-events-quarkus/main/AGENTS.md
   - id: bpmn-error-escalation
     title: BPMN errors and escalations
     summary: >
@@ -585,8 +607,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-error-escalation-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-error-escalation-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-error-escalation-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-error-escalation-quarkus/main/AGENTS.md
   - id: bpmn-gateways
     title: Gateways and conditional sequence flows
     summary: >
@@ -611,8 +635,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-gateways-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-gateways-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-gateways-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-gateways-quarkus/main/AGENTS.md
   - id: bpmn-call-activity-decomposition
     title: Call activities to reduce complexity
     summary: >
@@ -640,8 +666,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-call-activity-decomposition-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-call-activity-decomposition-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-call-activity-decomposition-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-call-activity-decomposition-quarkus/main/AGENTS.md
   - id: bpmn-multi-instance-task
     title: Multi-instance tasks
     summary: >
@@ -669,8 +697,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-multi-instance-task-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-multi-instance-task-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-multi-instance-task-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-multi-instance-task-quarkus/main/AGENTS.md
   - id: bpmn-multi-instance-subprocess
     title: Multi-instance subprocesses
     summary: >
@@ -698,8 +728,10 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-multi-instance-subprocess-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-multi-instance-subprocess-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-multi-instance-subprocess-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-multi-instance-subprocess-quarkus/main/AGENTS.md
   - id: bpmn-versioning
     title: Versioning BPMN processes
     summary: >
@@ -775,12 +807,14 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-history-and-diagram-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-history-and-diagram-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
   # ----------------------------------------------------------------------------------
   # Showcase
   # ----------------------------------------------------------------------------------
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-history-and-diagram-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-history-and-diagram-quarkus/main/AGENTS.md
   - id: showcase-standalone
     title: A complete application
     summary: >
