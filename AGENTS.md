@@ -32,6 +32,11 @@ Two terms are used throughout:
    - one workflow module structure (`module-*`, start with `module-single`),
    - one persistence (`persistence-*`, JPA unless told otherwise),
    - the BPMN scenarios (`bpmn-*`) the model requires.
+
+   Only an entry whose `platforms.<platform>.status` is `available` can be used. `planned`
+   means it is being worked on, `not-applicable` means the platform does not know the
+   subject at all and names the reason - do not try to port such a blueprint to the other
+   platform, pick a different one.
 4. Read the `AGENTS.md` of every blueprint chosen (`platforms.<platform>.agents_md`).
 5. Apply the deltas. `module-single` is the base; every `bpmn-*` blueprint is a delta on top
    of it and they are structurally identical, so several deltas can be applied to one

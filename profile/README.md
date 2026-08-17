@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-Available today, of 29 blueprints: 19 for Spring Boot, 19 for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
+30 blueprints, published today: 19 of 29 for Spring Boot, 19 of 30 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -76,6 +76,7 @@ Available today, of 29 blueprints: 19 for Spring Boot, 19 for Quarkus. A bluepri
 | `persistence-mongodb` | Workflow aggregates in MongoDB | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `persistence-custom` | A persistence of your own | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `persistence-parallel-branches` | Two branches writing one aggregate | `bpmn:ParallelGateway`, `bpmn:UserTask` | [Spring Boot](https://github.com/vanillabp-blueprints/persistence-parallel-branches-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-parallel-branches-quarkus) |
+| `persistence-active-record` | Aggregates without a repository | `bpmn:ServiceTask` | Spring Boot *(not applicable: Spring Boot has no active record idiom for entities.)*<br>Quarkus *(planned)* |
 
 ### BPMN scenarios
 
