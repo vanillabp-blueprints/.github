@@ -13,6 +13,11 @@ Usage: bin/set_platform_status.py --id <blueprint-id> --platform <platform>
 
 Exits 0 and reports 'unchanged' if the entry already says what it should, so the caller can
 run it unconditionally.
+
+'not-applicable' is not among the values this script writes, and an entry which says so is
+not overwritten either: that a platform cannot have a blueprint at all is a statement about
+the platform, made by a person while adding the blueprint, not something a job derives from
+a directory that happens to exist.
 """
 
 import argparse
@@ -27,6 +32,20 @@ PLATFORMS = ("springboot", "quarkus")
 
 REPO_URL = "https://github.com/{org}/{id}-{platform}"
 AGENTS_MD_URL = "https://raw.githubusercontent.com/{org}/{id}-{platform}/main/AGENTS.md"
+
+
+def keep_comment_last(entry, previous_last, new_last):
+    """Moves whatever trails the entry behind its new last key.
+
+    Everything following a mapping belongs to the key read last: the blank line before the
+    next blueprint, the comment introducing the next category. Writing keys after that one
+    would leave that comment in the middle of the entry - which is how this index once grew
+    a section headline between 'status' and 'repo'.
+    """
+
+    trailing = entry.ca.items
+    if previous_last != new_last and previous_last in trailing:
+        trailing[new_last] = trailing.pop(previous_last)
 
 
 def yaml_parser():
@@ -64,6 +83,16 @@ def main():
         sys.exit(1)
 
     entry = blueprint["platforms"][args.platform]
+
+    if entry.get("status") == "not-applicable":
+        print(
+            f"{args.id}/{args.platform} is marked 'not-applicable'"
+            f" ({entry.get('reason', 'no reason given')})."
+            " Edit blueprints.yaml by hand if that is no longer true.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
     wanted = {"status": args.status}
     if args.status == "available":
         wanted["repo"] = REPO_URL.format(org=ORG, id=args.id, platform=args.platform)
@@ -75,11 +104,13 @@ def main():
         print(f"{args.id}/{args.platform}: unchanged ({args.status})")
         return
 
+    previous_last = list(entry.keys())[-1]
     for key in ("repo", "agents_md"):
         if key in entry and key not in wanted:
             del entry[key]
     for key, value in wanted.items():
         entry[key] = value
+    keep_comment_last(entry, previous_last, list(entry.keys())[-1])
 
     buffer = io.StringIO()
     yaml.dump(index, buffer)

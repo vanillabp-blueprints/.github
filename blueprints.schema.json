@@ -38,11 +38,16 @@
       "required": ["status"],
       "properties": {
         "status": {
-          "description": "'available' means the blueprint has been split into its own repository; 'planned' makes the gap visible instead of hiding it.",
-          "enum": ["available", "planned"]
+          "description": "'available' means the blueprint has been split into its own repository; 'planned' makes the gap visible instead of hiding it; 'not-applicable' says the platform does not know the subject of this blueprint, which is a gap that never closes and therefore needs a 'reason'.",
+          "enum": ["available", "planned", "not-applicable"]
         },
         "repo": { "$ref": "#/$defs/url" },
-        "agents_md": { "$ref": "#/$defs/url" }
+        "agents_md": { "$ref": "#/$defs/url" },
+        "reason": {
+          "description": "Why this platform is left out, in one sentence, e.g. 'Spring Boot has no active record idiom.' It is rendered on the organisation page wherever the other platforms show their link.",
+          "$ref": "#/$defs/text",
+          "maxLength": 200
+        }
       },
       "allOf": [
         {
@@ -57,6 +62,18 @@
             "not": {
               "anyOf": [{ "required": ["repo"] }, { "required": ["agents_md"] }]
             }
+          }
+        },
+        {
+          "if": {
+            "required": ["status"],
+            "properties": { "status": { "const": "not-applicable" } }
+          },
+          "then": {
+            "required": ["reason"]
+          },
+          "else": {
+            "not": { "required": ["reason"] }
           }
         }
       ]
@@ -140,7 +157,7 @@
           "items": { "$ref": "#/$defs/url" }
         },
         "platforms": {
-          "description": "Both platforms are required: a platform a blueprint is not available for is documented as 'planned'.",
+          "description": "Both platforms are required: a platform a blueprint is not available for is documented as 'planned', and one the blueprint cannot exist for as 'not-applicable'.",
           "type": "object",
           "additionalProperties": false,
           "required": ["springboot", "quarkus"],

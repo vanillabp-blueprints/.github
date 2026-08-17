@@ -103,16 +103,25 @@ def main():
         fail(errors)
 
     blueprints = index["blueprints"]
-    available = sum(
-        1
+    states = [
+        blueprint["platforms"][platform]["status"]
         for blueprint in blueprints
         for platform in PLATFORMS
-        if blueprint["platforms"][platform]["status"] == "available"
+    ]
+    available = states.count("available")
+    # A variant marked 'not-applicable' is out of the denominator: the platform does not
+    # know what the blueprint is about, so that variant will never exist. Counting it would
+    # lower a ratio nothing can ever raise again.
+    possible = len(states) - states.count("not-applicable")
+    inapplicable = (
+        f", {states.count('not-applicable')} not applicable to a platform"
+        if states.count("not-applicable")
+        else ""
     )
     print(
         f"{index_file.name} is valid:"
         f" {len(blueprints)} blueprints,"
-        f" {available} of {len(blueprints) * len(PLATFORMS)} platform variants available"
+        f" {available} of {possible} platform variants available{inapplicable}"
     )
 
 
