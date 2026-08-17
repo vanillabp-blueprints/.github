@@ -76,7 +76,7 @@ core files and how to graft it onto an existing project.
 | `persistence-mongodb` | Workflow aggregates in MongoDB | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `persistence-custom` | A persistence of your own | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `persistence-parallel-branches` | Two branches writing one aggregate | `bpmn:ParallelGateway`, `bpmn:UserTask` | [Spring Boot](https://github.com/vanillabp-blueprints/persistence-parallel-branches-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-parallel-branches-quarkus) |
-| `persistence-active-record` | Aggregates without a repository | `bpmn:ServiceTask` | Spring Boot *(not applicable: Spring Boot has no active record idiom for entities.)*<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-active-record-quarkus) |
+| `persistence-active-record` | Aggregates without a repository | — | Spring Boot *(not applicable: Spring Boot has no active record idiom for entities.)*<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-active-record-quarkus) |
 
 ### BPMN scenarios
 

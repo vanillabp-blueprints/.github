@@ -5,6 +5,10 @@
 # matching a BPMN they have to implement, which is what 'covers.bpmn' is for.
 #
 # Validated against blueprints.schema.json by .github/workflows/validate-index.yml.
+#
+# 'bpms' names what a blueprint is built and tested against, which is why no entry lists
+# process-engine-api: that adapter is developed mock-first and has no engine behind it, so a
+# blueprint could not execute a workflow on it. It comes back per entry once it can.
 version: 2
 blueprints:
 
@@ -20,8 +24,6 @@ blueprints:
       files, an integration test against the workflow module and a smoke test of the
       application.
     category: module
-    # No process-engine-api yet: that adapter is developed mock-first and has no engine
-    # behind it, so a blueprint could not execute a workflow on it.
     bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
@@ -53,7 +55,7 @@ blueprints:
       stay independent of each other and how name clashes between them are avoided.
     category: module
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -78,7 +80,7 @@ blueprints:
       adapter dependency is all it takes.
     category: module
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -104,7 +106,7 @@ blueprints:
       alternative: an asynchronous service task completed by a callback.
     category: module
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -132,7 +134,7 @@ blueprints:
       be shared at all.
     category: module
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -156,7 +158,7 @@ blueprints:
       operations.
     category: module
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -180,7 +182,7 @@ blueprints:
       the level of a single workflow.
     category: module
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -208,7 +210,7 @@ blueprints:
       also changes the transaction outbox used to start workflows reliably.
     category: persistence
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [mongodb]
     covers:
       bpmn: []
@@ -232,7 +234,7 @@ blueprints:
       persistence technology it does not support out of the box.
     category: persistence
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [custom]
     covers:
       bpmn: []
@@ -291,8 +293,7 @@ blueprints:
     bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
-      bpmn:
-        - bpmn:ServiceTask
+      bpmn: []
       spi:
         - "@WorkflowService"
         - "@WorkflowTask"
@@ -324,7 +325,7 @@ blueprints:
       throws, how the BPMS retries and where the transaction boundaries are.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -355,7 +356,7 @@ blueprints:
       is later completed or canceled through the API.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -387,7 +388,7 @@ blueprints:
       returns immediately and the task is completed once the surrounding system answers.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -422,7 +423,7 @@ blueprints:
       correlation ID is needed for and why message handling has to be idempotent.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -452,7 +453,7 @@ blueprints:
       the workflow aggregate.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -512,7 +513,7 @@ blueprints:
       to a timer having fired.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -597,7 +598,7 @@ blueprints:
       learns that a task was canceled.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -627,7 +628,7 @@ blueprints:
       process, as opposed to a technical failure which is retried.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -657,7 +658,7 @@ blueprints:
       sequence flows and the expressions wired to business code.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -685,7 +686,7 @@ blueprints:
       aggregate - decomposition without introducing a second business object.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -716,7 +717,7 @@ blueprints:
       index and the total number available to business code.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -747,7 +748,7 @@ blueprints:
       multi-instance and how business code addresses the element it is called for.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
@@ -778,7 +779,7 @@ blueprints:
       how business code serves both versions at the same time.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -805,7 +806,7 @@ blueprints:
       synchronized to the BPMS on purpose and those deliberately kept out of it.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -831,7 +832,7 @@ blueprints:
       UI needs to draw the diagram of a running workflow.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -866,7 +867,7 @@ blueprints:
       that, start with module-single.
     category: showcase
     base: module-standalone
-    bpms: [camunda7, camunda8, process-engine-api]
+    bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
