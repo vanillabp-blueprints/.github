@@ -309,7 +309,9 @@ blueprints:
         status: not-applicable
         reason: Spring Boot has no active record idiom for entities.
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/persistence-active-record-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-active-record-quarkus/main/AGENTS.md
 
   # ----------------------------------------------------------------------------------
   # BPMN scenarios
