@@ -270,14 +270,18 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/persistence-parallel-branches-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-parallel-branches-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
   # ----------------------------------------------------------------------------------
   # BPMN scenarios
   # ----------------------------------------------------------------------------------
 
+        repo: https://github.com/vanillabp-blueprints/persistence-parallel-branches-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-parallel-branches-quarkus/main/AGENTS.md
   - id: bpmn-service-task
     title: Service tasks
     summary: >
@@ -751,10 +755,14 @@ blueprints:
       - https://github.com/vanillabp/spi-for-java#versioning-of-bpmn-business-processes
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-versioning-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-versioning-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
 
+        repo: https://github.com/vanillabp-blueprints/bpmn-versioning-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-versioning-quarkus/main/AGENTS.md
   - id: bpmn-aggregate-decoupling
     title: Decoupling BPMN from the data model
     summary: >
