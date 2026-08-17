@@ -38,6 +38,10 @@ def platforms_cell(blueprint):
         entry = blueprint["platforms"][platform]
         if entry["status"] == "available":
             parts.append(f"[{label}]({entry['repo']})")
+        elif entry["status"] == "not-applicable":
+            # Not 'planned' with a footnote: this one is never going to arrive, and the
+            # reason belongs where a reader looks for the link.
+            parts.append(f"{label} *(not applicable: {entry['reason']})*")
         else:
             parts.append(f"{label} *(planned)*")
     # A line break rather than a separator: the entries line up below each other, which a
@@ -49,16 +53,17 @@ def render(blueprints):
     total = len(blueprints)
     counts = []
     for platform, label in PLATFORMS:
-        available = sum(
-            1
-            for blueprint in blueprints
-            if blueprint["platforms"][platform]["status"] == "available"
-        )
-        counts.append(f"{available or 'none'} for {label}")
+        states = [blueprint["platforms"][platform]["status"] for blueprint in blueprints]
+        # The denominator leaves out what this platform cannot have anyway, so the figure
+        # says how far the platform has come rather than how rare its idioms are.
+        possible = len(states) - states.count("not-applicable")
+        counts.append(f"{states.count('available') or 'none'} of {possible} for {label}")
 
     lines = [
-        f"Available today, of {total} blueprints: {', '.join(counts)}. A blueprint which"
-        " is not published for a platform yet is listed as planned rather than left out.",
+        f"{total} blueprints, published today: {', '.join(counts)}. A platform a blueprint"
+        " has not been published for yet is listed as planned rather than left out, and a"
+        " platform the blueprint cannot exist for is listed as not applicable, with the"
+        " reason.",
         "",
     ]
 

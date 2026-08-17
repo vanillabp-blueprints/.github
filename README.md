@@ -29,6 +29,12 @@ The status of a platform is not maintained by hand: the split job of the monorep
 repository. A `planned` entry must not carry a repository URL, and an `available` one must.
 The schema enforces both, so the page can never advertise a repository which does not exist.
 
+The third status is the one a person writes: `not-applicable` says a platform does not know
+what the blueprint is about, so this variant is never going to exist. It requires a
+one-sentence `reason`, which the page shows where the other platforms show their link, and
+`bin/set_platform_status.py` neither writes it nor overwrites it. `planned` is a gap that
+closes and stays a promise; this one is an answer.
+
 ## The blueprints themselves
 
 They are developed in [`blueprints`](https://github.com/vanillabp-blueprints/blueprints) and
