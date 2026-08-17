@@ -210,7 +210,10 @@ blueprints:
       also changes the transaction outbox used to start workflows reliably.
     category: persistence
     base: module-single
-    bpms: [camunda7, camunda8]
+    # Camunda 8 only: an embedded engine needs a relational database, and this blueprint has
+    # none - that is what it is about. Running both anyway means the engine and the aggregate
+    # commit separately, which is a compromise rather than something to show.
+    bpms: [camunda8]
     persistence: [mongodb]
     covers:
       bpmn: []
@@ -234,7 +237,10 @@ blueprints:
       persistence technology it does not support out of the box.
     category: persistence
     base: module-single
-    bpms: [camunda7, camunda8]
+    # Camunda 8 only: an embedded engine needs a relational database, and this blueprint has
+    # none - that is what it is about. Running both anyway means the engine and the aggregate
+    # commit separately, which is a compromise rather than something to show.
+    bpms: [camunda8]
     persistence: [custom]
     covers:
       bpmn: []
