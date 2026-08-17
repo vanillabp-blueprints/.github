@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-Available today, of 29 blueprints: 17 for Spring Boot, 17 for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
+Available today, of 29 blueprints: 19 for Spring Boot, 19 for Quarkus. A blueprint which is not published for a platform yet is listed as planned rather than left out.
 
 ### Workflow module structure and runtime
 
@@ -75,7 +75,7 @@ Available today, of 29 blueprints: 17 for Spring Boot, 17 for Quarkus. A bluepri
 |---|---|---|---|
 | `persistence-mongodb` | Workflow aggregates in MongoDB | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `persistence-custom` | A persistence of your own | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
-| `persistence-parallel-branches` | Two branches writing one aggregate | `bpmn:ParallelGateway`, `bpmn:BoundaryEvent` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `persistence-parallel-branches` | Two branches writing one aggregate | `bpmn:ParallelGateway`, `bpmn:BoundaryEvent` | [Spring Boot](https://github.com/vanillabp-blueprints/persistence-parallel-branches-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-parallel-branches-quarkus) |
 
 ### BPMN scenarios
 
@@ -96,7 +96,7 @@ Available today, of 29 blueprints: 17 for Spring Boot, 17 for Quarkus. A bluepri
 | `bpmn-call-activity-decomposition` | Call activities to reduce complexity | `bpmn:CallActivity` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-call-activity-decomposition-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-call-activity-decomposition-quarkus) |
 | `bpmn-multi-instance-task` | Multi-instance tasks | `bpmn:MultiInstanceLoopCharacteristics`, `bpmn:ServiceTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-multi-instance-task-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-multi-instance-task-quarkus) |
 | `bpmn-multi-instance-subprocess` | Multi-instance subprocesses | `bpmn:SubProcess`, `bpmn:MultiInstanceLoopCharacteristics` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-multi-instance-subprocess-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-multi-instance-subprocess-quarkus) |
-| `bpmn-versioning` | Versioning BPMN processes | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `bpmn-versioning` | Versioning BPMN processes | — | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-versioning-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-versioning-quarkus) |
 | `bpmn-aggregate-decoupling` | Decoupling BPMN from the data model | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `bpmn-history-and-diagram` | Showing BPMN and execution history | — | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-history-and-diagram-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-history-and-diagram-quarkus) |
 
