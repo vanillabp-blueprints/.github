@@ -226,9 +226,13 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration#configure-the-transaction-outbox
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/persistence-mongodb-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-mongodb-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/persistence-mongodb-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-mongodb-quarkus/main/AGENTS.md
 
   - id: persistence-custom
     title: A persistence of your own
@@ -252,9 +256,13 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#persistence-technologies-supported
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/persistence-custom-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-custom-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/persistence-custom-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-custom-quarkus/main/AGENTS.md
 
   - id: persistence-parallel-branches
     title: Two branches writing one aggregate
