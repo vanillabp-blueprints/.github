@@ -71,9 +71,13 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules-in-Spring-Boot#defining-a-workflow-module
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-multi-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-multi-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-multi-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-multi-quarkus/main/AGENTS.md
 
   - id: module-standalone
     title: The application is the workflow module
