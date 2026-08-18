@@ -51,8 +51,10 @@ blueprints:
   - id: module-multi
     title: Several workflow modules in one application
     summary: >
-      An application module pulling in several workflow module JARs. Shows how the modules
-      stay independent of each other and how name clashes between them are avoided.
+      An application module pulling in several workflow module JARs: how the modules stay
+      independent of each other, how name clashes between them are avoided, and how they share
+      code without coupling their processes - a library JAR, and the list of what must never be
+      shared.
     category: module
     base: module-single
     bpms: [camunda7, camunda8]
@@ -62,9 +64,10 @@ blueprints:
       spi:
         - "@WorkflowService"
         - "@BpmnProcess"
-    composes_with: [module-interaction, module-shared-code]
+    composes_with: [module-interaction, module-packaging]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#how-name-clashes-are-avoided
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#building-a-workflow-module
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules-in-Spring-Boot#defining-a-workflow-module
     platforms:
       springboot:
@@ -127,11 +130,14 @@ blueprints:
       quarkus:
         status: planned
 
-  - id: module-shared-code
-    title: Shared code between workflow modules
+  - id: module-packaging
+    title: Assembling a runtime from workflow modules, and shipping it
     summary: >
-      How workflow modules share code without becoming coupled, and which kind of code may
-      be shared at all.
+      An application which composes its runtime out of workflow modules it only gets as
+      dependencies: how their classes are discovered when they live in packages of their own,
+      how their versions are pinned, what the modules configure and what the application
+      overrides, and how the result is shipped as an executable artifact, a container image and
+      a native build.
     category: module
     base: module-single
     bpms: [camunda7, camunda8]
@@ -142,31 +148,9 @@ blueprints:
         - "@WorkflowService"
     composes_with: [module-multi]
     docs:
-      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#how-name-clashes-are-avoided
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#building-a-workflow-module
-    platforms:
-      springboot:
-        status: planned
-      quarkus:
-        status: planned
-
-  - id: module-packaging
-    title: Packaging and running the application
-    summary: >
-      Executable artifact, container image, native build and configuration per
-      environment - everything needed to take a workflow module from the IDE into
-      operations.
-    category: module
-    base: module-single
-    bpms: [camunda7, camunda8]
-    persistence: [jpa]
-    covers:
-      bpmn: []
-      spi:
-        - "@WorkflowService"
-    composes_with: [module-single]
-    docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules-in-Spring-Boot#runtime-considerations
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules-in-Quarkus#provide-index-for-workflow-modules
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#configuration
     platforms:
       springboot:
