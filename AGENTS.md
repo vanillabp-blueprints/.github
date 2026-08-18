@@ -158,6 +158,24 @@ file of the same name, and then one of them silently wins.
 The single exception is the marker file `META-INF/workflow-module` containing the module ID.
 It has to sit at that exact path, which is how the module is recognised at all.
 
+### Configuration per BPMS goes into a profile file
+
+`application.yaml` of the application module holds what every engine needs. Everything
+belonging to one engine goes into the profile file of that engine, `application-camunda7.yaml`
+and `application-camunda8.yaml`, and into the workflow module's test resources where a test
+needs it. Never mix the two: a reader has to be able to see what changes when the engine
+changes, and an application which is going to migrate from one BPMS to another runs with both
+profiles side by side.
+
+The BPMS is named once, on the Maven command line. Every BPMS profile of a blueprint sets the
+property `bpms`; the build filters it into `application.yaml`
+(`spring.profiles.active` respectively `quarkus.config.profile.parent`), and surefire and
+failsafe pass it to the tests. Keep that wiring when you copy a blueprint, otherwise the
+engine has to be named twice and the two will drift apart.
+
+Naming an adapter id whose adapter is not on the classpath is a configuration error VanillaBP
+refuses to start with, so a profile file never applies to the wrong engine.
+
 ## Placeholders
 
 Identical in every blueprint. Replace all four consistently:
