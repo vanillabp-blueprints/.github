@@ -285,11 +285,12 @@ blueprints:
     summary: >
       The workflow aggregate is the only class on the persistence path: no repository, no
       persistence of the application's own, no configuration. VanillaBP recognises the idiom
-      of each aggregate itself and says which one it found while the application is built.
+      of each aggregate itself and says which one it found while the application is built,
+      so one workflow module holds a JPA aggregate and a MongoDB one side by side.
     category: persistence
     base: module-single
     bpms: [camunda7, camunda8]
-    persistence: [jpa]
+    persistence: [jpa, mongodb]
     covers:
       bpmn: []
       spi:
