@@ -134,9 +134,13 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-interaction-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-interaction-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-interaction-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-interaction-quarkus/main/AGENTS.md
 
   - id: module-packaging
     title: Assembling a runtime from workflow modules, and shipping it
