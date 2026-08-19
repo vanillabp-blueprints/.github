@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-29 blueprints, published today: 22 of 28 for Spring Boot, 23 of 29 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
+29 blueprints, published today: 23 of 28 for Spring Boot, 24 of 29 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -63,7 +63,7 @@ core files and how to graft it onto an existing project.
 |---|---|---|---|
 | `module-single` | Application plus one workflow module | `bpmn:ServiceTask` | [Spring Boot](https://github.com/vanillabp-blueprints/module-single-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-single-quarkus) |
 | `module-multi` | Several workflow modules in one application | — | [Spring Boot](https://github.com/vanillabp-blueprints/module-multi-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-multi-quarkus) |
-| `module-standalone` | The application is the workflow module | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `module-standalone` | The application is the workflow module | — | [Spring Boot](https://github.com/vanillabp-blueprints/module-standalone-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-standalone-quarkus) |
 | `module-interaction` | Interaction between workflow modules | `bpmn:IntermediateThrowEvent`, `bpmn:IntermediateCatchEvent`, `bpmn:SendTask` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `module-packaging` | Assembling a runtime from workflow modules, and shipping it | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `module-bpms-migration` | Migrating running workflows to another BPMS | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
