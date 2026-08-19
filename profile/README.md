@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-31 blueprints, published today: 25 of 30 for Spring Boot, 26 of 31 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
+31 blueprints, published today: 26 of 30 for Spring Boot, 27 of 31 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -75,7 +75,7 @@ core files and how to graft it onto an existing project.
 | `persistence-mongodb` | Workflow aggregates in MongoDB | — | [Spring Boot](https://github.com/vanillabp-blueprints/persistence-mongodb-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-mongodb-quarkus) |
 | `persistence-custom` | A persistence of your own | — | [Spring Boot](https://github.com/vanillabp-blueprints/persistence-custom-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-custom-quarkus) |
 | `persistence-parallel-branches` | Two branches writing one aggregate | `bpmn:ParallelGateway`, `bpmn:UserTask` | [Spring Boot](https://github.com/vanillabp-blueprints/persistence-parallel-branches-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-parallel-branches-quarkus) |
-| `persistence-liquibase` | The application owns its database schema | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `persistence-liquibase` | The application owns its database schema | — | [Spring Boot](https://github.com/vanillabp-blueprints/persistence-liquibase-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-liquibase-quarkus) |
 | `persistence-flyway` | The application owns its database schema, with Flyway | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `persistence-active-record` | Aggregates without a repository | — | Spring Boot *(not applicable: Spring Boot has no active record idiom for entities.)*<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-active-record-quarkus) |
 

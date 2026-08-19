@@ -317,9 +317,13 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/persistence-liquibase-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-liquibase-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/persistence-liquibase-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-liquibase-quarkus/main/AGENTS.md
 
   - id: persistence-flyway
     title: The application owns its database schema, with Flyway
