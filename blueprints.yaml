@@ -100,9 +100,13 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration#zero-configuration-the-classpath-is-the-configuration
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-standalone-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-standalone-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-standalone-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-standalone-quarkus/main/AGENTS.md
 
   - id: module-interaction
     title: Interaction between workflow modules
