@@ -166,9 +166,13 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#configuration
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-packaging-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-packaging-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-packaging-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-packaging-quarkus/main/AGENTS.md
 
   - id: module-bpms-migration
     title: Migrating running workflows to another BPMS
