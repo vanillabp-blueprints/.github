@@ -296,6 +296,56 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/persistence-parallel-branches-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-parallel-branches-quarkus/main/AGENTS.md
 
+  - id: persistence-liquibase
+    title: The application owns its database schema
+    summary: >
+      Liquibase creates every table the application needs, including the ones VanillaBP and
+      the embedded engine would create themselves, and every workflow module brings its own
+      changelog with a changelog table of its own.
+    category: persistence
+    base: module-single
+    bpms: [camunda7, camunda8]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi:
+        - "@WorkflowService"
+        - "@WorkflowTask"
+    composes_with: [module-multi]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: persistence-flyway
+    title: The application owns its database schema, with Flyway
+    summary: >
+      The same as persistence-liquibase with the other tool: versioned SQL migrations instead
+      of changelogs, one migration history per workflow module, and nothing created at
+      runtime.
+    category: persistence
+    base: module-single
+    bpms: [camunda7, camunda8]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi:
+        - "@WorkflowService"
+        - "@WorkflowTask"
+    composes_with: [module-multi]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   - id: persistence-active-record
     title: Aggregates without a repository
     summary: >
