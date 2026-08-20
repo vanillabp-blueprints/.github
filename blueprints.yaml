@@ -894,9 +894,13 @@ blueprints:
       - https://github.com/vanillabp/spi-for-java#natural-ids
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-aggregate-decoupling-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-aggregate-decoupling-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-aggregate-decoupling-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-aggregate-decoupling-quarkus/main/AGENTS.md
 
   - id: bpmn-history-and-diagram
     title: Showing BPMN and execution history
