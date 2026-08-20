@@ -195,9 +195,13 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration#configure-the-adapters
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-bpms-migration-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-bpms-migration-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-bpms-migration-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-bpms-migration-quarkus/main/AGENTS.md
 
   # ----------------------------------------------------------------------------------
   # Persistence of workflow aggregates
