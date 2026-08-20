@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-31 blueprints, published today: 28 of 30 for Spring Boot, 29 of 31 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
+31 blueprints, published today: 29 of 30 for Spring Boot, 30 of 31 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -66,7 +66,7 @@ core files and how to graft it onto an existing project.
 | `module-standalone` | The application is the workflow module | — | [Spring Boot](https://github.com/vanillabp-blueprints/module-standalone-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-standalone-quarkus) |
 | `module-interaction` | Interaction between workflow modules | `bpmn:IntermediateThrowEvent`, `bpmn:IntermediateCatchEvent`, `bpmn:SendTask` | [Spring Boot](https://github.com/vanillabp-blueprints/module-interaction-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-interaction-quarkus) |
 | `module-packaging` | Assembling a runtime from workflow modules, and shipping it | — | [Spring Boot](https://github.com/vanillabp-blueprints/module-packaging-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-packaging-quarkus) |
-| `module-bpms-migration` | Migrating running workflows to another BPMS | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `module-bpms-migration` | Migrating running workflows to another BPMS | — | [Spring Boot](https://github.com/vanillabp-blueprints/module-bpms-migration-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-bpms-migration-quarkus) |
 
 ### Persistence of workflow aggregates
 
