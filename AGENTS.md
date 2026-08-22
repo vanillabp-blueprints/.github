@@ -139,6 +139,36 @@ because the directions are split (see above). Logic about the business object it
 course sit on the aggregate, which is a normal entity, but that is a matter of taste rather
 than a rule. The rule is that nothing computes inside a `@WorkflowTask` method.
 
+### Splitting a large workflow
+
+The structure above is one use case of moderate size. A large process would make both `Service`
+and `WorkflowTaskHandler` huge, and one pair of classes for thirty tasks helps nobody.
+
+Large processes have sections, and the model usually says where they are: an embedded
+subprocess, a group, or the status transitions the process moves through. Give each section a
+package of its own with its own `Service` and its own `WorkflowTaskHandler`. All of those
+handler classes declare the same `bpmnProcess`, so it stays one workflow with one
+`ProcessService` while the code follows the structure of the model.
+
+```
+<base-package>.<usecase>
+├── model/                       the aggregate, shared by all sections
+├── application/                 section: the application is filled in
+│   ├── Service.java
+│   └── WorkflowTaskHandler.java
+└── assessment/                  section: the application is assessed
+    ├── Service.java
+    └── WorkflowTaskHandler.java
+```
+
+A user task gets a package of its own as well. It is more than a `@WorkflowTask` method: a user
+has to be shown the task and has to complete it, so it has an API of its own, and many user
+tasks carry state which lives until the task is completed and belongs to nobody else. Put the
+classes serving only that task into that package, its `ApiController` among them.
+
+No blueprint shows this yet. The one that will comes with the Business Cockpit, so treat this
+section as guidance and not as something to copy from a repository.
+
 ### Two namespaces per workflow module
 
 There is **no classloader isolation between workflow modules**, they end up in one runtime,
@@ -234,14 +264,17 @@ Those logged URLs are also the cheapest way for you to see which state a workflo
    while the branches write different attributes, `@Version` plus a retry, or a relation of
    its own that is only ever appended to. The blueprint `persistence-parallel-branches` shows
    the first and explains when the others fit.
-8. **One `@WorkflowService` class per workflow aggregate class.** When a second process works
-   on the same aggregate, name it in `secondaryBpmnProcesses` of the existing class and put
-   its `@WorkflowTask` methods there. Do not annotate a second class with `@WorkflowService`
-   for that aggregate: VanillaBP builds one `ProcessService` per aggregate class and starts
-   the process of whichever class the classpath scan found first, so `startWorkflow` may
-   start the wrong process. Nothing says so - the workflow runs, and the aggregate ends up
-   half filled. This is easy to walk into when two blueprints are composed, because each
-   brings a handler class of its own.
+8. **One primary BPMN process per workflow aggregate.** VanillaBP builds one `ProcessService`
+   per aggregate class, which is what `ProcessService<Ride>` injects, so exactly one BPMN
+   process is the one `startWorkflow` starts. Two classes declaring a DIFFERENT `bpmnProcess`
+   for that aggregate would make the choice a coin flip, so the boot fails and names both
+   classes and both processes. Declare the second process in `secondaryBpmnProcesses` of the
+   class carrying the primary one - a process called by a call activity is the typical case.
+   Several classes annotated with `@WorkflowService` for one aggregate are allowed as long as
+   each of them declares the SAME `bpmnProcess`, which is what makes
+   [splitting a large workflow](#splitting-a-large-workflow) possible. This is easy to break
+   when two blueprints are composed, because each brings a handler class declaring a
+   `bpmnProcess` of its own.
 9. **Do not copy reference documentation into the generated project.** Link it.
 10. **Do not invent BPMS-specific configuration.** If something appears to need it, it belongs
     into the adapter's wiki, not into the application.
