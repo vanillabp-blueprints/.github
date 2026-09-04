@@ -779,9 +779,13 @@ blueprints:
       - https://github.com/vanillabp/spi-for-java#wire-up-a-task
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-business-rule-task-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-business-rule-task-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-business-rule-task-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-business-rule-task-quarkus/main/AGENTS.md
 
   - id: bpmn-call-activity-decomposition
     title: Call activities to reduce complexity
