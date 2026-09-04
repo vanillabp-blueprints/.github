@@ -756,6 +756,33 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-gateways-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-gateways-quarkus/main/AGENTS.md
 
+  - id: bpmn-business-rule-task
+    title: Business rule tasks and decision tables
+    summary: >
+      A decision the BPMS makes instead of the application: a DMN decision table is deployed
+      with the process and evaluated by a business rule task. What it decided steers the
+      model through a gateway and reaches the application as an ordinary task parameter.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:BusinessRuleTask
+        - bpmn:ExclusiveGateway
+      spi:
+        - "@WorkflowTask"
+        - "@TaskParam"
+    composes_with: [bpmn-service-task, bpmn-gateways]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#decision-tables-travel-with-the-processes-calling-them
+      - https://github.com/vanillabp/spi-for-java#wire-up-a-task
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   - id: bpmn-call-activity-decomposition
     title: Call activities to reduce complexity
     summary: >
