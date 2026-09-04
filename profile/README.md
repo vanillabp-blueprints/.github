@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-32 blueprints, published today: 29 of 31 for Spring Boot, 30 of 32 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
+32 blueprints, published today: 30 of 31 for Spring Boot, 31 of 32 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -95,7 +95,7 @@ core files and how to graft it onto an existing project.
 | `bpmn-boundary-events` | Boundary events | `bpmn:BoundaryEvent` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-boundary-events-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-boundary-events-quarkus) |
 | `bpmn-error-escalation` | BPMN errors and escalations | `bpmn:ErrorEventDefinition`, `bpmn:EscalationEventDefinition`, `bpmn:BoundaryEvent` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-error-escalation-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-error-escalation-quarkus) |
 | `bpmn-gateways` | Gateways and conditional sequence flows | `bpmn:ExclusiveGateway`, `bpmn:SequenceFlow` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-gateways-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-gateways-quarkus) |
-| `bpmn-business-rule-task` | Business rule tasks and decision tables | `bpmn:BusinessRuleTask`, `bpmn:ExclusiveGateway` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `bpmn-business-rule-task` | Business rule tasks and decision tables | `bpmn:BusinessRuleTask`, `bpmn:ExclusiveGateway` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-business-rule-task-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-business-rule-task-quarkus) |
 | `bpmn-call-activity-decomposition` | Call activities to reduce complexity | `bpmn:CallActivity` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-call-activity-decomposition-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-call-activity-decomposition-quarkus) |
 | `bpmn-multi-instance-task` | Multi-instance tasks | `bpmn:MultiInstanceLoopCharacteristics`, `bpmn:ServiceTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-multi-instance-task-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-multi-instance-task-quarkus) |
 | `bpmn-multi-instance-subprocess` | Multi-instance subprocesses | `bpmn:SubProcess`, `bpmn:MultiInstanceLoopCharacteristics` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-multi-instance-subprocess-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-multi-instance-subprocess-quarkus) |
