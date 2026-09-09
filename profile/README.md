@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-32 blueprints, published today: 30 of 31 for Spring Boot, 31 of 32 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
+33 blueprints, published today: 30 of 32 for Spring Boot, 31 of 33 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -102,6 +102,7 @@ core files and how to graft it onto an existing project.
 | `bpmn-versioning` | Versioning BPMN processes | — | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-versioning-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-versioning-quarkus) |
 | `bpmn-aggregate-decoupling` | Decoupling BPMN from the data model | — | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-aggregate-decoupling-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-aggregate-decoupling-quarkus) |
 | `bpmn-history-and-diagram` | Showing BPMN and execution history | — | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-history-and-diagram-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-history-and-diagram-quarkus) |
+| `bpmn-adhoc-subprocess` | Ad-hoc subprocesses | `bpmn:AdHocSubProcess`, `bpmn:BusinessRuleTask` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 
 ### Showcase
 
