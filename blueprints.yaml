@@ -967,6 +967,38 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-history-and-diagram-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-history-and-diagram-quarkus/main/AGENTS.md
 
+  - id: bpmn-adhoc-subprocess
+    title: Ad-hoc subprocesses
+    summary: >
+      Activities drawn side by side without sequence flows, of which the workflow runs the
+      ones somebody picked while it was already standing there.
+    category: bpmn
+    base: module-single
+    # Camunda 8 only: Camunda 7 does not execute the element. Its parser lists
+    # 'adHocSubProcess' among the activity types it ignores and only warns while deploying,
+    # so a Camunda 7 build would ask for handlers of activities which never run.
+    bpms: [camunda8]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:AdHocSubProcess
+        - bpmn:BusinessRuleTask
+      spi:
+        - "@WorkflowTask"
+        - "@TaskId"
+        - "@TaskEvent"
+        - "ProcessService#completeUserTask"
+    composes_with: [bpmn-user-task, bpmn-business-rule-task, persistence-parallel-branches]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#two-writers-on-one-aggregate
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#user-tasks
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   # ----------------------------------------------------------------------------------
   # Showcase
   # ----------------------------------------------------------------------------------
