@@ -203,6 +203,38 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/module-bpms-migration-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-bpms-migration-quarkus/main/AGENTS.md
 
+  - id: module-idle-application
+    title: An idle application
+    summary: >
+      What an application costs its database while a workflow waits in a timer, and the two
+      keys which bring that cost down to nothing: how long an outbox poller may rest, and an
+      embedded engine waiting for the next due job instead of asking every few seconds. An
+      endpoint counts the statements the database executed, so the saving is measured rather
+      than claimed.
+    category: module
+    base: module-single
+    bpms: [camunda7, camunda8]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:ServiceTask
+        - bpmn:IntermediateCatchEvent
+        - bpmn:TimerEventDefinition
+      spi:
+        - "@WorkflowService"
+        - "@WorkflowTask"
+        - "ProcessService#startWorkflow"
+    composes_with: [bpmn-timer, module-standalone]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Observability
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Running-more-than-one-node
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/BPMS-adapters
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   # ----------------------------------------------------------------------------------
   # Persistence of workflow aggregates
   # ----------------------------------------------------------------------------------
