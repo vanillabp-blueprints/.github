@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-34 blueprints, published today: 31 of 33 for Spring Boot, 32 of 34 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
+34 blueprints, published today: 32 of 33 for Spring Boot, 33 of 34 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -67,7 +67,7 @@ core files and how to graft it onto an existing project.
 | `module-interaction` | Interaction between workflow modules | `bpmn:IntermediateThrowEvent`, `bpmn:IntermediateCatchEvent`, `bpmn:SendTask` | [Spring Boot](https://github.com/vanillabp-blueprints/module-interaction-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-interaction-quarkus) |
 | `module-packaging` | Assembling a runtime from workflow modules, and shipping it | — | [Spring Boot](https://github.com/vanillabp-blueprints/module-packaging-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-packaging-quarkus) |
 | `module-bpms-migration` | Migrating running workflows to another BPMS | — | [Spring Boot](https://github.com/vanillabp-blueprints/module-bpms-migration-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-bpms-migration-quarkus) |
-| `module-idle-application` | An idle application | `bpmn:ServiceTask`, `bpmn:IntermediateCatchEvent`, `bpmn:TimerEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `module-idle-application` | An idle application | `bpmn:ServiceTask`, `bpmn:IntermediateCatchEvent`, `bpmn:TimerEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/module-idle-application-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-idle-application-quarkus) |
 
 ### Persistence of workflow aggregates
 
