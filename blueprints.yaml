@@ -231,9 +231,13 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/BPMS-adapters
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-idle-application-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-idle-application-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-idle-application-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-idle-application-quarkus/main/AGENTS.md
 
   # ----------------------------------------------------------------------------------
   # Persistence of workflow aggregates
