@@ -394,6 +394,38 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/persistence-flyway-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-flyway-quarkus/main/AGENTS.md
 
+  - id: persistence-audited-aggregate
+    title: A workflow aggregate which remembers every change
+    summary: >
+      Hibernate Envers keeps every state the workflow aggregate ever had, with the person
+      who caused it, and an outbox entry which reports an event is served the aggregate as
+      it was when the entry was planned rather than as it is when it is sent.
+    category: persistence
+    base: module-single
+    bpms: [camunda7, camunda8]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:ServiceTask
+        - bpmn:UserTask
+      spi:
+        - "@WorkflowTask"
+        - "@TaskId"
+        - "ProcessService#completeUserTask"
+        - "AggregatePersistenceAware#getAuditingId"
+        - "AggregatePersistenceAware#loadByIdAndAuditingId"
+        - "PhaseTwoCall#askingForTheStateOfTheEvent"
+        - "PhaseTwoOutbox#schedule"
+    composes_with: [bpmn-user-task, persistence-liquibase, module-multi]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Integration-SPI
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   - id: persistence-active-record
     title: Aggregates without a repository
     summary: >
