@@ -422,9 +422,13 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Integration-SPI
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/persistence-audited-aggregate-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-audited-aggregate-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/persistence-audited-aggregate-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/persistence-audited-aggregate-quarkus/main/AGENTS.md
 
   - id: persistence-active-record
     title: Aggregates without a repository
