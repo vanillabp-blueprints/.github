@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-35 blueprints, published today: 32 of 34 for Spring Boot, 33 of 35 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
+35 blueprints, published today: 33 of 34 for Spring Boot, 34 of 35 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -78,7 +78,7 @@ core files and how to graft it onto an existing project.
 | `persistence-parallel-branches` | Two branches writing one aggregate | `bpmn:ParallelGateway`, `bpmn:UserTask` | [Spring Boot](https://github.com/vanillabp-blueprints/persistence-parallel-branches-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-parallel-branches-quarkus) |
 | `persistence-liquibase` | The application owns its database schema | — | [Spring Boot](https://github.com/vanillabp-blueprints/persistence-liquibase-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-liquibase-quarkus) |
 | `persistence-flyway` | The application owns its database schema, with Flyway | — | [Spring Boot](https://github.com/vanillabp-blueprints/persistence-flyway-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-flyway-quarkus) |
-| `persistence-audited-aggregate` | A workflow aggregate which remembers every change | `bpmn:ServiceTask`, `bpmn:UserTask` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `persistence-audited-aggregate` | A workflow aggregate which remembers every change | `bpmn:ServiceTask`, `bpmn:UserTask` | [Spring Boot](https://github.com/vanillabp-blueprints/persistence-audited-aggregate-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-audited-aggregate-quarkus) |
 | `persistence-active-record` | Aggregates without a repository | — | Spring Boot *(not applicable: Spring Boot has no active record idiom for entities.)*<br>[Quarkus](https://github.com/vanillabp-blueprints/persistence-active-record-quarkus) |
 
 ### BPMN scenarios
