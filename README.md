@@ -24,6 +24,9 @@ On a push to `main`, `render-index.yaml` renders the page and commits it. Pull r
 to bring the rendered page along themselves; `validate-index.yaml` checks that with
 `bin/render_index.py --check`.
 
+[`CONTRIBUTING.md`](./CONTRIBUTING.md) says what else a pull request needs, and where a change to a
+blueprint itself goes.
+
 The status of a platform is not maintained by hand: the split job of the monorepo flips
 `platforms.<platform>.status` to `available` once a blueprint has been pushed into its own
 repository. A `planned` entry must not carry a repository URL, and an `available` one must.
