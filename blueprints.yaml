@@ -1105,9 +1105,13 @@ blueprints:
       - https://github.com/vanillabp/spi-for-java#call-activities
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-process-sections-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-process-sections-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-process-sections-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-process-sections-quarkus/main/AGENTS.md
 
   # ----------------------------------------------------------------------------------
   # Showcase
