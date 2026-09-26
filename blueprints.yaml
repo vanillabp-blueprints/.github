@@ -1075,6 +1075,40 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-adhoc-subprocess-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-adhoc-subprocess-quarkus/main/AGENTS.md
 
+  - id: bpmn-process-sections
+    title: Sections of a process and their data
+    summary: >
+      A process cut into two sections, one drawn as a call activity and one as an embedded
+      subprocess, each with a sub-object of the workflow aggregate. One section is skipped for
+      a small case, so its sub-object stays absent, and the model asks about it through a
+      boolean getter on the top level instead of reading a path into it.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:SubProcess
+        - bpmn:CallActivity
+        - bpmn:ExclusiveGateway
+      spi:
+        - "@WorkflowService"
+        - "@BpmnProcess"
+        - "@WorkflowService#secondaryBpmnProcesses"
+        - "@WorkflowTask"
+        - "@SyncWithBPMS"
+        - "@NoSyncWithBPMS"
+    composes_with: [bpmn-call-activity-decomposition, bpmn-aggregate-decoupling, bpmn-gateways]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#decoupling-bpmn-from-the-data-model
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#fine-grained-control-over-attributes-synchronized-to-the-bpms
+      - https://github.com/vanillabp/spi-for-java#call-activities
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   # ----------------------------------------------------------------------------------
   # Showcase
   # ----------------------------------------------------------------------------------
