@@ -55,7 +55,7 @@ core files and how to graft it onto an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-36 blueprints, published today: 33 of 35 for Spring Boot, 34 of 36 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
+36 blueprints, published today: 34 of 35 for Spring Boot, 35 of 36 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -105,7 +105,7 @@ core files and how to graft it onto an existing project.
 | `bpmn-aggregate-decoupling` | Decoupling BPMN from the data model | — | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-aggregate-decoupling-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-aggregate-decoupling-quarkus) |
 | `bpmn-history-and-diagram` | Showing BPMN and execution history | — | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-history-and-diagram-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-history-and-diagram-quarkus) |
 | `bpmn-adhoc-subprocess` | Ad-hoc subprocesses | `bpmn:AdHocSubProcess`, `bpmn:BusinessRuleTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-adhoc-subprocess-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-adhoc-subprocess-quarkus) |
-| `bpmn-process-sections` | Sections of a process and their data | `bpmn:SubProcess`, `bpmn:CallActivity`, `bpmn:ExclusiveGateway` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `bpmn-process-sections` | Sections of a process and their data | `bpmn:SubProcess`, `bpmn:CallActivity`, `bpmn:ExclusiveGateway` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-process-sections-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-process-sections-quarkus) |
 
 ### Showcase
 
