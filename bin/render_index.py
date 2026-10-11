@@ -60,10 +60,10 @@ def render(blueprints):
         counts.append(f"{states.count('available') or 'none'} of {possible} for {label}")
 
     lines = [
-        f"{total} blueprints, published today: {', '.join(counts)}. A platform a blueprint"
-        " has not been published for yet is listed as planned rather than left out, and a"
-        " platform the blueprint cannot exist for is listed as not applicable, with the"
-        " reason.",
+        f"{total} blueprints, published today: {', '.join(counts)}. If a blueprint has not"
+        " been published for a platform yet, the platform is listed as planned, not left out."
+        " If a blueprint cannot exist for a platform, the platform is listed as not"
+        " applicable, with the reason.",
         "",
     ]
 

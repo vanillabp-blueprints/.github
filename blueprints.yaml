@@ -1,14 +1,14 @@
 # The single source of truth about the VanillaBP blueprints.
 #
-# profile/README.md (the organisation page) is generated from this file - do not edit
-# the generated part of that file. AI agents read this file to pick the blueprints
-# matching a BPMN they have to implement, which is what 'covers.bpmn' is for.
+# profile/README.md (the organisation page) is generated from this file. Do not edit the
+# generated part of that file. AI agents read this file to pick the blueprints which match
+# a BPMN they have to implement. That is what 'covers.bpmn' is for.
 #
 # Validated against blueprints.schema.json by .github/workflows/validate-index.yml.
 #
-# 'bpms' names what a blueprint is built and tested against, which is why no entry lists
-# process-engine-api: that adapter is developed mock-first and has no engine behind it, so a
-# blueprint could not execute a workflow on it. It comes back per entry once it can.
+# 'bpms' names what a blueprint is built and tested against. That is why no entry lists
+# process-engine-api. That adapter is developed against a mock first and has no engine behind
+# it, so a blueprint could not run a workflow on it. It comes back per entry once it can.
 version: 2
 blueprints:
 
@@ -19,8 +19,8 @@ blueprints:
   - id: module-single
     title: Application plus one workflow module
     summary: >
-      The normal case and the entry point into VanillaBP: an application module plus one
-      workflow module packaged as a JAR, including the workflow module's own configuration
+      The normal case, and the entry point into VanillaBP: an application module plus one
+      workflow module packaged as a JAR. Includes the workflow module's own configuration
       files, an integration test against the workflow module and a smoke test of the
       application.
     category: module
@@ -51,10 +51,10 @@ blueprints:
   - id: module-multi
     title: Several workflow modules in one application
     summary: >
-      An application module pulling in several workflow module JARs: how the modules stay
-      independent of each other, how name clashes between them are avoided, and how they share
-      code without coupling their processes - a library JAR, and the list of what must never be
-      shared.
+      An application module which pulls in several workflow module JARs. Shows how the modules
+      stay independent of each other, how name clashes between them are avoided, and how they
+      share code without coupling their processes: a library JAR, and the list of what must
+      never be shared.
     category: module
     base: module-single
     bpms: [camunda7, camunda8]
@@ -82,9 +82,9 @@ blueprints:
   - id: module-standalone
     title: The application is the workflow module
     summary: >
-      If it is clear that there will never be more than one workflow module, the
-      application itself can be the workflow module. Zero configuration - adding the
-      adapter dependency is all it takes.
+      If it is clear that there will never be more than one workflow module, the application
+      itself can be the workflow module. Zero configuration: adding the adapter dependency is
+      all it takes.
     category: module
     base: module-single
     bpms: [camunda7, camunda8]
@@ -111,10 +111,10 @@ blueprints:
   - id: module-interaction
     title: Interaction between workflow modules
     summary: >
-      Two workflow modules interacting without coupling their processes: the outgoing
-      module sends a BPMN message which is translated into an internal API call, the
-      incoming module waits for a message delivered by its own API. Shown as an
-      alternative: an asynchronous service task completed by a callback.
+      Two workflow modules which interact without coupling their processes. The outgoing module
+      sends a BPMN message, which is translated into an internal API call. The incoming module
+      waits for a message delivered by its own API. Shown as an alternative: an asynchronous
+      service task completed by a callback.
     category: module
     base: module-single
     bpms: [camunda7, camunda8]
@@ -145,8 +145,8 @@ blueprints:
   - id: module-packaging
     title: Assembling a runtime from workflow modules, and shipping it
     summary: >
-      An application which composes its runtime out of workflow modules it only gets as
-      dependencies: how their classes are discovered when they live in packages of their own,
+      An application which builds its runtime out of workflow modules it only gets as
+      dependencies. Shows how their classes are found when they live in packages of their own,
       how their versions are pinned, what the modules configure and what the application
       overrides, and how the result is shipped as an executable artifact, a container image and
       a native build.
@@ -177,9 +177,9 @@ blueprints:
   - id: module-bpms-migration
     title: Migrating running workflows to another BPMS
     summary: >
-      Two adapters configured in parallel: new workflows start in the new BPMS while
-      running workflows are completed in the old one. Shows the adapter priorities down to
-      the level of a single workflow.
+      Two adapters configured side by side: new workflows start in the new BPMS, while running
+      workflows are completed in the old one. Shows the adapter priorities down to the level of
+      a single workflow.
     category: module
     base: module-single
     bpms: [camunda7, camunda8]
@@ -207,10 +207,10 @@ blueprints:
     title: An idle application
     summary: >
       What an application costs its database while a workflow waits in a timer, and the two
-      keys which bring that cost down to nothing: how long an outbox poller may rest, and an
-      embedded engine waiting for the next due job instead of asking every few seconds. An
-      endpoint counts the statements the database executed, so the saving is measured rather
-      than claimed.
+      keys which bring that cost down to nothing. One says how long an outbox poller may rest.
+      The other lets an embedded engine wait for the next due job instead of asking every few
+      seconds. An endpoint counts the statements the database ran, so the saving is measured,
+      not just claimed.
     category: module
     base: module-single
     bpms: [camunda7, camunda8]
@@ -246,13 +246,13 @@ blueprints:
   - id: persistence-mongodb
     title: Workflow aggregates in MongoDB
     summary: >
-      The workflow aggregate persisted in MongoDB instead of a relational database, which
-      also changes the transaction outbox used to start workflows reliably.
+      The workflow aggregate stored in MongoDB instead of a relational database. This also
+      changes the transaction outbox which starts workflows reliably.
     category: persistence
     base: module-single
     # Camunda 8 only: an embedded engine needs a relational database, and this blueprint has
-    # none - that is what it is about. Running both anyway means the engine and the aggregate
-    # commit separately, which is a compromise rather than something to show.
+    # none. That is what it is about. Running both anyway means that the engine and the
+    # aggregate commit separately. That is a compromise, not something to show.
     bpms: [camunda8]
     persistence: [mongodb]
     covers:
@@ -277,13 +277,13 @@ blueprints:
   - id: persistence-custom
     title: A persistence of your own
     summary: >
-      An in-memory reference implementation showing what VanillaBP needs from a
-      persistence technology it does not support out of the box.
+      A reference implementation in memory. It shows what VanillaBP needs from a persistence
+      technology it does not support out of the box.
     category: persistence
     base: module-single
     # Camunda 8 only: an embedded engine needs a relational database, and this blueprint has
-    # none - that is what it is about. Running both anyway means the engine and the aggregate
-    # commit separately, which is a compromise rather than something to show.
+    # none. That is what it is about. Running both anyway means that the engine and the
+    # aggregate commit separately. That is a compromise, not something to show.
     bpms: [camunda8]
     persistence: [custom]
     covers:
@@ -307,8 +307,8 @@ blueprints:
   - id: persistence-parallel-branches
     title: Two branches writing one aggregate
     summary: >
-      What happens when two branches of one workflow write the same workflow aggregate at
-      the same time, and the four ways out - one of them shown as code, the others as the
+      What happens when two branches of one workflow write the same workflow aggregate at the
+      same time, and the four ways out. One of them is shown as code, the others as the
       decision behind it.
     category: persistence
     base: module-single
@@ -339,9 +339,9 @@ blueprints:
   - id: persistence-liquibase
     title: The application owns its database schema
     summary: >
-      Liquibase creates every table the application needs, including the ones VanillaBP and
-      the embedded engine would create themselves, and every workflow module brings its own
-      changelog with a changelog table of its own.
+      Liquibase creates every table the application needs, including the ones VanillaBP and the
+      embedded engine would create themselves. Every workflow module brings its own changelog
+      with a changelog table of its own.
     category: persistence
     base: module-single
     bpms: [camunda7, camunda8]
@@ -369,8 +369,7 @@ blueprints:
     title: The application owns its database schema, with Flyway
     summary: >
       The same as persistence-liquibase with the other tool: versioned SQL migrations instead
-      of changelogs, one migration history per workflow module, and nothing created at
-      runtime.
+      of changelogs, one migration history per workflow module, and nothing created at runtime.
     category: persistence
     base: module-single
     bpms: [camunda7, camunda8]
@@ -397,9 +396,9 @@ blueprints:
   - id: persistence-audited-aggregate
     title: A workflow aggregate which remembers every change
     summary: >
-      Hibernate Envers keeps every state the workflow aggregate ever had, with the person
-      who caused it, and an outbox entry which reports an event is served the aggregate as
-      it was when the entry was planned rather than as it is when it is sent.
+      Hibernate Envers keeps every state the workflow aggregate ever had, with the person who
+      caused it. An outbox entry which reports an event gets the aggregate as it was when the
+      entry was planned, not as it is when the entry is sent.
     category: persistence
     base: module-single
     bpms: [camunda7, camunda8]
@@ -434,9 +433,9 @@ blueprints:
     title: Aggregates without a repository
     summary: >
       The workflow aggregate is the only class on the persistence path: no repository, no
-      persistence of the application's own, no configuration. VanillaBP recognises the idiom
-      of each aggregate itself and says which one it found while the application is built,
-      so one workflow module holds a JPA aggregate and a MongoDB one side by side.
+      persistence code of the application, no configuration. VanillaBP recognises the idiom of
+      each aggregate itself, and says which one it found while the application is built. So one
+      workflow module holds a JPA aggregate and a MongoDB one side by side.
     category: persistence
     base: module-single
     bpms: [camunda7, camunda8]
@@ -452,9 +451,9 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#persistence-technologies-supported
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Quarkus-integration
     platforms:
-      # The first blueprint which cannot exist for both platforms: an aggregate storing
-      # itself is an idiom one of them does not have. That is an answer and not a gap,
-      # which is why it does not say 'planned'.
+      # The first blueprint which cannot exist for both platforms. An aggregate which stores
+      # itself is an idiom one of them does not have. That is an answer, not a gap, so it
+      # does not say 'planned'.
       springboot:
         status: not-applicable
         reason: Spring Boot has no active record idiom for entities.
@@ -533,17 +532,17 @@ blueprints:
   - id: bpmn-async-task
     title: Asynchronous tasks
     summary: >
-      Tasks which are not user tasks but still complete asynchronously - the handler
-      returns immediately and the task is completed once the surrounding system answers.
+      Tasks which are not user tasks but still complete later. The handler returns at once, and
+      the task is completed once the surrounding system answers.
     category: bpmn
     base: module-single
     bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
-        # A receive task waits for a BPMN message and is completed by correlating one,
-        # which is bpmn-message-correlation. This blueprint shows the task that stays open
-        # until the application completes it by its id.
+        # A receive task waits for a BPMN message and is completed by correlating one. That
+        # is bpmn-message-correlation. This blueprint shows the task which stays open until
+        # the application completes it by its id.
         - bpmn:SendTask
       spi:
         - "@WorkflowTask"
@@ -568,8 +567,8 @@ blueprints:
   - id: bpmn-message-correlation
     title: Messages for running workflows
     summary: >
-      Delivering a message to a running workflow, how the workflow is found, what a
-      correlation ID is needed for and why message handling has to be idempotent.
+      Delivering a message to a running workflow: how the workflow is found, what a correlation
+      ID is needed for, and why handling a message has to cope with repeats.
     category: bpmn
     base: module-single
     bpms: [camunda7, camunda8]
@@ -624,12 +623,12 @@ blueprints:
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-message-start-quarkus/main/AGENTS.md
 
   # The three blueprints below show features which are being built right now. Their
-  # documentation link is the wiki itself until the page describing the feature exists.
+  # documentation link is the wiki itself, until the page which describes the feature exists.
   - id: bpmn-bpms-initiated-start
     title: Workflows the BPMS starts
     summary: >
-      A workflow the engine starts on its own, triggered by a timer or a signal. Nobody
-      called startWorkflow, so the workflow aggregate comes into being on the way in.
+      A workflow which the engine starts on its own, triggered by a timer or a signal. Nobody
+      called startWorkflow, so the workflow aggregate is created on the way in.
     category: bpmn
     base: module-single
     bpms: [camunda7, camunda8]
@@ -862,8 +861,8 @@ blueprints:
   - id: bpmn-call-activity-decomposition
     title: Call activities to reduce complexity
     summary: >
-      A large process split into a calling and a called process sharing one workflow
-      aggregate - decomposition without introducing a second business object.
+      A large process split into a calling and a called process which share one workflow
+      aggregate. The process is split up without a second business object.
     category: bpmn
     base: module-single
     bpms: [camunda7, camunda8]
@@ -893,8 +892,8 @@ blueprints:
   - id: bpmn-multi-instance-task
     title: Multi-instance tasks
     summary: >
-      A task executed once per element of a collection, with the current element, its
-      index and the total number available to business code.
+      A task which runs once per element of a collection. Business code gets the current
+      element, its index and the total number.
     category: bpmn
     base: module-single
     bpms: [camunda7, camunda8]
@@ -924,8 +923,8 @@ blueprints:
   - id: bpmn-multi-instance-subprocess
     title: Multi-instance subprocesses
     summary: >
-      A subprocess executed once per element of a collection, including nested
-      multi-instance and how business code addresses the element it is called for.
+      A subprocess which runs once per element of a collection, including nested
+      multi-instance, and how business code addresses the element it is called for.
     category: bpmn
     base: module-single
     bpms: [camunda7, camunda8]
@@ -982,8 +981,8 @@ blueprints:
   - id: bpmn-aggregate-decoupling
     title: Decoupling BPMN from the data model
     summary: >
-      Keeping the BPMN independent of the business data model: natural IDs, attributes
-      synchronized to the BPMS on purpose and those deliberately kept out of it.
+      Keeping the BPMN independent of the business data model: natural IDs, attributes shared
+      with the BPMS on purpose, and attributes kept out of it on purpose.
     category: bpmn
     base: module-single
     bpms: [camunda7, camunda8]
@@ -1012,8 +1011,8 @@ blueprints:
   - id: bpmn-history-and-diagram
     title: Showing BPMN and execution history
     summary: >
-      Serving the BPMN XML of a workflow and the elements it has passed, which is what a
-      UI needs to draw the diagram of a running workflow.
+      Serving the BPMN XML of a workflow and the elements it has passed. A UI needs both to
+      draw the diagram of a running workflow.
     category: bpmn
     base: module-single
     bpms: [camunda7, camunda8]
@@ -1042,13 +1041,13 @@ blueprints:
   - id: bpmn-adhoc-subprocess
     title: Ad-hoc subprocesses
     summary: >
-      Activities drawn side by side without sequence flows, of which the workflow runs the
-      ones somebody picked while it was already standing there.
+      Activities drawn side by side without sequence flows. The workflow runs the ones somebody
+      picked while it was already standing in front of them.
     category: bpmn
     base: module-single
-    # Camunda 8 only: Camunda 7 does not execute the element. Its parser lists
-    # 'adHocSubProcess' among the activity types it ignores and only warns while deploying,
-    # so a Camunda 7 build would ask for handlers of activities which never run.
+    # Camunda 8 only: Camunda 7 does not run the element. Its parser lists 'adHocSubProcess'
+    # among the activity types it ignores, and only warns while deploying. So a Camunda 7
+    # build would ask for handlers of activities which never run.
     bpms: [camunda8]
     persistence: [jpa]
     covers:
@@ -1079,9 +1078,9 @@ blueprints:
     title: Sections of a process and their data
     summary: >
       A process cut into two sections, one drawn as a call activity and one as an embedded
-      subprocess, each with a sub-object of the workflow aggregate. One section is skipped for
-      a small case, so its sub-object stays absent, and the model asks about it through a
-      boolean getter on the top level instead of reading a path into it.
+      subprocess, each with a sub-object of the workflow aggregate. A small case skips one
+      section, so its sub-object stays absent. The model asks about it through a boolean getter
+      on the top level, instead of reading a path into it.
     category: bpmn
     base: module-single
     bpms: [camunda7, camunda8]
@@ -1120,9 +1119,9 @@ blueprints:
   - id: showcase-standalone
     title: A complete application
     summary: >
-      A complete business process application without a UI, combining the aspects the
-      other blueprints show one by one. Meant as a reference, not as an entry point - for
-      that, start with module-single.
+      A complete business process application without a UI, which combines the aspects the
+      other blueprints show one by one. Meant as a reference, not as an entry point. For that,
+      start with module-single.
     category: showcase
     base: module-standalone
     bpms: [camunda7, camunda8]
