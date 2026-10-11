@@ -8,54 +8,54 @@ For more infos check out [https://www.vanillabp.io](https://www.vanillabp.io).
 
 ## Blueprints
 
-A blueprint is a small, runnable application showing **one** aspect of building business
+A blueprint is a small application you can run. It shows **one** aspect of building business
 process software with VanillaBP: how a workflow module is structured, how a user task is
-completed, how a message reaches a running workflow. Instead of a few large examples that
-show everything and explain nothing, there are many small ones, each with a README
-explaining its aspect and linking the reference documentation rather than repeating it.
+completed, how a message reaches a running workflow. Instead of a few large examples which show
+everything and explain nothing, there are many small ones. Each has a README which explains its
+aspect. It links the reference documentation instead of repeating it.
 
 Blueprints are meant to be copied. They all use the same package structure, the same
-placeholders and the same test setup, so understanding one means understanding all of them,
-and combining two of them means applying two deltas.
+placeholders and the same test setup. So if you understand one, you understand all of them. To
+combine two of them, you apply two deltas.
 
-Every blueprint is built and tested on every business process engine it claims, on each
-change and again each night against the current state of VanillaBP:
+Every blueprint is built and tested on every business process engine it claims. That happens on
+each change, and again each night against the current state of VanillaBP:
 
 [![Build](https://github.com/vanillabp-blueprints/blueprints/actions/workflows/build.yaml/badge.svg)](https://github.com/vanillabp-blueprints/blueprints/actions/workflows/build.yaml)
 [![Nightly](https://github.com/vanillabp-blueprints/blueprints/actions/workflows/nightly.yaml/badge.svg)](https://github.com/vanillabp-blueprints/blueprints/actions/workflows/nightly.yaml)
 
 ### How to use a blueprint
 
-1. Pick the blueprints matching what you are building. Start with `module-single`, the base
-   every other blueprint is a delta of, then add the BPMN scenarios your process needs.
-2. Follow your platform's link. Every blueprint is a repository of its own per platform, so
-   you never see the code of the other one. The *Platforms* column links the repository for
-   Spring Boot and for Quarkus separately.
-3. Clone and run it. Every blueprint builds with `mvn verify` and is operable in a browser
-   alone: its README names one URL to start the process, and at every wait state the
+1. Pick the blueprints which match what you build. Start with `module-single`, the base every
+   other blueprint is a delta of. Then add the BPMN scenarios your process needs.
+2. Follow your platform's link. Every blueprint is a repository of its own per platform, so you
+   never see the code of the other one. The *Platforms* column links the repository for Spring
+   Boot and for Quarkus separately.
+3. Clone and run it. Every blueprint builds with `mvn verify`, and you can operate it with a
+   browser alone. Its README names one URL which starts the process. At every wait state the
    application logs the URLs to continue with.
-4. Choose the BPMS. Which business process engine a blueprint runs on is a Maven profile,
-   `-Pcamunda7`, `-Pcamunda8` or `-Pprocess-engine-api`, and never a code change. That is
-   the point VanillaBP is making.
+4. Choose the BPMS (business process management system). A Maven profile decides which business
+   process engine a blueprint runs on: `-Pcamunda7`, `-Pcamunda8` or `-Pprocess-engine-api`. It
+   is never a code change. That is the point VanillaBP makes.
 
 ### For AI agents
 
-The catalogue below is generated from a machine readable index. An agent implementing a
+The catalogue below is generated from an index for machines. An agent which implements a
 modelled BPMN reads these two files and needs nothing else:
 
 - [`blueprints.yaml`](https://raw.githubusercontent.com/vanillabp-blueprints/.github/main/blueprints.yaml):
-  every blueprint with the BPMN element types it covers (`covers.bpmn`), the SPI it uses,
-  which blueprints it composes with and the repository per platform.
+  every blueprint with the BPMN element types it covers (`covers.bpmn`), the SPI it uses, which
+  blueprints it combines with, and the repository per platform.
 - [`AGENTS.md`](https://raw.githubusercontent.com/vanillabp-blueprints/.github/main/AGENTS.md):
-  the rules valid for all blueprints, meaning the reference structure, the placeholders, the
-  procedure and the list of things never to do.
+  the rules for all blueprints: the reference structure, the placeholders, the procedure and
+  the list of things never to do.
 
-Each blueprint repository carries an `AGENTS.md` of its own describing its placeholders, its
-core files and how to graft it onto an existing project.
+Each blueprint repository has an `AGENTS.md` of its own. It describes its placeholders, its
+core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-36 blueprints, published today: 34 of 35 for Spring Boot, 35 of 36 for Quarkus. A platform a blueprint has not been published for yet is listed as planned rather than left out, and a platform the blueprint cannot exist for is listed as not applicable, with the reason.
+36 blueprints, published today: 34 of 35 for Spring Boot, 35 of 36 for Quarkus. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -119,5 +119,5 @@ core files and how to graft it onto an existing project.
 
 Blueprints are developed in the monorepo
 [`blueprints`](https://github.com/vanillabp-blueprints/blueprints) and delivered as one
-repository per blueprint and platform. Those repositories are read-only mirrors, so
-**issues and pull requests belong into the monorepo.**
+repository per blueprint and platform. Those repositories are read-only mirrors, so **issues
+and pull requests belong in the monorepo.**
