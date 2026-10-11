@@ -315,9 +315,9 @@ abbreviation out once. If a sentence trips you up when you read it aloud, rewrit
 
 This holds for every English text here: this file, [`README.md`](./README.md),
 [`CONTRIBUTING.md`](./CONTRIBUTING.md), the summaries and reasons in `blueprints.yaml`, the
-organisation page, and the texts of commits and pull requests. This repository has no wiki of its
-own. If it gets one, the rule holds there as well, because a wiki clone has no `AGENTS.md` of its
-own.
+organisation page, the comments which explain something in the scripts below `bin/`, and the
+texts of commits and pull requests. This repository has no wiki of its own. If it gets one, the
+rule holds there as well, because a wiki clone has no `AGENTS.md` of its own.
 
 Nothing a program reads is renamed for the sake of language. The id of a blueprint, the keys of
 the catalogue and the names of the BPMN element types stay as they are, because the schema, the
