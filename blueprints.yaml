@@ -111,27 +111,23 @@ blueprints:
   - id: module-interaction
     title: Interaction between workflow modules
     summary: >
-      Two workflow modules which interact without coupling their processes. The outgoing module
-      sends a BPMN message, which is translated into an internal API call. The incoming module
-      waits for a message delivered by its own API. Shown as an alternative: an asynchronous
-      service task completed by a callback.
+      Two workflow modules which interact without coupling their processes. The asking module
+      calls an interface of a shared API JAR from a service task and waits at a message event.
+      The answering module announces its result as an event, and a listener in the asking
+      module correlates it as a BPMN message. Neither model knows the other module.
     category: module
     base: module-single
     bpms: [camunda7, camunda8]
     persistence: [jpa]
     covers:
       bpmn:
-        - bpmn:IntermediateThrowEvent
+        - bpmn:ServiceTask
         - bpmn:IntermediateCatchEvent
-        - bpmn:SendTask
       spi:
         - "ProcessService#correlateMessage"
-        - "ProcessService#completeTask"
-        - "@TaskId"
     composes_with: [module-multi, bpmn-message-correlation, bpmn-async-task]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Message-correlation
-      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
     platforms:
       springboot:
         status: available
@@ -340,8 +336,8 @@ blueprints:
     title: The application owns its database schema
     summary: >
       Liquibase creates every table the application needs, including the ones VanillaBP and the
-      embedded engine would create themselves. Every workflow module brings its own changelog
-      with a changelog table of its own.
+      embedded engine would create themselves. Every workflow module brings its own changelog,
+      and one changelog table tells the owners apart by the logical path of each changelog.
     category: persistence
     base: module-single
     bpms: [camunda7, camunda8]
@@ -354,6 +350,7 @@ blueprints:
     composes_with: [module-multi]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Quarkus-integration
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules
     platforms:
       springboot:
@@ -369,7 +366,8 @@ blueprints:
     title: The application owns its database schema, with Flyway
     summary: >
       The same as persistence-liquibase with the other tool: versioned SQL migrations instead
-      of changelogs, one migration history per workflow module, and nothing created at runtime.
+      of changelogs, and nothing created at runtime. VanillaBP, each workflow module and the
+      application each get a Flyway instance and a migration history of their own.
     category: persistence
     base: module-single
     bpms: [camunda7, camunda8]
@@ -382,6 +380,7 @@ blueprints:
     composes_with: [module-multi]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Spring-Boot-integration
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Quarkus-integration
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules
     platforms:
       springboot:
