@@ -35,8 +35,9 @@ each change, and again each night against the current state of VanillaBP:
    browser alone. Its README names one URL which starts the process. At every wait state the
    application logs the URLs to continue with.
 4. Choose the BPMS (business process management system). A Maven profile decides which business
-   process engine a blueprint runs on: `-Pcamunda7`, `-Pcamunda8` or `-Pprocess-engine-api`. It
-   is never a code change. That is the point VanillaBP makes.
+   process engine a blueprint runs on: `-Pcamunda7`, `-Pcamunda8` or `-Pprocess-engine-api`, and
+   for some blueprints `-Poperaton`. Their entry in the index lists the profiles. It is never a
+   code change. That is the point VanillaBP makes.
 
 ### For AI agents
 
