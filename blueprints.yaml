@@ -630,7 +630,7 @@ blueprints:
       called startWorkflow, so the workflow aggregate is created on the way in.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8]
+    bpms: [camunda7, camunda8, operaton]
     persistence: [jpa]
     covers:
       bpmn:

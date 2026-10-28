@@ -112,7 +112,7 @@
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": { "enum": ["camunda7", "camunda8", "process-engine-api"] }
+          "items": { "enum": ["camunda7", "camunda8", "operaton", "process-engine-api"] }
         },
         "persistence": {
           "type": "array",
