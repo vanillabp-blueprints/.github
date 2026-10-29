@@ -24,7 +24,7 @@ blueprints:
       files, an integration test against the workflow module and a smoke test of the
       application.
     category: module
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -57,7 +57,7 @@ blueprints:
       never be shared.
     category: module
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -87,7 +87,7 @@ blueprints:
       all it takes.
     category: module
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -117,7 +117,7 @@ blueprints:
       module correlates it as a BPMN message. Neither model knows the other module.
     category: module
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -148,7 +148,7 @@ blueprints:
       a native build.
     category: module
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -178,7 +178,7 @@ blueprints:
       a single workflow.
     category: module
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -209,7 +209,7 @@ blueprints:
       not just claimed.
     category: module
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -308,7 +308,7 @@ blueprints:
       decision behind it.
     category: persistence
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -340,7 +340,7 @@ blueprints:
       and one changelog table tells the owners apart by the logical path of each changelog.
     category: persistence
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -370,7 +370,7 @@ blueprints:
       application each get a Flyway instance and a migration history of their own.
     category: persistence
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -400,7 +400,7 @@ blueprints:
       entry was planned, not as it is when the entry is sent.
     category: persistence
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -437,7 +437,7 @@ blueprints:
       workflow module holds a JPA aggregate and a MongoDB one side by side.
     category: persistence
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa, mongodb]
     covers:
       bpmn: []
@@ -472,7 +472,7 @@ blueprints:
       throws, how the BPMS retries and where the transaction boundaries are.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -503,7 +503,7 @@ blueprints:
       is later completed or canceled through the API.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -535,7 +535,7 @@ blueprints:
       the task is completed once the surrounding system answers.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -570,7 +570,7 @@ blueprints:
       ID is needed for, and why handling a message has to cope with repeats.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -600,7 +600,7 @@ blueprints:
       the workflow aggregate.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -630,7 +630,7 @@ blueprints:
       called startWorkflow, so the workflow aggregate is created on the way in.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -660,7 +660,7 @@ blueprints:
       to a timer having fired.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -690,7 +690,7 @@ blueprints:
       workflow, including what a broadcast means for workflows nobody addressed.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -718,7 +718,7 @@ blueprints:
       service task in front of every end event.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -745,7 +745,7 @@ blueprints:
       learns that a task was canceled.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -775,7 +775,7 @@ blueprints:
       process, as opposed to a technical failure which is retried.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -805,7 +805,7 @@ blueprints:
       sequence flows and the expressions wired to business code.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -834,7 +834,7 @@ blueprints:
       model through a gateway and reaches the application as an ordinary task parameter.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -864,7 +864,7 @@ blueprints:
       aggregate. The process is split up without a second business object.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -895,7 +895,7 @@ blueprints:
       element, its index and the total number.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -926,7 +926,7 @@ blueprints:
       multi-instance, and how business code addresses the element it is called for.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -957,7 +957,7 @@ blueprints:
       how business code serves both versions at the same time.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -984,7 +984,7 @@ blueprints:
       with the BPMS on purpose, and attributes kept out of it on purpose.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -1014,7 +1014,7 @@ blueprints:
       draw the diagram of a running workflow.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn: []
@@ -1082,7 +1082,7 @@ blueprints:
       on the top level, instead of reading a path into it.
     category: bpmn
     base: module-single
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
@@ -1123,7 +1123,7 @@ blueprints:
       start with module-single.
     category: showcase
     base: module-standalone
-    bpms: [camunda7, camunda8, operaton]
+    bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
       bpmn:
