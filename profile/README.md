@@ -35,11 +35,12 @@ each change, and again each night against the current state of VanillaBP:
    browser alone. Its README names one URL which starts the process. At every wait state the
    application logs the URLs to continue with.
 4. Choose the BPMS (business process management system). A Maven profile decides which business
-   process engine a blueprint runs on: `-Pcamunda7`, `-Pcamunda8`, `-Poperaton` or
-   `-Pprocess-engine-api`. [Operaton](https://operaton.org) is the open source successor of
-   Camunda 7, and every blueprint which runs on Camunda 7 runs on it, too. The entry of a
-   blueprint in the index lists its profiles. It is never a code change. That is the point
-   VanillaBP makes.
+   process engine a blueprint runs on: `-Pcamunda7`, `-Pcamunda8`, `-Poperaton`, `-Pcibseven`
+   or `-Pprocess-engine-api`. [Operaton](https://operaton.org) is the open source successor of
+   Camunda 7, and [CIB seven](https://cibseven.org) is a fork of Camunda 7 made by CIB software.
+   Every blueprint which runs on Camunda 7 runs on both of them, too. The entry of a blueprint
+   in the index lists its profiles. It is never a code change. That is the point VanillaBP
+   makes.
 
 ### For AI agents
 
