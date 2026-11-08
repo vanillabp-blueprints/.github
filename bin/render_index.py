@@ -23,19 +23,41 @@ END = "<!-- END GENERATED -->"
 
 PLATFORMS = [("springboot", "Spring Boot"), ("quarkus", "Quarkus")]
 
+# The platforms of a cockpit frontend are the UI frameworks it is written in.
+FRONTEND_PLATFORMS = [("react", "React"), ("angular", "Angular"), ("vue", "Vue")]
+
 CATEGORIES = [
     ("module", "Workflow module structure and runtime"),
     ("persistence", "Persistence of workflow aggregates"),
     ("bpmn", "BPMN scenarios"),
+    ("cockpit", "Business Cockpit"),
     ("showcase", "Showcase"),
 ]
+
+# A line below the heading, for a category whose table needs one more word than its title.
+CATEGORY_INTROS = {
+    "cockpit": (
+        "Blueprints for a workflow module whose user tasks the"
+        " [Business Cockpit](https://github.com/vanillabp/business-cockpit) shows. The"
+        " frontends build with npm and not with Maven. So they exist per UI framework, and"
+        " their *Platforms* column names React, Angular and Vue."
+    ),
+}
+
+
+def is_frontend(blueprint):
+    return any(platform in blueprint["platforms"] for platform, _ in FRONTEND_PLATFORMS)
 
 
 def platforms_cell(blueprint):
     """One cell naming every platform, linking the ones which exist."""
     parts = []
-    for platform, label in PLATFORMS:
-        entry = blueprint["platforms"][platform]
+    # A frontend says 'not-applicable' for both Java platforms. Repeating that in every row
+    # would only push its frameworks out of sight, and the category intro says it once.
+    for platform, label in FRONTEND_PLATFORMS if is_frontend(blueprint) else PLATFORMS:
+        entry = blueprint["platforms"].get(platform)
+        if entry is None:
+            continue
         if entry["status"] == "available":
             parts.append(f"[{label}]({entry['repo']})")
         elif entry["status"] == "not-applicable":
@@ -58,6 +80,20 @@ def render(blueprints):
         # says how far the platform has come rather than how rare its idioms are.
         possible = len(states) - states.count("not-applicable")
         counts.append(f"{states.count('available') or 'none'} of {possible} for {label}")
+    frontend_states = [
+        entry["status"]
+        for blueprint in blueprints
+        for platform, _ in FRONTEND_PLATFORMS
+        if (entry := blueprint["platforms"].get(platform)) is not None
+    ]
+    if frontend_states:
+        # One figure for all frameworks: a count per framework would be three figures of one
+        # or two each, and nobody picks a blueprint by them.
+        possible = len(frontend_states) - frontend_states.count("not-applicable")
+        counts.append(
+            f"{frontend_states.count('available') or 'none'} of {possible}"
+            " for the frontends of the Business Cockpit"
+        )
 
     lines = [
         f"{total} blueprints, published today: {', '.join(counts)}. If a blueprint has not"
@@ -73,9 +109,10 @@ def render(blueprints):
         ]
         if not of_category:
             continue
+        lines += [f"### {category_label}", ""]
+        if category in CATEGORY_INTROS:
+            lines += [CATEGORY_INTROS[category], ""]
         lines += [
-            f"### {category_label}",
-            "",
             "| Blueprint | What it shows | BPMN elements | Platforms |",
             "|---|---|---|---|",
         ]

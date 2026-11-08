@@ -28,7 +28,10 @@ from pathlib import Path
 from ruamel.yaml import YAML
 
 ORG = "vanillabp-blueprints"
-PLATFORMS = ("springboot", "quarkus")
+# The Java platforms, and the UI frameworks a cockpit frontend exists for. The directory of a
+# frontend in the monorepo is named after its framework, just as a Java blueprint's is named
+# after its platform, so the split job treats both alike.
+PLATFORMS = ("springboot", "quarkus", "react", "angular", "vue")
 
 REPO_URL = "https://github.com/{org}/{id}-{platform}"
 AGENTS_MD_URL = "https://raw.githubusercontent.com/{org}/{id}-{platform}/main/AGENTS.md"
@@ -82,7 +85,15 @@ def main():
         )
         sys.exit(1)
 
-    entry = blueprint["platforms"][args.platform]
+    entry = blueprint["platforms"].get(args.platform)
+    if entry is None:
+        print(
+            f"{args.id} names no platform '{args.platform}' in {index_file.name}."
+            " A Java blueprint has 'springboot' and 'quarkus', a cockpit frontend its"
+            " UI frameworks. Add the platform to the entry before splitting it.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
     if entry.get("status") == "not-applicable":
         print(

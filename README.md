@@ -39,6 +39,11 @@ page shows the reason where the other platforms show their link. `bin/set_platfo
 neither writes it nor overwrites it. `planned` is a gap which closes, and it stays a promise.
 This one is an answer.
 
+A frontend of the Business Cockpit has no Java platform. It builds with npm and exists per UI
+framework, so its entry names `react`, `angular` and `vue` as further platforms and says
+`not-applicable` for `springboot` and `quarkus`. Everything else works the same: the key is the
+directory in the monorepo and the suffix of the repository, and the split job sets its status.
+
 ## The blueprints themselves
 
 They are developed in [`blueprints`](https://github.com/vanillabp-blueprints/blueprints) and
