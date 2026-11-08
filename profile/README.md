@@ -59,7 +59,7 @@ core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-36 blueprints, published today: 34 of 35 for Spring Boot, 35 of 36 for Quarkus. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
+41 blueprints, published today: 34 of 39 for Spring Boot, 35 of 40 for Quarkus, none of 3 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -110,6 +110,18 @@ core files, and how to add it to an existing project.
 | `bpmn-history-and-diagram` | Showing BPMN and execution history | — | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-history-and-diagram-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-history-and-diagram-quarkus) |
 | `bpmn-adhoc-subprocess` | Ad-hoc subprocesses | `bpmn:AdHocSubProcess`, `bpmn:BusinessRuleTask` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-adhoc-subprocess-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-adhoc-subprocess-quarkus) |
 | `bpmn-process-sections` | Sections of a process and their data | `bpmn:SubProcess`, `bpmn:CallActivity`, `bpmn:ExclusiveGateway` | [Spring Boot](https://github.com/vanillabp-blueprints/bpmn-process-sections-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/bpmn-process-sections-quarkus) |
+
+### Business Cockpit
+
+Blueprints for a workflow module whose user tasks the [Business Cockpit](https://github.com/vanillabp/business-cockpit) shows. The frontends build with npm and not with Maven. So they exist per UI framework, and their *Platforms* column names React, Angular and Vue.
+
+| Blueprint | What it shows | BPMN elements | Platforms |
+|---|---|---|---|
+| `cockpit-user-task-backend` | User tasks in the Business Cockpit, backend | `bpmn:UserTask` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `cockpit-user-task-frontend` | User tasks in the Business Cockpit, forms | `bpmn:UserTask` | React *(planned)*<br>Angular *(planned)*<br>Vue *(planned)* |
+| `cockpit-user-task-application` | User tasks in the Business Cockpit, application | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `cockpit-user-task-bundle` | User tasks in the Business Cockpit, workflow module and UI as one library | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `cockpit-user-task-application-proxy` | User tasks in the Business Cockpit, UI served by nginx behind the application | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 
 ### Showcase
 

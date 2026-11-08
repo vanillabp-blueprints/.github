@@ -14,6 +14,9 @@ from jsonschema import Draft202012Validator
 
 ORG = "vanillabp-blueprints"
 PLATFORMS = ("springboot", "quarkus")
+# The platforms of a cockpit frontend are its UI frameworks. Only a frontend names them, which
+# the schema checks, so most entries carry the two Java platforms alone.
+FRONTEND_PLATFORMS = ("react", "angular", "vue")
 
 REPO_URL = "https://github.com/{org}/{id}-{platform}"
 AGENTS_MD_URL = "https://raw.githubusercontent.com/{org}/{id}-{platform}/main/AGENTS.md"
@@ -65,7 +68,7 @@ def semantic_errors(index):
                     f"{blueprint_id}: 'composes_with' references the blueprint itself"
                 )
 
-        for platform in PLATFORMS:
+        for platform in PLATFORMS + FRONTEND_PLATFORMS:
             entry = blueprint.get("platforms", {}).get(platform, {})
             if entry.get("status") != "available":
                 continue
@@ -106,7 +109,8 @@ def main():
     states = [
         blueprint["platforms"][platform]["status"]
         for blueprint in blueprints
-        for platform in PLATFORMS
+        for platform in PLATFORMS + FRONTEND_PLATFORMS
+        if platform in blueprint["platforms"]
     ]
     available = states.count("available")
     # A variant marked 'not-applicable' is out of the denominator: the platform does not

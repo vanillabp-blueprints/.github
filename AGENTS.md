@@ -25,7 +25,9 @@ Two terms appear everywhere:
 ## Procedure
 
 1. Find out the platform, Spring Boot or Quarkus. Every blueprint exists per platform, as a
-   repository of its own. Never mix them.
+   repository of its own. Never mix them. A frontend of the Business Cockpit is the one
+   exception. It runs in the browser and builds with npm, so it exists per UI framework
+   instead: its platforms are `react`, `angular` and `vue`.
 2. Parse the BPMN. Collect the element types which occur in it (`bpmn:UserTask`,
    `bpmn:BoundaryEvent`, …) and the attributes used on them.
 3. Match against `blueprints.yaml`. Compare the element types with `covers.bpmn`, and pick for

@@ -1112,6 +1112,143 @@ blueprints:
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-process-sections-quarkus/main/AGENTS.md
 
   # ----------------------------------------------------------------------------------
+  # Business Cockpit
+  # ----------------------------------------------------------------------------------
+
+  # One workflow module with a user interface, cut into parts which each build with one tool:
+  # the backend with Maven, a frontend per UI framework with npm, and the application or the
+  # bundle with Maven again. A frontend has no Java platform, so it names its frameworks as
+  # its platforms and says 'not-applicable' for Spring Boot and Quarkus.
+  - id: cockpit-user-task-backend
+    title: User tasks in the Business Cockpit, backend
+    summary: >
+      The backend of a workflow module whose user tasks the Business Cockpit shows. One Maven
+      build holds the OpenAPI of the forms, published as a JAR the frontends read, and the
+      workflow module which implements it: two user tasks, a details provider which fills a
+      column of the task list, and the configuration the cockpit needs. The integration test
+      reports to the dev shell simulator of the cockpit and completes both tasks through the
+      endpoints the forms call.
+    category: cockpit
+    base: bpmn-user-task
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn: [bpmn:UserTask]
+      spi: ["@WorkflowTask", "@TaskId", "ProcessService#completeUserTask", "@UserTaskDetailsProvider"]
+    composes_with: [cockpit-user-task-frontend, cockpit-user-task-application, cockpit-user-task-bundle]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/wiki/Connecting-a-workflow-module
+      - https://github.com/vanillabp/business-cockpit/wiki/Reporting-workflows-and-user-tasks
+      - https://github.com/vanillabp/business-cockpit/wiki/Configuration#what-a-workflow-module-tells-the-cockpit
+      - https://github.com/vanillabp/business-cockpit/wiki/Developing-UI-components-locally#the-dev-shell-simulator
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: cockpit-user-task-frontend
+    title: User tasks in the Business Cockpit, forms
+    summary: >
+      The forms of the two user tasks of cockpit-user-task-backend, which the cockpit loads at
+      runtime as micro-frontends. Built with npm alone into a UI JAR for a Java application and
+      into an nginx image. The typed API client is generated from the API JAR of the backend,
+      and browser tests load the forms the way a cockpit does. Every framework uses the same
+      test ids.
+    category: cockpit
+    covers:
+      bpmn: [bpmn:UserTask]
+      spi: [UserTaskForm, UserTaskList, defineBcElement]
+    composes_with: [cockpit-user-task-backend, cockpit-user-task-application, cockpit-user-task-application-proxy]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/wiki/User-task-forms-and-status-sites
+      - https://github.com/vanillabp/business-cockpit/blob/main/skills/business-cockpit-creator/references/module-loading.md
+      - https://github.com/vanillabp/business-cockpit-module-kit
+    platforms:
+      springboot:
+        status: not-applicable
+        reason: A frontend runs in the browser and is built with npm, not on a Java platform.
+      quarkus:
+        status: not-applicable
+        reason: A frontend runs in the browser and is built with npm, not on a Java platform.
+      react:
+        status: planned
+      angular:
+        status: planned
+      vue:
+        status: planned
+
+  # The three entries below are being built right now. Their summaries say what the stories
+  # plan, and they follow what the blueprints show once they exist.
+  - id: cockpit-user-task-application
+    title: User tasks in the Business Cockpit, application
+    summary: >
+      The application which runs the workflow module of cockpit-user-task-backend and serves
+      the UI JAR of one of the frontends. A smoke test boots it, and CI builds it once per UI
+      framework. A Docker Compose file starts it next to a cockpit.
+    category: cockpit
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi: ["@WorkflowService", "@WorkflowTask"]
+    composes_with: [cockpit-user-task-backend, cockpit-user-task-frontend]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/wiki/Connecting-a-workflow-module
+      - https://github.com/vanillabp/business-cockpit/wiki/Running-the-Business-Cockpit
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: cockpit-user-task-bundle
+    title: User tasks in the Business Cockpit, workflow module and UI as one library
+    summary: >
+      The workflow module of cockpit-user-task-backend and the UI JAR of a frontend, packaged
+      as one library. An application with several workflow modules takes it as a single
+      dependency. A small application in the test takes the bundle and boots.
+    category: cockpit
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi: ["@WorkflowService", "@WorkflowTask"]
+    composes_with: [cockpit-user-task-backend, cockpit-user-task-frontend, module-packaging]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/wiki/Connecting-a-workflow-module
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: cockpit-user-task-application-proxy
+    title: User tasks in the Business Cockpit, UI served by nginx behind the application
+    summary: >
+      The application of cockpit-user-task-backend without a UI JAR. It forwards the paths of
+      the micro-frontends to the nginx image of a frontend, so the browser sees one origin and
+      the security of the application covers the UI files. This lets frontend and backend
+      deploy on their own during development and test. For production, the bundled
+      application is the better choice.
+    category: cockpit
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi: ["@WorkflowService", "@WorkflowTask"]
+    composes_with: [cockpit-user-task-backend, cockpit-user-task-frontend, cockpit-user-task-application]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/wiki/Connecting-a-workflow-module
+      - https://github.com/vanillabp/business-cockpit/wiki/Running-the-Business-Cockpit
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  # ----------------------------------------------------------------------------------
   # Showcase
   # ----------------------------------------------------------------------------------
 
