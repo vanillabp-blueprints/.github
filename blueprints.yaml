@@ -1152,9 +1152,9 @@ blueprints:
     summary: >
       The forms of the two user tasks of cockpit-user-task-backend, which the cockpit loads at
       runtime as micro-frontends. Built with npm alone into a UI JAR for a Java application and
-      into an nginx image. The typed API client is generated from the API JAR of the backend,
-      and browser tests load the forms the way a cockpit does. Every framework uses the same
-      test ids.
+      into an nginx image. The typed API client is generated from the OpenAPI file of the
+      backend, which the frontend reads through a git submodule, and browser tests load the forms
+      the way a cockpit does. Every framework uses the same test ids.
     category: cockpit
     covers:
       bpmn: [bpmn:UserTask]
