@@ -1143,7 +1143,9 @@ blueprints:
       - https://github.com/vanillabp/business-cockpit/wiki/Developing-UI-components-locally#the-dev-shell-simulator
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-user-task-backend-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-backend-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
@@ -1172,9 +1174,13 @@ blueprints:
         status: not-applicable
         reason: A frontend runs in the browser and is built with npm, not on a Java platform.
       react:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-user-task-frontend-react
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-frontend-react/main/AGENTS.md
       angular:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-user-task-frontend-angular
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-frontend-angular/main/AGENTS.md
       vue:
         status: planned
 
@@ -1198,7 +1204,9 @@ blueprints:
       - https://github.com/vanillabp/business-cockpit/wiki/Running-the-Business-Cockpit
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-user-task-application-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-application-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
@@ -1220,7 +1228,9 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-user-task-bundle-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-bundle-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
@@ -1244,7 +1254,9 @@ blueprints:
       - https://github.com/vanillabp/business-cockpit/wiki/Running-the-Business-Cockpit
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-user-task-application-proxy-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-application-proxy-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
