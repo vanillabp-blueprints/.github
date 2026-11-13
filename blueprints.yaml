@@ -1122,12 +1122,12 @@ blueprints:
   - id: cockpit-user-task-backend
     title: User tasks in the Business Cockpit, backend
     summary: >
-      The backend of a workflow module whose user tasks the Business Cockpit shows. One Maven
-      build holds the OpenAPI of the forms, published as a JAR the frontends read, and the
-      workflow module which implements it: two user tasks, a details provider which fills a
-      column of the task list, and the configuration the cockpit needs. The integration test
-      reports to the dev shell simulator of the cockpit and completes both tasks through the
-      endpoints the forms call.
+      The backend of a workflow module whose user tasks the Business Cockpit shows. The
+      workflow module carries the OpenAPI of its forms, which the frontends read through a git
+      submodule, and implements it: two user tasks, a details provider which fills a column of
+      the task list, and the configuration the cockpit needs. The integration test reports to
+      the dev shell simulator of the cockpit and completes both tasks through the endpoints the
+      forms call.
     category: cockpit
     base: bpmn-user-task
     bpms: [camunda7, camunda8, operaton, cibseven]
