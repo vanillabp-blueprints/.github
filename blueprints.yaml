@@ -1323,7 +1323,9 @@ blueprints:
       - https://github.com/vanillabp/business-cockpit/wiki/Configuration#what-a-workflow-module-tells-the-cockpit
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-workflow-details-backend-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-workflow-details-backend-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
@@ -1351,7 +1353,9 @@ blueprints:
         status: not-applicable
         reason: A frontend runs in the browser and is built with npm, not on a Java platform.
       react:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-workflow-details-frontend-react
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-workflow-details-frontend-react/main/AGENTS.md
 
   - id: cockpit-workflow-details-application
     title: The page of a case in the Business Cockpit, application
@@ -1371,7 +1375,9 @@ blueprints:
       - https://github.com/vanillabp/business-cockpit/wiki/Running-the-Business-Cockpit
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-workflow-details-application-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-workflow-details-application-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
