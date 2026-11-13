@@ -1410,7 +1410,9 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-usertasks-in-the-application-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-usertasks-in-the-application-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
