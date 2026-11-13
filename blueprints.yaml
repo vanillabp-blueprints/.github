@@ -1337,6 +1337,45 @@ blueprints:
       quarkus:
         status: planned
 
+  # Not tied to the cockpit: the patterns hold for any application with forms of its own. It is
+  # in this category because the cockpit blueprints start on one platform and get their twins
+  # later.
+  - id: cockpit-usertasks-in-the-application
+    title: User tasks in the application
+    summary: >
+      Every user task is a row of its own next to the workflow aggregate, so a task can be open
+      several times at once. The content of its form is stored as JSON, and a saved draft stays
+      in the task. The result reaches the aggregate when the task is completed, in the
+      transaction which completes it in the BPMS. Each form endpoint is protected by an
+      authority of the module. Use it instead of bpmn-user-task when a task is open more than
+      once or its form keeps drafts.
+    category: cockpit
+    base: bpmn-user-task
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:UserTask
+        - bpmn:ParallelGateway
+        - bpmn:MultiInstanceLoopCharacteristics
+        - bpmn:TerminateEventDefinition
+      spi:
+        - "@WorkflowTask"
+        - "@TaskId"
+        - "@TaskEvent"
+        - "@MultiInstanceElement"
+        - "ProcessService#completeUserTask"
+    composes_with: [bpmn-multi-instance-task]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#user-tasks
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   # ----------------------------------------------------------------------------------
   # Showcase
   # ----------------------------------------------------------------------------------
