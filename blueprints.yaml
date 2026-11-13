@@ -1265,17 +1265,18 @@ blueprints:
     summary: >
       The backend of a workflow module whose cases the Business Cockpit shows on a page of
       their own. The workflow module holds the OpenAPI of the case page and implements it: one
-      user task which keeps the case open, and an interrupting event subprocess which cancels
-      the case when the page asks the module to. A workflow details provider puts the applicant
-      and the outcome into the case list. The integration test reports to the dev shell
-      simulator of the cockpit, cancels a case through the endpoint the page calls, and checks
-      the user tasks of the case.
+      user task which keeps the case open, and an interrupting event subprocess which withdraws
+      the loan request when the page asks the module to. Its service task sets the status of the
+      aggregate, and the process ends the normal way. A workflow details provider puts the
+      applicant and the status into the case list. The integration test reports to the dev shell
+      simulator of the cockpit, withdraws a loan request through the endpoint the page calls, and
+      checks the user tasks of the case.
     category: cockpit
     base: cockpit-user-task-backend
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
-      bpmn: [bpmn:UserTask, bpmn:SubProcess, bpmn:MessageEventDefinition]
+      bpmn: [bpmn:UserTask, bpmn:SubProcess, bpmn:MessageEventDefinition, bpmn:ServiceTask]
       spi: ["@WorkflowTask", "@TaskId", "ProcessService#completeUserTask", "ProcessService#correlateMessage", "@WorkflowDetailsProvider"]
     composes_with: [cockpit-workflow-details-frontend, cockpit-workflow-details-application]
     docs:
@@ -1294,7 +1295,7 @@ blueprints:
       The page of a case of cockpit-workflow-details-backend and two columns of the case list,
       which the cockpit loads at runtime as micro-frontends. The page lists the open user tasks
       the cockpit knows, shows the data of the loan request from the module, and has a button
-      which cancels the case through the module. Built with npm alone into a UI JAR and an nginx
+      which withdraws the loan request through the module. Built with npm alone into a UI JAR and an nginx
       image, with browser tests in the host of the module kit, with areas and without.
     category: cockpit
     covers:

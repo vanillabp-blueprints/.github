@@ -122,7 +122,7 @@ Blueprints for a workflow module whose user tasks the [Business Cockpit](https:/
 | `cockpit-user-task-application` | User tasks in the Business Cockpit, application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-user-task-application-springboot)<br>Quarkus *(planned)* |
 | `cockpit-user-task-bundle` | User tasks in the Business Cockpit, workflow module and UI as one library | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-user-task-bundle-springboot)<br>Quarkus *(planned)* |
 | `cockpit-user-task-application-proxy` | User tasks in the Business Cockpit, UI served by nginx behind the application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-user-task-application-proxy-springboot)<br>Quarkus *(planned)* |
-| `cockpit-workflow-details-backend` | The page of a case in the Business Cockpit, backend | `bpmn:UserTask`, `bpmn:SubProcess`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `cockpit-workflow-details-backend` | The page of a case in the Business Cockpit, backend | `bpmn:UserTask`, `bpmn:SubProcess`, `bpmn:MessageEventDefinition`, `bpmn:ServiceTask` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `cockpit-workflow-details-frontend` | The page of a case in the Business Cockpit, case page | — | React *(planned)* |
 | `cockpit-workflow-details-application` | The page of a case in the Business Cockpit, application | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 
