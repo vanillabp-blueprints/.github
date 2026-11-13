@@ -59,7 +59,7 @@ core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-45 blueprints, published today: 38 of 42 for Spring Boot, 35 of 43 for Quarkus, 2 of 4 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
+46 blueprints, published today: 38 of 43 for Spring Boot, 35 of 44 for Quarkus, 2 of 4 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -72,6 +72,7 @@ core files, and how to add it to an existing project.
 | `module-packaging` | Assembling a runtime from workflow modules, and shipping it | — | [Spring Boot](https://github.com/vanillabp-blueprints/module-packaging-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-packaging-quarkus) |
 | `module-bpms-migration` | Migrating running workflows to another BPMS | — | [Spring Boot](https://github.com/vanillabp-blueprints/module-bpms-migration-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-bpms-migration-quarkus) |
 | `module-idle-application` | An idle application | `bpmn:ServiceTask`, `bpmn:IntermediateCatchEvent`, `bpmn:TimerEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/module-idle-application-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-idle-application-quarkus) |
+| `module-simulator` | A simulator plays the systems around a workflow module | `bpmn:UserTask`, `bpmn:ServiceTask`, `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 
 ### Persistence of workflow aggregates
 

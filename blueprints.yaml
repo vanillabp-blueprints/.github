@@ -235,6 +235,44 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/module-idle-application-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-idle-application-quarkus/main/AGENTS.md
 
+  - id: module-simulator
+    title: A simulator plays the systems around a workflow module
+    summary: >
+      One small application of its own plays every system a workflow module talks to: a credit
+      rating over REST, an e-signature service which calls back, and the Business Cockpit
+      through the dev shell simulator it extends. The application mocks nothing: the module
+      knows the systems only through ports named after their roles, and a profile points the
+      real adapters at the simulator or at the real systems. Integration tests only, driven
+      through a test API which knows nothing about the workflow.
+    category: module
+    base: module-single
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:UserTask
+        - bpmn:ServiceTask
+        - bpmn:IntermediateCatchEvent
+        - bpmn:MessageEventDefinition
+      spi:
+        - "@WorkflowService"
+        - "@WorkflowTask"
+        - "@TaskId"
+        - "@UserTaskDetailsProvider"
+        - "ProcessService#startWorkflow"
+        - "ProcessService#completeUserTask"
+        - "ProcessService#correlateMessage"
+    composes_with: [module-single, bpmn-message-correlation, cockpit-user-task-backend]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules-in-Spring-Boot#publishing-a-workflow-module-it-brings-its-own-wiring
+      - https://github.com/vanillabp/business-cockpit/wiki/Connecting-a-workflow-module
+      - https://github.com/vanillabp/business-cockpit/wiki/Developing-UI-components-locally#the-dev-shell-simulator
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   # ----------------------------------------------------------------------------------
   # Persistence of workflow aggregates
   # ----------------------------------------------------------------------------------
