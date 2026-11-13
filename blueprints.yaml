@@ -1260,6 +1260,82 @@ blueprints:
       quarkus:
         status: planned
 
+  - id: cockpit-workflow-details-backend
+    title: The page of a case in the Business Cockpit, backend
+    summary: >
+      The backend of a workflow module whose cases the Business Cockpit shows on a page of
+      their own. The workflow module holds the OpenAPI of the case page and implements it: one
+      user task which keeps the case open, and an interrupting event subprocess which cancels
+      the case when the page asks the module to. A workflow details provider puts the applicant
+      and the outcome into the case list. The integration test reports to the dev shell
+      simulator of the cockpit, cancels a case through the endpoint the page calls, and checks
+      the user tasks of the case.
+    category: cockpit
+    base: cockpit-user-task-backend
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn: [bpmn:UserTask, bpmn:SubProcess, bpmn:MessageEventDefinition]
+      spi: ["@WorkflowTask", "@TaskId", "ProcessService#completeUserTask", "ProcessService#correlateMessage", "@WorkflowDetailsProvider"]
+    composes_with: [cockpit-workflow-details-frontend, cockpit-workflow-details-application]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/wiki/Connecting-a-workflow-module
+      - https://github.com/vanillabp/business-cockpit/wiki/Reporting-workflows-and-user-tasks
+      - https://github.com/vanillabp/business-cockpit/wiki/Configuration#what-a-workflow-module-tells-the-cockpit
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: cockpit-workflow-details-frontend
+    title: The page of a case in the Business Cockpit, case page
+    summary: >
+      The page of a case of cockpit-workflow-details-backend and two columns of the case list,
+      which the cockpit loads at runtime as micro-frontends. The page lists the open user tasks
+      the cockpit knows, shows the data of the loan request from the module, and has a button
+      which cancels the case through the module. Built with npm alone into a UI JAR and an nginx
+      image, with browser tests in the host of the module kit, with areas and without.
+    category: cockpit
+    covers:
+      bpmn: []
+      spi: [WorkflowPage, WorkflowList, defineBcElement, getUserTasks]
+    composes_with: [cockpit-workflow-details-backend, cockpit-workflow-details-application]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/blob/main/skills/business-cockpit-creator/references/module-loading.md
+      - https://github.com/vanillabp/business-cockpit-module-kit
+    platforms:
+      springboot:
+        status: not-applicable
+        reason: A frontend runs in the browser and is built with npm, not on a Java platform.
+      quarkus:
+        status: not-applicable
+        reason: A frontend runs in the browser and is built with npm, not on a Java platform.
+      react:
+        status: planned
+
+  - id: cockpit-workflow-details-application
+    title: The page of a case in the Business Cockpit, application
+    summary: >
+      The application which runs the workflow module of cockpit-workflow-details-backend and
+      serves the UI JAR of its frontend. A smoke test boots it and asks for the manifest and the
+      case page. A Docker Compose file starts it next to a cockpit.
+    category: cockpit
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi: ["@WorkflowService", "@WorkflowTask"]
+    composes_with: [cockpit-workflow-details-backend, cockpit-workflow-details-frontend]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/wiki/Connecting-a-workflow-module
+      - https://github.com/vanillabp/business-cockpit/wiki/Running-the-Business-Cockpit
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   # ----------------------------------------------------------------------------------
   # Showcase
   # ----------------------------------------------------------------------------------

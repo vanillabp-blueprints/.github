@@ -59,7 +59,7 @@ core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-41 blueprints, published today: 38 of 39 for Spring Boot, 35 of 40 for Quarkus, 2 of 3 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
+44 blueprints, published today: 38 of 41 for Spring Boot, 35 of 42 for Quarkus, 2 of 4 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -122,6 +122,9 @@ Blueprints for a workflow module whose user tasks the [Business Cockpit](https:/
 | `cockpit-user-task-application` | User tasks in the Business Cockpit, application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-user-task-application-springboot)<br>Quarkus *(planned)* |
 | `cockpit-user-task-bundle` | User tasks in the Business Cockpit, workflow module and UI as one library | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-user-task-bundle-springboot)<br>Quarkus *(planned)* |
 | `cockpit-user-task-application-proxy` | User tasks in the Business Cockpit, UI served by nginx behind the application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-user-task-application-proxy-springboot)<br>Quarkus *(planned)* |
+| `cockpit-workflow-details-backend` | The page of a case in the Business Cockpit, backend | `bpmn:UserTask`, `bpmn:SubProcess`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `cockpit-workflow-details-frontend` | The page of a case in the Business Cockpit, case page | — | React *(planned)* |
+| `cockpit-workflow-details-application` | The page of a case in the Business Cockpit, application | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 
 ### Showcase
 
