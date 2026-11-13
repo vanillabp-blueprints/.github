@@ -59,7 +59,7 @@ core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-46 blueprints, published today: 38 of 43 for Spring Boot, 35 of 44 for Quarkus, 2 of 4 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
+47 blueprints, published today: 38 of 44 for Spring Boot, 35 of 45 for Quarkus, 2 of 4 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -127,6 +127,7 @@ Blueprints for a workflow module whose user tasks the [Business Cockpit](https:/
 | `cockpit-workflow-details-frontend` | The page of a case in the Business Cockpit, case page | — | React *(planned)* |
 | `cockpit-workflow-details-application` | The page of a case in the Business Cockpit, application | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 | `cockpit-usertasks-in-the-application` | User tasks in the application | `bpmn:UserTask`, `bpmn:ParallelGateway`, `bpmn:MultiInstanceLoopCharacteristics`, `bpmn:TerminateEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `cockpit-organizing-usertasks` | Organizing user tasks | `bpmn:UserTask`, `bpmn:BoundaryEvent`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 
 ### Showcase
 

@@ -1414,6 +1414,50 @@ blueprints:
       quarkus:
         status: planned
 
+  # Builds on cockpit-usertasks-in-the-application, because many of the patterns hold for an
+  # application with forms of its own as well.
+  - id: cockpit-organizing-usertasks
+    title: Organizing user tasks
+    summary: >
+      Describes each user task to the Business Cockpit so that the right people see it. The
+      initiator is whoever caused the report, so nobody is notified about their own work.
+      Candidate groups are the authorities which protect the forms. A task which belongs to one
+      person gets an assignee. The user who did the previous step is an excluded candidate, the
+      four-eyes principle. Each task chooses how the cockpit notifies, has a due date from the
+      rules of the business, and may get a follow-up date. Titles and search texts come from
+      templates, in several languages. Whoever worked on a task stays an admitted user and may
+      read its form later. A task moves to other people by being ended and entered again.
+    category: cockpit
+    base: cockpit-usertasks-in-the-application
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:UserTask
+        - bpmn:BoundaryEvent
+        - bpmn:MessageEventDefinition
+      spi:
+        - "@UserTaskDetailsProvider"
+        - "@WorkflowDetailsProvider"
+        - "PrefilledUserTaskDetails"
+        - "NotificationDelivery"
+        - "BusinessCockpitService#aggregateChanged"
+        - "@WorkflowTask"
+        - "@TaskId"
+        - "@TaskEvent"
+        - "ProcessService#correlateMessage"
+        - "ProcessService#completeUserTask"
+    composes_with: [cockpit-user-task-backend]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/wiki/Reporting-workflows-and-user-tasks#organizing-user-tasks
+      - https://github.com/vanillabp/business-cockpit/wiki/Reporting-workflows-and-user-tasks#who-caused-it-the-initiator
+      - https://github.com/vanillabp/business-cockpit/wiki/Templates
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   # ----------------------------------------------------------------------------------
   # Showcase
   # ----------------------------------------------------------------------------------
