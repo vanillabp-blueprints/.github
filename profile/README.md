@@ -59,7 +59,7 @@ core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-47 blueprints, published today: 43 of 44 for Spring Boot, 35 of 45 for Quarkus, 4 of 4 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
+48 blueprints, published today: 43 of 45 for Spring Boot, 35 of 46 for Quarkus, 4 of 4 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -73,6 +73,7 @@ core files, and how to add it to an existing project.
 | `module-bpms-migration` | Migrating running workflows to another BPMS | — | [Spring Boot](https://github.com/vanillabp-blueprints/module-bpms-migration-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-bpms-migration-quarkus) |
 | `module-idle-application` | An idle application | `bpmn:ServiceTask`, `bpmn:IntermediateCatchEvent`, `bpmn:TimerEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/module-idle-application-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-idle-application-quarkus) |
 | `module-simulator` | A simulator plays the systems around a workflow module | `bpmn:UserTask`, `bpmn:ServiceTask`, `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/module-simulator-springboot)<br>Quarkus *(planned)* |
+| `module-under-load` | A workflow module under load | `bpmn:ServiceTask`, `bpmn:UserTask`, `bpmn:EventBasedGateway`, `bpmn:ExclusiveGateway`, `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition`, `bpmn:TimerEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
 
 ### Persistence of workflow aggregates
 
