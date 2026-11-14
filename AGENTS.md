@@ -232,9 +232,9 @@ replacing one of the four and forgetting another.
 
 ## Operating an application in a browser
 
-Blueprints offer GET requests only, so you can walk through a process in a browser without any
-tooling. Keep that property. At every wait state, log one complete, clickable URL for each
-possible next step.
+Blueprints offer GET requests wherever a human works with the API directly, so you can walk
+through a process in a browser without any tooling. Keep that property. At every wait state, log
+one complete, clickable URL for each possible next step.
 
 ```
 Accept -> http://localhost:8080/api/loan-approval/{id}/assess-risk/{taskId}?riskIsAcceptable=true
@@ -242,6 +242,10 @@ Deny   -> http://localhost:8080/api/loan-approval/{id}/assess-risk/{taskId}?risk
 ```
 
 Those logged URLs are also the cheapest way for you to see which state a workflow reached.
+
+The endpoints which a form calls are the one exception. A form sends what the user entered as
+JSON: PUT saves a draft, POST completes the task. The start and every view stay GET requests. If
+your application has no form yet, show the `curl` command which stands in for one.
 
 ## Never do this
 
