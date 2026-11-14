@@ -253,8 +253,14 @@ Those logged URLs are also the cheapest way for you to see which state a workflo
    broken, and the application can no longer change its BPMS.
 3. **No BPMS dependency in a workflow module.** A pure workflow module depends on
    `io.vanillabp:vanillabp-spring-boot-support` or `io.vanillabp:vanillabp-quarkus-support`,
-   never on an adapter. Those modules do not expose BPMS APIs, on purpose. The adapter
-   dependency belongs in the application module.
+   never on an adapter. Those modules do not expose BPMS APIs, on purpose. If the module shows
+   user tasks in the Business Cockpit, it also depends on
+   `io.vanillabp.businesscockpit:business-cockpit-spring-boot-support`, which knows no BPMS
+   either. The adapters belong in the application module: the BPMS adapter, the cockpit adapter
+   (`businesscockpit-<bpms>-adapter-spring-boot`) and, on Quarkus,
+   `io.vanillabp:vanillabp-quarkus-integration`. A workflow module names them only in the test
+   scope, because its tests have to run them. The blueprints check this with the Maven
+   Enforcer rule `no-adapter-in-a-workflow-module`. Keep it when you copy a blueprint.
 4. **No business state in the BPMN.** The model expresses the flow, not the data. Nothing an
    auditor would want to read belongs in the diagram.
 5. **One aggregate per workflow.** Do not share an aggregate between two processes, unless the
