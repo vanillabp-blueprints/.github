@@ -59,7 +59,7 @@ core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-47 blueprints, published today: 42 of 44 for Spring Boot, 35 of 45 for Quarkus, 3 of 4 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
+47 blueprints, published today: 42 of 44 for Spring Boot, 35 of 45 for Quarkus, 4 of 4 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -119,7 +119,7 @@ Blueprints for a workflow module whose user tasks the [Business Cockpit](https:/
 | Blueprint | What it shows | BPMN elements | Platforms |
 |---|---|---|---|
 | `cockpit-user-task-backend` | User tasks in the Business Cockpit, backend | `bpmn:UserTask` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-user-task-backend-springboot)<br>Quarkus *(planned)* |
-| `cockpit-user-task-frontend` | User tasks in the Business Cockpit, forms | `bpmn:UserTask` | [React](https://github.com/vanillabp-blueprints/cockpit-user-task-frontend-react)<br>[Angular](https://github.com/vanillabp-blueprints/cockpit-user-task-frontend-angular)<br>Vue *(planned)* |
+| `cockpit-user-task-frontend` | User tasks in the Business Cockpit, forms | `bpmn:UserTask` | [React](https://github.com/vanillabp-blueprints/cockpit-user-task-frontend-react)<br>[Angular](https://github.com/vanillabp-blueprints/cockpit-user-task-frontend-angular)<br>[Vue](https://github.com/vanillabp-blueprints/cockpit-user-task-frontend-vue) |
 | `cockpit-user-task-application` | User tasks in the Business Cockpit, application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-user-task-application-springboot)<br>Quarkus *(planned)* |
 | `cockpit-user-task-bundle` | User tasks in the Business Cockpit, workflow module and UI as one library | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-user-task-bundle-springboot)<br>Quarkus *(planned)* |
 | `cockpit-user-task-application-proxy` | User tasks in the Business Cockpit, UI served by nginx behind the application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-user-task-application-proxy-springboot)<br>Quarkus *(planned)* |
