@@ -1385,6 +1385,85 @@ blueprints:
       quarkus:
         status: planned
 
+  - id: cockpit-header-extension-backend
+    title: A button in the header of the Business Cockpit, backend
+    summary: >
+      The backend of a workflow module which puts a button into the header of the Business
+      Cockpit, to start a process. A loan request which does not exist yet has no user task and
+      no case page, so the header is the place for its start. The workflow module holds the
+      OpenAPI of the start form behind the button and implements it: a POST which starts the
+      process and answers with the id of the new loan request. A WorkflowModuleDetailsProvider
+      names the one group which sees the module, and so the button. The integration test starts a
+      loan approval through the endpoint and finds the new case in the dev shell simulator of the
+      cockpit.
+    category: cockpit
+    base: cockpit-workflow-details-backend
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn: [bpmn:UserTask]
+      spi: ["@WorkflowTask", "@TaskId", "ProcessService#startWorkflow", "ProcessService#completeUserTask", "WorkflowModuleDetailsProvider"]
+    composes_with: [cockpit-header-extension-frontend, cockpit-header-extension-application]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/wiki/Connecting-a-workflow-module
+      - https://github.com/vanillabp/business-cockpit/wiki/Security#who-sees-which-workflow-module
+      - https://github.com/vanillabp/business-cockpit/wiki/Configuration#what-a-workflow-module-tells-the-cockpit
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
+  - id: cockpit-header-extension-frontend
+    title: A button in the header of the Business Cockpit, button and start form
+    summary: >
+      The button "Request a loan" of cockpit-header-extension-backend for the header of the
+      cockpit, and the start form it opens in a dialog of the cockpit. A data entry Header of the
+      module's own names the button, and bc-check-entries checks it with --data-entry Header. A
+      cockpit without a header ignores the entry, and the module works there without the button.
+      Built with npm alone into a UI JAR and an nginx image, with browser tests in the host of the
+      module kit: with a header and without, and next to a module without a header part.
+    category: cockpit
+    covers:
+      bpmn: []
+      spi: [Header, defineBcElement, openDialog, closeDialog]
+    composes_with: [cockpit-header-extension-backend, cockpit-header-extension-application]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/blob/main/skills/business-cockpit-creator/references/module-loading.md#the-other-extension-points
+      - https://github.com/vanillabp/business-cockpit-module-kit
+    platforms:
+      springboot:
+        status: not-applicable
+        reason: A frontend runs in the browser and is built with npm, not on a Java platform.
+      quarkus:
+        status: not-applicable
+        reason: A frontend runs in the browser and is built with npm, not on a Java platform.
+      react:
+        status: planned
+
+  - id: cockpit-header-extension-application
+    title: A button in the header of the Business Cockpit, application
+    summary: >
+      The application which runs the workflow module of cockpit-header-extension-backend and
+      serves the UI JAR of its frontend. A smoke test boots it, asks for the manifest and starts a
+      loan approval through the endpoint of the start form. A Docker Compose file starts it next to
+      a cockpit, with one user who sees the module and one who does not.
+    category: cockpit
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn: []
+      spi: ["@WorkflowService", "@WorkflowTask"]
+    composes_with: [cockpit-header-extension-backend, cockpit-header-extension-frontend]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/wiki/Connecting-a-workflow-module
+      - https://github.com/vanillabp/business-cockpit/wiki/Running-the-Business-Cockpit
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   # Not tied to the cockpit: the patterns hold for any application with forms of its own. It is
   # in this category because the cockpit blueprints start on one platform and get their twins
   # later.
