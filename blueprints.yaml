@@ -269,7 +269,9 @@ blueprints:
       - https://github.com/vanillabp/business-cockpit/wiki/Developing-UI-components-locally#the-dev-shell-simulator
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-simulator-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-simulator-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
