@@ -275,6 +275,46 @@ blueprints:
       quarkus:
         status: planned
 
+  - id: module-under-load
+    title: A workflow module under load
+    summary: >
+      A load driver plays customers, clerks and a neighbour system which answers late or not at
+      all, as a load profile next to the BPMN says. It raises the load step by step, reads the
+      meters the application publishes anyway, and names the pool which ran out first: the
+      connections, the dispatch stage of the outbox, the execution slots of the adapter or the
+      heap, with the setting to change. No load testing tool, and nothing measured in CI.
+    category: module
+    base: module-single
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:ServiceTask
+        - bpmn:UserTask
+        - bpmn:EventBasedGateway
+        - bpmn:ExclusiveGateway
+        - bpmn:IntermediateCatchEvent
+        - bpmn:MessageEventDefinition
+        - bpmn:TimerEventDefinition
+      spi:
+        - "@WorkflowService"
+        - "@WorkflowTask"
+        - "@TaskId"
+        - "@SyncWithBPMS"
+        - "ProcessService#startWorkflow"
+        - "ProcessService#correlateMessage"
+        - "ProcessService#completeUserTask"
+    composes_with: [module-idle-application, module-simulator, bpmn-message-correlation, bpmn-timer]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/The-pools-of-an-application
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Observability
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/What-VanillaBP-is-sized-for
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   # ----------------------------------------------------------------------------------
   # Persistence of workflow aggregates
   # ----------------------------------------------------------------------------------
