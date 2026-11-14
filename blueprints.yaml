@@ -1220,7 +1220,9 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/cockpit-user-task-frontend-angular
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-frontend-angular/main/AGENTS.md
       vue:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-user-task-frontend-vue
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-frontend-vue/main/AGENTS.md
 
   # The three entries below are being built right now. Their summaries say what the stories
   # plan, and they follow what the blueprints show once they exist.
