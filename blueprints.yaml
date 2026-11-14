@@ -1462,7 +1462,9 @@ blueprints:
       - https://github.com/vanillabp/business-cockpit/wiki/Templates
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-organizing-usertasks-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-organizing-usertasks-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
