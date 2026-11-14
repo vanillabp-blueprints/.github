@@ -59,7 +59,7 @@ core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-47 blueprints, published today: 41 of 44 for Spring Boot, 35 of 45 for Quarkus, 3 of 4 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
+47 blueprints, published today: 42 of 44 for Spring Boot, 35 of 45 for Quarkus, 3 of 4 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -127,7 +127,7 @@ Blueprints for a workflow module whose user tasks the [Business Cockpit](https:/
 | `cockpit-workflow-details-frontend` | The page of a case in the Business Cockpit, case page | — | [React](https://github.com/vanillabp-blueprints/cockpit-workflow-details-frontend-react) |
 | `cockpit-workflow-details-application` | The page of a case in the Business Cockpit, application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-workflow-details-application-springboot)<br>Quarkus *(planned)* |
 | `cockpit-usertasks-in-the-application` | User tasks in the application | `bpmn:UserTask`, `bpmn:ParallelGateway`, `bpmn:MultiInstanceLoopCharacteristics`, `bpmn:TerminateEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-usertasks-in-the-application-springboot)<br>Quarkus *(planned)* |
-| `cockpit-organizing-usertasks` | Organizing user tasks | `bpmn:UserTask`, `bpmn:BoundaryEvent`, `bpmn:MessageEventDefinition` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `cockpit-organizing-usertasks` | Organizing user tasks | `bpmn:UserTask`, `bpmn:BoundaryEvent`, `bpmn:MessageEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-organizing-usertasks-springboot)<br>Quarkus *(planned)* |
 
 ### Showcase
 
