@@ -743,7 +743,8 @@ blueprints:
     title: Timers
     summary: >
       Timer events in the sequence flow and as boundary events, and how a workflow reacts
-      to a timer having fired.
+      to a timer having fired. A business deadline of days comes from the aggregate, so a
+      test can shorten it in its configuration.
     category: bpmn
     base: module-single
     bpms: [camunda7, camunda8, operaton, cibseven]
@@ -757,9 +758,11 @@ blueprints:
       spi:
         - "@WorkflowTask"
         - "@TaskEvent"
+        - "@SyncWithBPMS"
     composes_with: [bpmn-boundary-events, bpmn-user-task]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Timers#a-deadline-out-of-the-workflow-aggregate
     platforms:
       springboot:
         status: available
