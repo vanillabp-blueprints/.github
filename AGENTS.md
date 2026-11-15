@@ -29,7 +29,12 @@ Two terms appear everywhere:
    exception. It runs in the browser and builds with npm, so it exists per UI framework
    instead: its platforms are `react`, `angular` and `vue`.
 2. Parse the BPMN. Collect the element types which occur in it (`bpmn:UserTask`,
-   `bpmn:BoundaryEvent`, …) and the attributes used on them.
+   `bpmn:BoundaryEvent`, …) and the attributes used on them. For a boundary event, also note
+   the event definition it carries, as `bpmn:BoundaryEvent/bpmn:MessageEventDefinition`. The
+   catalogue lists boundary events in that form too, so you can see which kinds a blueprint
+   shows. A kind no blueprint shows is built like a timer boundary event of
+   `bpmn-boundary-events`, with the event definition of the blueprint for that event. Its
+   README says how for a message.
 3. Match against `blueprints.yaml`. Compare the element types with `covers.bpmn`, and pick for
    the target platform:
    - one workflow module structure (`module-*`, start with `module-single`),

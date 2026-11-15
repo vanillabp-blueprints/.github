@@ -133,12 +133,12 @@
           "required": ["bpmn", "spi"],
           "properties": {
             "bpmn": {
-              "description": "BPMN element types shown, as they appear in a BPMN XML. This is what an agent matches a parsed BPMN against. Empty if the blueprint is not about a BPMN element.",
+              "description": "BPMN element types shown, as they appear in a BPMN XML. This is what an agent matches a parsed BPMN against. Empty if the blueprint is not about a BPMN element. A boundary event is also listed with the event definition it carries, e.g. 'bpmn:BoundaryEvent/bpmn:MessageEventDefinition', because the plain element type does not say which kind of boundary event a blueprint shows.",
               "type": "array",
               "uniqueItems": true,
               "items": {
                 "type": "string",
-                "pattern": "^bpmn:[A-Za-z]+$"
+                "pattern": "^bpmn:[A-Za-z]+(/bpmn:[A-Za-z]+EventDefinition)?$"
               }
             },
             "spi": {

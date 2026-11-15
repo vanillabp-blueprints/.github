@@ -753,6 +753,7 @@ blueprints:
         - bpmn:IntermediateCatchEvent
         - bpmn:BoundaryEvent
         - bpmn:TimerEventDefinition
+        - bpmn:BoundaryEvent/bpmn:TimerEventDefinition
       spi:
         - "@WorkflowTask"
         - "@TaskEvent"
@@ -836,6 +837,8 @@ blueprints:
     covers:
       bpmn:
         - bpmn:BoundaryEvent
+        - bpmn:TimerEventDefinition
+        - bpmn:BoundaryEvent/bpmn:TimerEventDefinition
       spi:
         - "@WorkflowTask"
         - "@TaskId"
@@ -868,6 +871,8 @@ blueprints:
         - bpmn:ErrorEventDefinition
         - bpmn:EscalationEventDefinition
         - bpmn:BoundaryEvent
+        - bpmn:BoundaryEvent/bpmn:ErrorEventDefinition
+        - bpmn:BoundaryEvent/bpmn:EscalationEventDefinition
       spi:
         - "TaskException"
         - "@WorkflowTask"
@@ -1579,6 +1584,7 @@ blueprints:
         - bpmn:UserTask
         - bpmn:BoundaryEvent
         - bpmn:MessageEventDefinition
+        - bpmn:BoundaryEvent/bpmn:MessageEventDefinition
       spi:
         - "@UserTaskDetailsProvider"
         - "@WorkflowDetailsProvider"
@@ -1624,6 +1630,7 @@ blueprints:
         - bpmn:ExclusiveGateway
         - bpmn:BoundaryEvent
         - bpmn:TimerEventDefinition
+        - bpmn:BoundaryEvent/bpmn:TimerEventDefinition
       spi:
         - "@WorkflowService"
         - "@WorkflowTask"
