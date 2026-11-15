@@ -214,8 +214,28 @@ has to see the task and has to complete it, so it has an API of its own. Many us
 carry state which lives until the task is completed, and which belongs to nobody else. Put the
 classes which serve only that task into that package, its `ApiController` among them.
 
-No blueprint shows this yet. The one which will show it comes with the Business Cockpit. So
-treat this section as guidance, not as something to copy from a repository.
+For one user task, or a few small ones, the flat structure of `module-single` is fine. All
+blueprints keep it, `bpmn-user-task` and the cockpit blueprints included, because each of them
+has only one or two user tasks. Split when a user task brings classes of its own, such as a
+form with a draft, an API of several calls or a table for its state. Then it looks like this:
+
+```
+<base-package>.<usecase>
+├── Service.java                 the rest of the workflow
+├── Workflow.java
+├── WorkflowTaskHandler.java     every @WorkflowTask method except the user task's
+├── model/                       the aggregate, shared by all packages
+└── assessrisk/                  the user task "assess risk"
+    ├── ApiController.java       the calls of its form: GET to show it, PUT for a draft,
+    │                              POST to complete it
+    ├── Service.java             loads and checks what the user entered
+    ├── WorkflowTaskHandler.java its @WorkflowTask method, declaring the same bpmnProcess
+    └── RiskAssessmentDraft.java state which lives until the task is completed
+```
+
+The package `assessrisk` calls `Workflow` of the use case to complete the task, so
+`ProcessService` is still injected in one place only. No blueprint shows this split yet, so
+treat it as guidance, not as something to copy from a repository.
 
 ### Two namespaces per workflow module
 
