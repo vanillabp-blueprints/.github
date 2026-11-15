@@ -321,6 +321,42 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/module-under-load-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-under-load-quarkus/main/AGENTS.md
 
+  - id: module-process-driver
+    title: Scenarios bring a case to every point of its process
+    summary: >
+      For every point of the process there are scenarios which lead there. A process driver
+      brings a real loan approval to such a point, through the business code of the module and
+      the real answers of the simulator, and a test checks the user task there in every situation
+      which matters: with a small or a large amount, with or without the signature. No test jumps
+      into the engine, nothing in the application is mocked, and the knowledge of the process is
+      in one place. The driver lives in a Maven module of its own, which production never pulls.
+    category: module
+    base: module-simulator
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:UserTask
+        - bpmn:ServiceTask
+        - bpmn:ExclusiveGateway
+      spi:
+        - "@WorkflowService"
+        - "@WorkflowTask"
+        - "@TaskId"
+        - "@SyncWithBPMS"
+        - "@UserTaskDetailsProvider"
+        - "ProcessService#startWorkflow"
+        - "ProcessService#completeUserTask"
+    composes_with: [module-simulator, bpmn-gateways, bpmn-user-task]
+    docs:
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Message-correlation#a-message-which-comes-before-the-workflow-waits-for-it
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   # ----------------------------------------------------------------------------------
   # Persistence of workflow aggregates
   # ----------------------------------------------------------------------------------
