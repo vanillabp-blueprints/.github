@@ -243,18 +243,27 @@ because that is a configuration error. So a profile file never applies to the wr
 
 ## Placeholders
 
-Identical in every blueprint. Replace all four consistently:
+Identical in every blueprint, except the Maven coordinates, which carry the name of the
+blueprint. Replace all of them consistently:
 
 | Placeholder | Meaning | Example replacement |
 |---|---|---|
 | `blueprint.workflowmodule` | base package | `com.acme.orders` |
 | `loanapproval` | use case identifier, Java package | `shipment` |
-| `loan-approval` | use case identifier, kebab case: workflow module ID, resource directory, REST path | `shipment` |
+| `loan-approval` | use case identifier, kebab case: workflow module ID, resource directory, REST path, Maven module, `finalName` | `shipment` |
 | `loan_approval` | BPMN process ID | `shipment` |
+| `LoanApproval` | use case identifier, CamelCase: the start of class names, for example `LoanApprovalProperties`, `LoanApprovalIT` or the generated `LoanApprovalApi` | `Shipment` |
+| `LOAN_APPROVAL` | use case identifier, upper snake case: table and collection names | `SHIPMENT` |
+| `io.vanillabp.blueprint.<blueprint-id>-<platform>` | Maven groupId of every POM | `com.acme.orders` |
+| `<blueprint-id>` | Maven artifactId of the root POM | `orders` |
+
+The `AGENTS.md` of a blueprint lists the same placeholders with its own Maven coordinates. Words
+of the domain, such as `loanRequestId` or `loanApprovals`, are no placeholders. Rename them as
+your domain needs.
 
 The BPMN process ID in the model has to match the one used in the code. The resource directory
 has to match the workflow module ID. Most startup errors of generated applications come from
-replacing one of the four and forgetting another.
+replacing one placeholder and forgetting another.
 
 ## Operating an application in a browser
 
