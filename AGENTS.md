@@ -309,7 +309,10 @@ your application has no form yet, show the `curl` command which stands in for on
    which one: an entity per phase in a 1:1 relation to the aggregate, `@DynamicUpdate` while
    the branches write different attributes, `@Version` plus a retry, or a relation of its own
    which is only ever added to. The blueprint `persistence-parallel-branches` shows the first,
-   and explains when the others fit.
+   and explains when the others fit. `bpmn-boundary-events` shows `@DynamicUpdate`. Without a
+   `@Version` attribute VanillaBP warns at startup about the second token. Once you have picked
+   another strategy, say so with `concurrent-branches-reviewed: true` for that workflow, as
+   those two blueprints do.
 8. **One primary BPMN process per workflow aggregate.** VanillaBP builds one `ProcessService`
    per aggregate class, and that is what `ProcessService<Ride>` injects. So exactly one BPMN
    process is the one `startWorkflow` starts. If two classes declared a DIFFERENT `bpmnProcess`
