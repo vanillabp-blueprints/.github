@@ -48,7 +48,17 @@ Two terms appear everywhere:
 4. Read the `AGENTS.md` of every blueprint chosen (`platforms.<platform>.agents_md`).
 5. Apply the deltas. `module-single` is the base. Every `bpmn-*` blueprint is a delta on top of
    it, and they all have the same structure. So you can apply several deltas to one
-   application.
+   application. A blueprint repository is still a complete application, not a patch. You do
+   not have to diff it against `module-single` yourself. Three sections tell you what to take:
+   - "Adding this blueprint to an existing project" in its `AGENTS.md`: the steps, in order,
+     each with the file it changes. Follow them on your application.
+   - "Core files" in its `AGENTS.md`: the files which carry the aspect. Read them before you
+     change your own.
+   - "Delta to the base blueprint" in its `README.md`: one line per file which differs from
+     `module-single`. A file which is not in that table is the same as in `module-single`.
+
+   Only when you need the exact lines, compare one file of that table with the same path in
+   `module-single`. Start with the base and add one delta at a time, and build after each.
 6. Check with `mvn verify`. Each blueprint ships an integration test which plays through its
    aspect. Keep it and adapt it. Generated code which never ran is a guess.
 7. Fix what the checks at startup report. VanillaBP checks the wiring between BPMN and code
