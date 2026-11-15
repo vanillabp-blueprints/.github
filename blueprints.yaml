@@ -273,7 +273,9 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/module-simulator-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-simulator-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-simulator-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-simulator-quarkus/main/AGENTS.md
 
   # ----------------------------------------------------------------------------------
   # Persistence of workflow aggregates
@@ -1410,7 +1412,9 @@ blueprints:
       - https://github.com/vanillabp/business-cockpit/wiki/Configuration#what-a-workflow-module-tells-the-cockpit
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-header-extension-backend-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-header-extension-backend-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
@@ -1439,7 +1443,9 @@ blueprints:
         status: not-applicable
         reason: A frontend runs in the browser and is built with npm, not on a Java platform.
       react:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-header-extension-frontend-react
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-header-extension-frontend-react/main/AGENTS.md
 
   - id: cockpit-header-extension-application
     title: A button in the header of the Business Cockpit, application
@@ -1460,7 +1466,9 @@ blueprints:
       - https://github.com/vanillabp/business-cockpit/wiki/Running-the-Business-Cockpit
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-header-extension-application-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-header-extension-application-springboot/main/AGENTS.md
       quarkus:
         status: planned
 
