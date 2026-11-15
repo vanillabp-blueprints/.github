@@ -54,12 +54,12 @@ Two terms appear everywhere:
      each with the file it changes. Follow them on your application.
    - "Core files" in its `AGENTS.md`: the files which carry the aspect. Read them before you
      change your own.
-   - "Delta to the base blueprint" in its `README.md`: a summary, one line per file which
-     carries the aspect.
+   - "Delta to the base blueprint" in its `README.md`: every file whose code differs from
+     the base blueprint, one line each or a few in one line. A check in the monorepo keeps
+     this table complete. A file it does not name has the same code as in the base.
 
-   The steps are the complete list of what to change. Other files of the repository also
-   differ from `module-single`, for example in the name of the test database, in log texts or
-   in a stand-in for a surrounding system. Those differences are not part of the aspect. Only
+   The steps are the complete list of what to change. The table also names files which are
+   not part of the aspect, for example a test or a stand-in for a surrounding system. Only
    when you need the exact lines of a step, compare that one file with the same path in
    `module-single`. Start with the base and add one delta at a time, and build after each.
 6. Check with `mvn verify`. Each blueprint ships an integration test which plays through its

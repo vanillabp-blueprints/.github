@@ -123,6 +123,7 @@ blueprints:
       bpmn:
         - bpmn:ServiceTask
         - bpmn:IntermediateCatchEvent
+        - bpmn:MessageEventDefinition
       spi:
         - "ProcessService#correlateMessage"
     composes_with: [module-multi, bpmn-message-correlation, bpmn-async-task]
@@ -181,7 +182,11 @@ blueprints:
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
-      bpmn: []
+      bpmn:
+        # The workflow waits at a message, and correlating it shows which adapter is asked
+        # first. The message itself is bpmn-message-correlation.
+        - bpmn:IntermediateCatchEvent
+        - bpmn:MessageEventDefinition
       spi:
         - "@WorkflowService"
         - "ProcessService#startWorkflow"
@@ -563,6 +568,10 @@ blueprints:
     covers:
       bpmn:
         - bpmn:ServiceTask
+        # The error a task throws ends the task at its boundary event.
+        - bpmn:ErrorEventDefinition
+        - bpmn:BoundaryEvent
+        - bpmn:BoundaryEvent/bpmn:ErrorEventDefinition
       spi:
         - "@WorkflowTask"
         - "@TaskParam"
@@ -594,6 +603,10 @@ blueprints:
     covers:
       bpmn:
         - bpmn:UserTask
+        # The error a task throws ends the task at its boundary event.
+        - bpmn:ErrorEventDefinition
+        - bpmn:BoundaryEvent
+        - bpmn:BoundaryEvent/bpmn:ErrorEventDefinition
       spi:
         - "@WorkflowTask"
         - "@TaskId"
@@ -629,6 +642,10 @@ blueprints:
         # is bpmn-message-correlation. This blueprint shows the task which stays open until
         # the application completes it by its id.
         - bpmn:SendTask
+        # The error a task throws ends the task at its boundary event.
+        - bpmn:ErrorEventDefinition
+        - bpmn:BoundaryEvent
+        - bpmn:BoundaryEvent/bpmn:ErrorEventDefinition
       spi:
         - "@WorkflowTask"
         - "@TaskId"
