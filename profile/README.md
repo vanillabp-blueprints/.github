@@ -59,7 +59,7 @@ core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-50 blueprints, published today: 43 of 46 for Spring Boot, 35 of 47 for Quarkus, 4 of 5 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
+50 blueprints, published today: 45 of 46 for Spring Boot, 36 of 47 for Quarkus, 5 of 5 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -72,7 +72,7 @@ core files, and how to add it to an existing project.
 | `module-packaging` | Assembling a runtime from workflow modules, and shipping it | — | [Spring Boot](https://github.com/vanillabp-blueprints/module-packaging-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-packaging-quarkus) |
 | `module-bpms-migration` | Migrating running workflows to another BPMS | — | [Spring Boot](https://github.com/vanillabp-blueprints/module-bpms-migration-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-bpms-migration-quarkus) |
 | `module-idle-application` | An idle application | `bpmn:ServiceTask`, `bpmn:IntermediateCatchEvent`, `bpmn:TimerEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/module-idle-application-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-idle-application-quarkus) |
-| `module-simulator` | A simulator plays the systems around a workflow module | `bpmn:UserTask`, `bpmn:ServiceTask`, `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/module-simulator-springboot)<br>Quarkus *(planned)* |
+| `module-simulator` | A simulator plays the systems around a workflow module | `bpmn:UserTask`, `bpmn:ServiceTask`, `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/module-simulator-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-simulator-quarkus) |
 
 ### Persistence of workflow aggregates
 
@@ -126,9 +126,9 @@ Blueprints for a workflow module whose user tasks the [Business Cockpit](https:/
 | `cockpit-workflow-details-backend` | The page of a case in the Business Cockpit, backend | `bpmn:UserTask`, `bpmn:SubProcess`, `bpmn:MessageEventDefinition`, `bpmn:ServiceTask` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-workflow-details-backend-springboot)<br>Quarkus *(planned)* |
 | `cockpit-workflow-details-frontend` | The page of a case in the Business Cockpit, case page | — | [React](https://github.com/vanillabp-blueprints/cockpit-workflow-details-frontend-react) |
 | `cockpit-workflow-details-application` | The page of a case in the Business Cockpit, application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-workflow-details-application-springboot)<br>Quarkus *(planned)* |
-| `cockpit-header-extension-backend` | A button in the header of the Business Cockpit, backend | `bpmn:UserTask` | Spring Boot *(planned)*<br>Quarkus *(planned)* |
-| `cockpit-header-extension-frontend` | A button in the header of the Business Cockpit, button and start form | — | React *(planned)* |
-| `cockpit-header-extension-application` | A button in the header of the Business Cockpit, application | — | Spring Boot *(planned)*<br>Quarkus *(planned)* |
+| `cockpit-header-extension-backend` | A button in the header of the Business Cockpit, backend | `bpmn:UserTask` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-header-extension-backend-springboot)<br>Quarkus *(planned)* |
+| `cockpit-header-extension-frontend` | A button in the header of the Business Cockpit, button and start form | — | [React](https://github.com/vanillabp-blueprints/cockpit-header-extension-frontend-react) |
+| `cockpit-header-extension-application` | A button in the header of the Business Cockpit, application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-header-extension-application-springboot)<br>Quarkus *(planned)* |
 | `cockpit-usertasks-in-the-application` | User tasks in the application | `bpmn:UserTask`, `bpmn:ParallelGateway`, `bpmn:MultiInstanceLoopCharacteristics`, `bpmn:TerminateEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-usertasks-in-the-application-springboot)<br>Quarkus *(planned)* |
 | `cockpit-organizing-usertasks` | Organizing user tasks | `bpmn:UserTask`, `bpmn:BoundaryEvent`, `bpmn:MessageEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-organizing-usertasks-springboot)<br>Quarkus *(planned)* |
 
