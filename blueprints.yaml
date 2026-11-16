@@ -1579,6 +1579,35 @@ blueprints:
       quarkus:
         status: planned
 
+  - id: cockpit-process-driver-frontend
+    title: A case in any state with one click, forms and dev shell
+    summary: >
+      The forms of the two user tasks of module-process-driver, which the cockpit loads at
+      runtime as micro-frontends, and a dev shell with a page "Process driver". The page lists the
+      states of the process driver, sends test data to it with one click, and links to the case
+      and to its open user task, whose form the host of the module kit draws. So somebody who
+      works on a form gets a real case in the state they need in a few seconds. The clients of
+      the module API and of the driver are generated from their OpenAPI files. Built with npm
+      alone into a UI JAR and an nginx image, with browser tests of the dev shell and the forms.
+    category: cockpit
+    covers:
+      bpmn: [bpmn:UserTask]
+      spi: [UserTaskForm, UserTaskList, defineBcElement, createModuleHost]
+    composes_with: [module-process-driver, cockpit-user-task-frontend]
+    docs:
+      - https://github.com/vanillabp/business-cockpit/wiki/Developing-UI-components-locally#the-dev-shell-simulator
+      - https://github.com/vanillabp/business-cockpit/blob/main/skills/business-cockpit-creator/references/module-loading.md
+      - https://github.com/vanillabp/business-cockpit-module-kit
+    platforms:
+      springboot:
+        status: not-applicable
+        reason: A frontend runs in the browser and is built with npm, not on a Java platform.
+      quarkus:
+        status: not-applicable
+        reason: A frontend runs in the browser and is built with npm, not on a Java platform.
+      react:
+        status: planned
+
   # Not tied to the cockpit: the patterns hold for any application with forms of its own. It is
   # in this category because the cockpit blueprints start on one platform and get their twins
   # later.

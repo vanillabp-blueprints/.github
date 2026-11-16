@@ -59,7 +59,7 @@ core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-52 blueprints, published today: 47 of 48 for Spring Boot, 37 of 49 for Quarkus, 5 of 5 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
+53 blueprints, published today: 47 of 48 for Spring Boot, 37 of 49 for Quarkus, 5 of 6 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -131,6 +131,7 @@ Blueprints for a workflow module whose user tasks the [Business Cockpit](https:/
 | `cockpit-header-extension-backend` | A button in the header of the Business Cockpit, backend | `bpmn:UserTask` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-header-extension-backend-springboot)<br>Quarkus *(planned)* |
 | `cockpit-header-extension-frontend` | A button in the header of the Business Cockpit, button and start form | — | [React](https://github.com/vanillabp-blueprints/cockpit-header-extension-frontend-react) |
 | `cockpit-header-extension-application` | A button in the header of the Business Cockpit, application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-header-extension-application-springboot)<br>Quarkus *(planned)* |
+| `cockpit-process-driver-frontend` | A case in any state with one click, forms and dev shell | `bpmn:UserTask` | React *(planned)* |
 | `cockpit-usertasks-in-the-application` | User tasks in the application | `bpmn:UserTask`, `bpmn:ParallelGateway`, `bpmn:MultiInstanceLoopCharacteristics`, `bpmn:TerminateEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-usertasks-in-the-application-springboot)<br>Quarkus *(planned)* |
 | `cockpit-organizing-usertasks` | Organizing user tasks | `bpmn:UserTask`, `bpmn:BoundaryEvent`, `bpmn:MessageEventDefinition`, `bpmn:BoundaryEvent/bpmn:MessageEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-organizing-usertasks-springboot)<br>Quarkus *(planned)* |
 
