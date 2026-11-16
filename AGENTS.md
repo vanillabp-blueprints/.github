@@ -29,7 +29,12 @@ Two terms appear everywhere:
    exception. It runs in the browser and builds with npm, so it exists per UI framework
    instead: its platforms are `react`, `angular` and `vue`.
 2. Parse the BPMN. Collect the element types which occur in it (`bpmn:UserTask`,
-   `bpmn:BoundaryEvent`, …) and the attributes used on them.
+   `bpmn:BoundaryEvent`, …) and the attributes used on them. For a boundary event, also note
+   the event definition it carries, as `bpmn:BoundaryEvent/bpmn:MessageEventDefinition`. The
+   catalogue lists boundary events in that form too, so you can see which kinds a blueprint
+   shows. A kind no blueprint shows is built like a timer boundary event of
+   `bpmn-boundary-events`, with the event definition of the blueprint for that event. Its
+   README says how for a message.
 3. Match against `blueprints.yaml`. Compare the element types with `covers.bpmn`, and pick for
    the target platform:
    - one workflow module structure (`module-*`, start with `module-single`),
@@ -43,7 +48,20 @@ Two terms appear everywhere:
 4. Read the `AGENTS.md` of every blueprint chosen (`platforms.<platform>.agents_md`).
 5. Apply the deltas. `module-single` is the base. Every `bpmn-*` blueprint is a delta on top of
    it, and they all have the same structure. So you can apply several deltas to one
-   application.
+   application. A blueprint repository is still a complete application, not a patch. You do
+   not have to diff it against `module-single` yourself. Three sections tell you what to take:
+   - "Adding this blueprint to an existing project" in its `AGENTS.md`: the steps, in order,
+     each with the file it changes. Follow them on your application.
+   - "Core files" in its `AGENTS.md`: the files which carry the aspect. Read them before you
+     change your own.
+   - "Delta to the base blueprint" in its `README.md`: every file whose code differs from
+     the base blueprint, one line each or a few in one line. A check in the monorepo keeps
+     this table complete. A file it does not name has the same code as in the base.
+
+   The steps are the complete list of what to change. The table also names files which are
+   not part of the aspect, for example a test or a stand-in for a surrounding system. Only
+   when you need the exact lines of a step, compare that one file with the same path in
+   `module-single`. Start with the base and add one delta at a time, and build after each.
 6. Check with `mvn verify`. Each blueprint ships an integration test which plays through its
    aspect. Keep it and adapt it. Generated code which never ran is a guess.
 7. Fix what the checks at startup report. VanillaBP checks the wiring between BPMN and code
@@ -196,8 +214,28 @@ has to see the task and has to complete it, so it has an API of its own. Many us
 carry state which lives until the task is completed, and which belongs to nobody else. Put the
 classes which serve only that task into that package, its `ApiController` among them.
 
-No blueprint shows this yet. The one which will show it comes with the Business Cockpit. So
-treat this section as guidance, not as something to copy from a repository.
+For one user task, or a few small ones, the flat structure of `module-single` is fine. All
+blueprints keep it, `bpmn-user-task` and the cockpit blueprints included, because each of them
+has only one or two user tasks. Split when a user task brings classes of its own, such as a
+form with a draft, an API of several calls or a table for its state. Then it looks like this:
+
+```
+<base-package>.<usecase>
+├── Service.java                 the rest of the workflow
+├── Workflow.java
+├── WorkflowTaskHandler.java     every @WorkflowTask method except the user task's
+├── model/                       the aggregate, shared by all packages
+└── assessrisk/                  the user task "assess risk"
+    ├── ApiController.java       the calls of its form: GET to show it, PUT for a draft,
+    │                              POST to complete it
+    ├── Service.java             loads and checks what the user entered
+    ├── WorkflowTaskHandler.java its @WorkflowTask method, declaring the same bpmnProcess
+    └── RiskAssessmentDraft.java state which lives until the task is completed
+```
+
+The package `assessrisk` calls `Workflow` of the use case to complete the task, so
+`ProcessService` is still injected in one place only. No blueprint shows this split yet, so
+treat it as guidance, not as something to copy from a repository.
 
 ### Two namespaces per workflow module
 
@@ -238,18 +276,27 @@ because that is a configuration error. So a profile file never applies to the wr
 
 ## Placeholders
 
-Identical in every blueprint. Replace all four consistently:
+Identical in every blueprint, except the Maven coordinates, which carry the name of the
+blueprint. Replace all of them consistently:
 
 | Placeholder | Meaning | Example replacement |
 |---|---|---|
 | `blueprint.workflowmodule` | base package | `com.acme.orders` |
 | `loanapproval` | use case identifier, Java package | `shipment` |
-| `loan-approval` | use case identifier, kebab case: workflow module ID, resource directory, REST path | `shipment` |
+| `loan-approval` | use case identifier, kebab case: workflow module ID, resource directory, REST path, Maven module, `finalName` | `shipment` |
 | `loan_approval` | BPMN process ID | `shipment` |
+| `LoanApproval` | use case identifier, CamelCase: the start of class names, for example `LoanApprovalProperties`, `LoanApprovalIT` or the generated `LoanApprovalApi` | `Shipment` |
+| `LOAN_APPROVAL` | use case identifier, upper snake case: table and collection names | `SHIPMENT` |
+| `io.vanillabp.blueprint.<blueprint-id>-<platform>` | Maven groupId of every POM | `com.acme.orders` |
+| `<blueprint-id>` | Maven artifactId of the root POM | `orders` |
+
+The `AGENTS.md` of a blueprint lists the same placeholders with its own Maven coordinates. Words
+of the domain, such as `loanRequestId` or `loanApprovals`, are no placeholders. Rename them as
+your domain needs.
 
 The BPMN process ID in the model has to match the one used in the code. The resource directory
 has to match the workflow module ID. Most startup errors of generated applications come from
-replacing one of the four and forgetting another.
+replacing one placeholder and forgetting another.
 
 ## Operating an application in a browser
 
@@ -304,7 +351,10 @@ your application has no form yet, show the `curl` command which stands in for on
    which one: an entity per phase in a 1:1 relation to the aggregate, `@DynamicUpdate` while
    the branches write different attributes, `@Version` plus a retry, or a relation of its own
    which is only ever added to. The blueprint `persistence-parallel-branches` shows the first,
-   and explains when the others fit.
+   and explains when the others fit. `bpmn-boundary-events` shows `@DynamicUpdate`. Without a
+   `@Version` attribute VanillaBP warns at startup about the second token. Once you have picked
+   another strategy, say so with `concurrent-branches-reviewed: true` for that workflow, as
+   those two blueprints do.
 8. **One primary BPMN process per workflow aggregate.** VanillaBP builds one `ProcessService`
    per aggregate class, and that is what `ProcessService<Ride>` injects. So exactly one BPMN
    process is the one `startWorkflow` starts. If two classes declared a DIFFERENT `bpmnProcess`

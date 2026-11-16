@@ -123,6 +123,7 @@ blueprints:
       bpmn:
         - bpmn:ServiceTask
         - bpmn:IntermediateCatchEvent
+        - bpmn:MessageEventDefinition
       spi:
         - "ProcessService#correlateMessage"
     composes_with: [module-multi, bpmn-message-correlation, bpmn-async-task]
@@ -181,7 +182,11 @@ blueprints:
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
-      bpmn: []
+      bpmn:
+        # The workflow waits at a message, and correlating it shows which adapter is asked
+        # first. The message itself is bpmn-message-correlation.
+        - bpmn:IntermediateCatchEvent
+        - bpmn:MessageEventDefinition
       spi:
         - "@WorkflowService"
         - "ProcessService#startWorkflow"
@@ -563,6 +568,10 @@ blueprints:
     covers:
       bpmn:
         - bpmn:ServiceTask
+        # The error a task throws ends the task at its boundary event.
+        - bpmn:ErrorEventDefinition
+        - bpmn:BoundaryEvent
+        - bpmn:BoundaryEvent/bpmn:ErrorEventDefinition
       spi:
         - "@WorkflowTask"
         - "@TaskParam"
@@ -594,6 +603,10 @@ blueprints:
     covers:
       bpmn:
         - bpmn:UserTask
+        # The error a task throws ends the task at its boundary event.
+        - bpmn:ErrorEventDefinition
+        - bpmn:BoundaryEvent
+        - bpmn:BoundaryEvent/bpmn:ErrorEventDefinition
       spi:
         - "@WorkflowTask"
         - "@TaskId"
@@ -629,6 +642,10 @@ blueprints:
         # is bpmn-message-correlation. This blueprint shows the task which stays open until
         # the application completes it by its id.
         - bpmn:SendTask
+        # The error a task throws ends the task at its boundary event.
+        - bpmn:ErrorEventDefinition
+        - bpmn:BoundaryEvent
+        - bpmn:BoundaryEvent/bpmn:ErrorEventDefinition
       spi:
         - "@WorkflowTask"
         - "@TaskId"
@@ -743,7 +760,8 @@ blueprints:
     title: Timers
     summary: >
       Timer events in the sequence flow and as boundary events, and how a workflow reacts
-      to a timer having fired.
+      to a timer having fired. A business deadline of days comes from the aggregate, so a
+      test can shorten it in its configuration.
     category: bpmn
     base: module-single
     bpms: [camunda7, camunda8, operaton, cibseven]
@@ -753,12 +771,15 @@ blueprints:
         - bpmn:IntermediateCatchEvent
         - bpmn:BoundaryEvent
         - bpmn:TimerEventDefinition
+        - bpmn:BoundaryEvent/bpmn:TimerEventDefinition
       spi:
         - "@WorkflowTask"
         - "@TaskEvent"
+        - "@SyncWithBPMS"
     composes_with: [bpmn-boundary-events, bpmn-user-task]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Timers#a-deadline-out-of-the-workflow-aggregate
     platforms:
       springboot:
         status: available
@@ -836,6 +857,8 @@ blueprints:
     covers:
       bpmn:
         - bpmn:BoundaryEvent
+        - bpmn:TimerEventDefinition
+        - bpmn:BoundaryEvent/bpmn:TimerEventDefinition
       spi:
         - "@WorkflowTask"
         - "@TaskId"
@@ -868,6 +891,8 @@ blueprints:
         - bpmn:ErrorEventDefinition
         - bpmn:EscalationEventDefinition
         - bpmn:BoundaryEvent
+        - bpmn:BoundaryEvent/bpmn:ErrorEventDefinition
+        - bpmn:BoundaryEvent/bpmn:EscalationEventDefinition
       spi:
         - "TaskException"
         - "@WorkflowTask"
@@ -1579,6 +1604,7 @@ blueprints:
         - bpmn:UserTask
         - bpmn:BoundaryEvent
         - bpmn:MessageEventDefinition
+        - bpmn:BoundaryEvent/bpmn:MessageEventDefinition
       spi:
         - "@UserTaskDetailsProvider"
         - "@WorkflowDetailsProvider"
@@ -1624,6 +1650,7 @@ blueprints:
         - bpmn:ExclusiveGateway
         - bpmn:BoundaryEvent
         - bpmn:TimerEventDefinition
+        - bpmn:BoundaryEvent/bpmn:TimerEventDefinition
       spi:
         - "@WorkflowService"
         - "@WorkflowTask"
