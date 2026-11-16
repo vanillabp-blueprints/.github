@@ -618,7 +618,7 @@ blueprints:
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#the-execution-contract
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#what-happens-when-my-handler-throws
-      - https://github.com/vanillabp/spi-for-java#wire-up-a-task
+      - https://github.com/vanillabp/spi-for-java/wiki/Wiring-a-task
     platforms:
       springboot:
         status: available
@@ -654,7 +654,7 @@ blueprints:
     composes_with: [bpmn-boundary-events, bpmn-async-task]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#user-tasks
-      - https://github.com/vanillabp/spi-for-java#user-tasks-and-asynchronous-tasks
+      - https://github.com/vanillabp/spi-for-java/wiki/User-tasks-and-asynchronous-tasks
     platforms:
       springboot:
         status: available
@@ -693,7 +693,7 @@ blueprints:
     composes_with: [bpmn-user-task, bpmn-boundary-events, module-interaction]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
-      - https://github.com/vanillabp/spi-for-java#user-tasks-and-asynchronous-tasks
+      - https://github.com/vanillabp/spi-for-java/wiki/User-tasks-and-asynchronous-tasks
     platforms:
       springboot:
         status: available
@@ -723,7 +723,7 @@ blueprints:
     composes_with: [bpmn-message-start, bpmn-boundary-events, module-interaction]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Message-correlation
-      - https://github.com/vanillabp/spi-for-java#correlate-an-incoming-message
+      - https://github.com/vanillabp/spi-for-java/wiki/Messages-and-signals#correlate-an-incoming-message
     platforms:
       springboot:
         status: available
@@ -904,7 +904,7 @@ blueprints:
     composes_with: [bpmn-user-task, bpmn-async-task, bpmn-timer]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-tasks#completing-and-canceling-asynchronous-tasks
-      - https://github.com/vanillabp/spi-for-java#user-tasks-and-asynchronous-tasks
+      - https://github.com/vanillabp/spi-for-java/wiki/User-tasks-and-asynchronous-tasks
     platforms:
       springboot:
         status: available
@@ -964,7 +964,7 @@ blueprints:
         - "@WorkflowTask"
     composes_with: [bpmn-service-task]
     docs:
-      - https://github.com/vanillabp/spi-for-java#wire-up-an-expression
+      - https://github.com/vanillabp/spi-for-java/wiki/Wiring-an-expression
     platforms:
       springboot:
         status: available
@@ -995,7 +995,7 @@ blueprints:
     composes_with: [bpmn-service-task, bpmn-gateways]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-modules#decision-tables-travel-with-the-processes-calling-them
-      - https://github.com/vanillabp/spi-for-java#wire-up-a-task
+      - https://github.com/vanillabp/spi-for-java/wiki/Wiring-a-task
     platforms:
       springboot:
         status: available
@@ -1025,7 +1025,7 @@ blueprints:
         - "@WorkflowTask"
     composes_with: [bpmn-multi-instance-subprocess]
     docs:
-      - https://github.com/vanillabp/spi-for-java#call-activities
+      - https://github.com/vanillabp/spi-for-java/wiki/Call-activities
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Viewing-workflows#digging-into-call-activities
     platforms:
       springboot:
@@ -1057,7 +1057,7 @@ blueprints:
         - "MultiInstanceElementResolver"
     composes_with: [bpmn-multi-instance-subprocess]
     docs:
-      - https://github.com/vanillabp/spi-for-java#multi-instance
+      - https://github.com/vanillabp/spi-for-java/wiki/Multi-instance
     platforms:
       springboot:
         status: available
@@ -1088,7 +1088,7 @@ blueprints:
         - "MultiInstanceElementResolver"
     composes_with: [bpmn-multi-instance-task, bpmn-call-activity-decomposition]
     docs:
-      - https://github.com/vanillabp/spi-for-java#multi-instance
+      - https://github.com/vanillabp/spi-for-java/wiki/Multi-instance
     platforms:
       springboot:
         status: available
@@ -1115,7 +1115,7 @@ blueprints:
         - "@WorkflowTask(version)"
     composes_with: [module-bpms-migration]
     docs:
-      - https://github.com/vanillabp/spi-for-java#versioning-of-bpmn-business-processes
+      - https://github.com/vanillabp/spi-for-java/wiki/Versions-of-a-process
     platforms:
       springboot:
         status: available
@@ -1145,7 +1145,7 @@ blueprints:
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#decoupling-bpmn-from-the-data-model
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#fine-grained-control-over-attributes-synchronized-to-the-bpms
-      - https://github.com/vanillabp/spi-for-java#natural-ids
+      - https://github.com/vanillabp/spi-for-java/wiki/The-workflow-aggregate#natural-ids
     platforms:
       springboot:
         status: available
@@ -1175,7 +1175,7 @@ blueprints:
     composes_with: [bpmn-call-activity-decomposition]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Viewing-workflows
-      - https://github.com/vanillabp/spi-for-java#viewing-bpmn-and-execution-history-of-workflows
+      - https://github.com/vanillabp/spi-for-java/wiki/Showing-BPMN-and-history
     platforms:
       springboot:
         status: available
@@ -1249,7 +1249,7 @@ blueprints:
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#decoupling-bpmn-from-the-data-model
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates#fine-grained-control-over-attributes-synchronized-to-the-bpms
-      - https://github.com/vanillabp/spi-for-java#call-activities
+      - https://github.com/vanillabp/spi-for-java/wiki/Call-activities
     platforms:
       springboot:
         status: available
