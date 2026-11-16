@@ -1606,7 +1606,9 @@ blueprints:
         status: not-applicable
         reason: A frontend runs in the browser and is built with npm, not on a Java platform.
       react:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-process-driver-frontend-react
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-process-driver-frontend-react/main/AGENTS.md
 
   # Not tied to the cockpit: the patterns hold for any application with forms of its own. It is
   # in this category because the cockpit blueprints start on one platform and get their twins
