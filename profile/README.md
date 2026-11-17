@@ -74,7 +74,7 @@ core files, and how to add it to an existing project.
 | `module-idle-application` | An idle application | `bpmn:ServiceTask`, `bpmn:IntermediateCatchEvent`, `bpmn:TimerEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/module-idle-application-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-idle-application-quarkus) |
 | `module-simulator` | A simulator plays the systems around a workflow module | `bpmn:UserTask`, `bpmn:ServiceTask`, `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/module-simulator-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-simulator-quarkus) |
 | `module-under-load` | A workflow module under load | `bpmn:ServiceTask`, `bpmn:UserTask`, `bpmn:EventBasedGateway`, `bpmn:ExclusiveGateway`, `bpmn:IntermediateCatchEvent`, `bpmn:MessageEventDefinition`, `bpmn:TimerEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/module-under-load-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/module-under-load-quarkus) |
-| `module-process-driver` | Scenarios bring a case to every point of its process | `bpmn:UserTask`, `bpmn:ServiceTask`, `bpmn:ExclusiveGateway` | [Spring Boot](https://github.com/vanillabp-blueprints/module-process-driver-springboot)<br>Quarkus *(planned)* |
+| `module-process-driver` | Scenarios bring a case to every point of its process | `bpmn:UserTask`, `bpmn:ServiceTask`, `bpmn:ExclusiveGateway`, `bpmn:BoundaryEvent`, `bpmn:BoundaryEvent/bpmn:MessageEventDefinition`, `bpmn:MessageEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/module-process-driver-springboot)<br>Quarkus *(planned)* |
 
 ### Persistence of workflow aggregates
 
