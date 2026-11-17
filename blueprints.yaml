@@ -329,12 +329,14 @@ blueprints:
   - id: module-process-driver
     title: Scenarios bring a case to every point of its process
     summary: >
-      For every point of the process there are scenarios which lead there. A process driver
-      brings a real loan approval to such a point, through the business code of the module and
-      the real answers of the simulator, and a test checks the user task there in every situation
-      which matters: with a small or a large amount, with or without the signature. No test jumps
-      into the engine, nothing in the application is mocked, and the knowledge of the process is
-      in one place. The driver lives in a Maven module of its own, which production never pulls.
+      For every point of the process there are scenarios which lead there. The simulator plays
+      the environment and answers like the real systems; a process driver plays the users and
+      brings a real loan approval to such a point through the GUI API of the module. A test
+      checks the case there in every situation which matters: with a small or a large amount,
+      signed, declined, or never answered. No test jumps into the engine, nothing in the
+      application is mocked, and the knowledge of the process is in one place. The tests live in
+      the workflow module and measure how much of it they reach; the driver lives in a Maven
+      module of its own, which production never pulls.
     category: module
     base: module-simulator
     bpms: [camunda7, camunda8, operaton, cibseven]
@@ -344,6 +346,9 @@ blueprints:
         - bpmn:UserTask
         - bpmn:ServiceTask
         - bpmn:ExclusiveGateway
+        - bpmn:BoundaryEvent
+        - bpmn:BoundaryEvent/bpmn:MessageEventDefinition
+        - bpmn:MessageEventDefinition
       spi:
         - "@WorkflowService"
         - "@WorkflowTask"
@@ -352,6 +357,8 @@ blueprints:
         - "@UserTaskDetailsProvider"
         - "ProcessService#startWorkflow"
         - "ProcessService#completeUserTask"
+        - "ProcessService#correlateMessage"
+        - "@TaskEvent"
     composes_with: [module-simulator, bpmn-gateways, bpmn-user-task]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates
