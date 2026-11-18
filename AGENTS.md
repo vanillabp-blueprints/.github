@@ -83,10 +83,18 @@ stays readable only if they agree.
 ├── Workflow.java                    <- outgoing: the application tells the process
 ├── WorkflowTaskHandler.java         <- incoming: the process tells the application
 ├── config/<UseCase>Properties.java
+├── config/<UseCase>AutoConfiguration.java  <- Spring Boot only: the module wires itself
 └── model/
     ├── Aggregate.java
     └── AggregateRepository.java
 ```
+
+A second workflow of the same module gets a package below the use case, for example
+`loanapproval.ratewatch`, never one next to it. The application class lives in a package of its
+own, `blueprint.application`, which is not above any workflow module. So on Spring Boot each
+module brings an auto-configuration which scans its own package, registered in
+`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`. Quarkus
+needs nothing of the kind.
 
 ### Every API is an OpenAPI file
 
@@ -97,7 +105,8 @@ and no parameter annotation of its own, and no record for a request or an answer
 hand.
 
 - An API which only people in a browser call, or only the module's own user interface:
-  `src/main/resources/openapi/<use-case>.yaml` in the module of the controller. Its tag is the
+  `src/main/resources/<workflow-module-id>/openapi/<use-case>.yaml` in the module of the
+  controller. Its tag is the
   use case, so the interface is `LoanApprovalApi` in the package `<use case package>.api`.
 - An API with a Java client, such as a system around the application, its simulator or
   another module: a Maven module `<name>-api` with the file and the submodules `client` (what the
@@ -282,6 +291,7 @@ blueprint. Replace all of them consistently:
 | Placeholder | Meaning | Example replacement |
 |---|---|---|
 | `blueprint.workflowmodule` | base package | `com.acme.orders` |
+| `blueprint.application` | package of the application, not above the workflow module | `com.acme.orders.application` |
 | `loanapproval` | use case identifier, Java package | `shipment` |
 | `loan-approval` | use case identifier, kebab case: workflow module ID, resource directory, REST path, Maven module, `finalName` | `shipment` |
 | `loan_approval` | BPMN process ID | `shipment` |
