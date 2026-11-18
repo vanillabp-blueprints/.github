@@ -34,12 +34,28 @@ Two terms appear everywhere:
    catalogue lists boundary events in that form too, so you can see which kinds a blueprint
    shows. A kind no blueprint shows is built like a timer boundary event of
    `bpmn-boundary-events`, with the event definition of the blueprint for that event. Its
-   README says how for a message.
+   README says how for a message. An event-based gateway needs nothing of its own either. Each
+   event behind it is built as in the blueprint for that event: `bpmn-message-correlation` for
+   a message, `bpmn-timer` for a timer. The catalogue lists the gateway at both.
+
+   A model you get from a business analyst often has no engine attributes. Nothing in it names
+   the task definition of a service task or the form of a user task, and its gateways have no
+   conditions and no default flow. Add them to the copy of the model below
+   `<module-id>/processes/<adapter-id>/`. The `bpmn-*` blueprints show each attribute, and the
+   wiki of each BPMS adapter lists them in one table, for example
+   [The BPMN model for Camunda 7](https://github.com/vanillabp/camunda7-adapter/wiki/Configuration#the-bpmn-model-for-camunda-7).
+   Which flow of a gateway is the default is a business decision. Ask. If nobody can answer,
+   pick the side which does not spend money or commit to anything, and say which one you
+   picked.
 3. Match against `blueprints.yaml`. Compare the element types with `covers.bpmn`, and pick for
    the target platform:
    - one workflow module structure (`module-*`, start with `module-single`),
    - one persistence (`persistence-*`, JPA unless told otherwise),
    - the BPMN scenarios (`bpmn-*`) the model requires.
+
+   Read the summaries as well. Some blueprints answer a need and not an element type.
+   `bpmn:EndEvent` is in every model, so `bpmn-workflow-ended` is the one to pick when the
+   application or a test has to know that a workflow ended.
 
    You can only use an entry whose `platforms.<platform>.status` is `available`. `planned`
    means somebody works on it. `not-applicable` means the platform does not know the subject at
@@ -112,6 +128,16 @@ hand.
   another module: a Maven module `<name>-api` with the file and the submodules `client` (what the
   caller uses) and `server` (the interface the other side implements). The adapter which calls
   it is named after the system it talks to, not after the technology.
+
+A surrounding system is first a port: a Java interface the workflow module owns, which the
+business code calls. `bpmn-service-task` shows it with `CreditRatingClient`, the stand-in
+`LocalCreditRatingClient` and a simulator in the tests. The port is not an API in the sense
+above and has no OpenAPI file. The OpenAPI module belongs behind it. Once the system is reached
+over HTTP, an adapter named after the system implements the port with the generated client.
+`module-simulator` shows the whole way: port, adapter, `<name>-api` module and simulator. If
+nobody can tell you the API of the system yet, for example because the BPMN only names it,
+keep the port with its stand-in, as `bpmn-service-task` does, and say so. Do not invent an
+OpenAPI file for a system nobody described.
 
 The generators and their settings for both platforms are in
 [rule 7 of the blueprints' CONTRIBUTING.md](https://github.com/vanillabp-blueprints/blueprints/blob/main/CONTRIBUTING.md#rule-7-every-api-is-written-as-an-openapi-file).
@@ -310,20 +336,26 @@ replacing one placeholder and forgetting another.
 
 ## Operating an application in a browser
 
-Blueprints offer GET requests wherever a human works with the API directly, so you can walk
-through a process in a browser without any tooling. Keep that property. At every wait state, log
-one complete, clickable URL for each possible next step.
+Every endpoint of a workflow module is below `/<workflow-module-id>/api/`, the module id
+first, then `api`: `/loan-approval/api/...`, never `/api/loan-approval/...`.
+
+Blueprints offer GET requests wherever a person tries the API by hand, so you can walk through
+a process in a browser without any tooling. Keep that property. At every wait state, log one
+complete, clickable URL for each possible next step.
 
 ```
-Accept -> http://localhost:8080/api/loan-approval/{id}/assess-risk/{taskId}?riskIsAcceptable=true
-Deny   -> http://localhost:8080/api/loan-approval/{id}/assess-risk/{taskId}?riskIsAcceptable=false
+Accept -> http://localhost:8080/loan-approval/api/{id}/assess-risk/{taskId}?riskIsAcceptable=true
+Deny   -> http://localhost:8080/loan-approval/api/{id}/assess-risk/{taskId}?riskIsAcceptable=false
 ```
 
 Those logged URLs are also the cheapest way for you to see which state a workflow reached.
 
-The endpoints which a form calls are the one exception. A form sends what the user entered as
-JSON: PUT saves a draft, POST completes the task. The start and every view stay GET requests. If
-your application has no form yet, show the `curl` command which stands in for one.
+GET is only for people who try the API by hand. An endpoint which a user interface calls to
+change something, from a form or from a button, is POST. A form loads its data with GET, saves
+a draft with PUT and completes its task with POST. PUT and POST send JSON. Its path names the
+business id of the case and the task id, and the module checks that they belong together. So
+as soon as a user interface completes a task, that endpoint is POST, not GET. If your
+application has no user interface yet, show the `curl` command which stands in for one.
 
 ## Never do this
 
