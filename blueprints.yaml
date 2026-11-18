@@ -724,6 +724,7 @@ blueprints:
       bpmn:
         - bpmn:IntermediateCatchEvent
         - bpmn:MessageEventDefinition
+        - bpmn:EventBasedGateway
       spi:
         - "ProcessService#correlateMessage"
         - "@WorkflowService"
@@ -817,6 +818,7 @@ blueprints:
         - bpmn:BoundaryEvent
         - bpmn:TimerEventDefinition
         - bpmn:BoundaryEvent/bpmn:TimerEventDefinition
+        - bpmn:EventBasedGateway
       spi:
         - "@WorkflowTask"
         - "@TaskEvent"
@@ -867,7 +869,8 @@ blueprints:
     title: Learning that a workflow ended
     summary: >
       How an application is told that a workflow reached its end, without modelling a
-      service task in front of every end event.
+      service task in front of every end event. Pick it whenever the application or a test
+      has to know that a workflow ended, for example to set a closing date or a final state.
     category: bpmn
     base: module-single
     bpms: [camunda7, camunda8, operaton, cibseven]
