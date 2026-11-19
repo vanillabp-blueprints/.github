@@ -32,8 +32,9 @@ each change, and again each night against the current state of VanillaBP:
    never see the code of the other one. The *Platforms* column links the repository for Spring
    Boot and for Quarkus separately.
 3. Clone and run it. Every blueprint builds with `mvn verify`, and you can operate it with a
-   browser alone. Its README names one URL which starts the process. At every wait state the
-   application logs the URLs to continue with.
+   browser alone, because its endpoints are GET requests. Only the endpoints which a user
+   interface calls may use other methods. Its README names one URL which starts the process. At
+   every wait state the application logs the URLs to continue with.
 4. Choose the BPMS (business process management system). A Maven profile decides which business
    process engine a blueprint runs on: `-Pcamunda7`, `-Pcamunda8`, `-Poperaton`, `-Pcibseven`
    or `-Pprocess-engine-api`. [Operaton](https://operaton.org) is the open source successor of
