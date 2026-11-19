@@ -60,7 +60,7 @@ core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-54 blueprints, published today: 47 of 49 for Spring Boot, 43 of 50 for Quarkus, 6 of 6 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
+55 blueprints, published today: 47 of 50 for Spring Boot, 43 of 51 for Quarkus, 6 of 6 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
