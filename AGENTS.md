@@ -339,9 +339,11 @@ replacing one placeholder and forgetting another.
 Every endpoint of a workflow module is below `/<workflow-module-id>/api/`, the module id
 first, then `api`: `/loan-approval/api/...`, never `/api/loan-approval/...`.
 
-Blueprints offer GET requests wherever a person tries the API by hand, so you can walk through
-a process in a browser without any tooling. Keep that property. At every wait state, log one
-complete, clickable URL for each possible next step.
+Every endpoint of a blueprint is a GET request, also the ones which change something: the
+start, the completion of a user task and the callback which a surrounding system calls. So you
+can walk through a process in a browser without any tooling. Keep that property, also in an
+application without a user interface. At every wait state, log one complete, clickable URL for
+each possible next step.
 
 ```
 Accept -> http://localhost:8080/loan-approval/api/{id}/assess-risk/{taskId}?riskIsAcceptable=true
@@ -350,12 +352,14 @@ Deny   -> http://localhost:8080/loan-approval/api/{id}/assess-risk/{taskId}?risk
 
 Those logged URLs are also the cheapest way for you to see which state a workflow reached.
 
-GET is only for people who try the API by hand. An endpoint which a user interface calls to
-change something, from a form or from a button, is POST. A form loads its data with GET, saves
-a draft with PUT and completes its task with POST. PUT and POST send JSON. Its path names the
-business id of the case and the task id, and the module checks that they belong together. So
-as soon as a user interface completes a task, that endpoint is POST, not GET. If your
-application has no user interface yet, show the `curl` command which stands in for one.
+The one exception are the endpoints which a user interface calls, from a form or from a
+button. The user interface calls them, not the user, so they may use other methods. A form
+loads its data with GET, saves a draft with PUT and completes its task with POST. PUT and POST
+send JSON. Its path names the business id of the case and the task id, and the module checks
+that they belong together. Only the endpoints of the user interface do this. The start, the
+views and the callback of a surrounding system stay GET, also in an application which has a
+user interface. If the user interface is not part of your application, for example because it
+is built in a project of its own, show the `curl` command which stands in for it.
 
 ## Never do this
 
