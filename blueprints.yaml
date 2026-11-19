@@ -1443,7 +1443,9 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/cockpit-user-task-application-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-application-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-user-task-application-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-application-quarkus/main/AGENTS.md
 
   - id: cockpit-user-task-bundle
     title: User tasks in the Business Cockpit, workflow module and UI as one library
@@ -1467,7 +1469,9 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/cockpit-user-task-bundle-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-bundle-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-user-task-bundle-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-bundle-quarkus/main/AGENTS.md
 
   - id: cockpit-user-task-application-proxy
     title: User tasks in the Business Cockpit, UI served by nginx behind the application
@@ -1493,7 +1497,9 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/cockpit-user-task-application-proxy-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-application-proxy-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-user-task-application-proxy-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-user-task-application-proxy-quarkus/main/AGENTS.md
 
   - id: cockpit-workflow-details-backend
     title: The page of a case in the Business Cockpit, backend
@@ -1578,7 +1584,9 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/cockpit-workflow-details-application-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-workflow-details-application-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-workflow-details-application-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-workflow-details-application-quarkus/main/AGENTS.md
 
   - id: cockpit-header-extension-backend
     title: A button in the header of the Business Cockpit, backend
@@ -1665,7 +1673,9 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/cockpit-header-extension-application-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-header-extension-application-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-header-extension-application-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-header-extension-application-quarkus/main/AGENTS.md
 
   - id: cockpit-process-driver-frontend
     title: A case in any state with one click, forms and dev shell
