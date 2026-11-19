@@ -1049,6 +1049,41 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/bpmn-call-activity-decomposition-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-call-activity-decomposition-quarkus/main/AGENTS.md
 
+  - id: bpmn-call-activity-reuse
+    title: A called process reused by several processes
+    summary: >
+      A credit check which a loan approval and an overdraft request both use. It has a workflow
+      aggregate of its own, so it is not a call activity. Each caller shows it as a collapsed
+      pool, starts it from a service task and waits at a message event, and the result comes
+      back as an event which each caller turns into that message.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:Collaboration
+        - bpmn:Participant
+        - bpmn:MessageFlow
+        - bpmn:ServiceTask
+        - bpmn:IntermediateCatchEvent
+        - bpmn:MessageEventDefinition
+      spi:
+        - "@WorkflowService"
+        - "@BpmnProcess"
+        - "@WorkflowTask"
+        - "ProcessService#startWorkflow"
+        - "ProcessService#correlateMessage"
+    composes_with: [bpmn-call-activity-decomposition, bpmn-message-correlation, module-interaction]
+    docs:
+      - https://github.com/vanillabp/spi-for-java/wiki/Call-activities#reuse-a-call-activity-runs-a-section-other-processes-use-too
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Message-correlation
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
+
   - id: bpmn-multi-instance-task
     title: Multi-instance tasks
     summary: >
