@@ -790,7 +790,7 @@ blueprints:
         - bpmn:SignalEventDefinition
       spi:
         - "@WorkflowStartedByBpms"
-    composes_with: [bpmn-timer, bpmn-signals]
+    composes_with: [bpmn-timer, bpmn-signals, bpmn-timer-start-event]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Starting-workflows#the-bpms-starts-it
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates
@@ -803,6 +803,33 @@ blueprints:
         status: available
         repo: https://github.com/vanillabp-blueprints/bpmn-bpms-initiated-start-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-bpms-initiated-start-quarkus/main/AGENTS.md
+
+  - id: bpmn-timer-start-event
+    title: A timer start event, and a method per start event
+    summary: >
+      A process with a timer start event and a signal start event. The engine starts a workflow
+      on its own, and each start event has its own @WorkflowStartedByBpms(id = ...) method,
+      which builds a different workflow aggregate.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:StartEvent
+        - bpmn:TimerEventDefinition
+        - bpmn:SignalEventDefinition
+      spi:
+        - "@WorkflowStartedByBpms"
+    composes_with: [bpmn-bpms-initiated-start, bpmn-timer, bpmn-signals]
+    docs:
+      - https://github.com/vanillabp/spi-for-java/wiki/Starting-and-ending-workflows#a-workflow-nobody-started-through-vanillabp
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Timers#where-a-timer-sits-in-a-model
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
 
   - id: bpmn-timer
     title: Timers
@@ -1048,6 +1075,41 @@ blueprints:
         status: available
         repo: https://github.com/vanillabp-blueprints/bpmn-call-activity-decomposition-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-call-activity-decomposition-quarkus/main/AGENTS.md
+
+  - id: bpmn-call-activity-reuse
+    title: A called process reused by several processes
+    summary: >
+      A credit check which a loan approval and an overdraft request both use. It has a workflow
+      aggregate of its own, so it is not a call activity. Each caller shows it as a collapsed
+      pool, starts it from a service task and waits at a message event, and the result comes
+      back as an event which each caller turns into that message.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:Collaboration
+        - bpmn:Participant
+        - bpmn:MessageFlow
+        - bpmn:ServiceTask
+        - bpmn:IntermediateCatchEvent
+        - bpmn:MessageEventDefinition
+      spi:
+        - "@WorkflowService"
+        - "@BpmnProcess"
+        - "@WorkflowTask"
+        - "ProcessService#startWorkflow"
+        - "ProcessService#correlateMessage"
+    composes_with: [bpmn-call-activity-decomposition, bpmn-message-correlation, module-interaction]
+    docs:
+      - https://github.com/vanillabp/spi-for-java/wiki/Call-activities#reuse-a-call-activity-runs-a-section-other-processes-use-too
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Message-correlation
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
 
   - id: bpmn-multi-instance-task
     title: Multi-instance tasks
