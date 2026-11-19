@@ -790,7 +790,7 @@ blueprints:
         - bpmn:SignalEventDefinition
       spi:
         - "@WorkflowStartedByBpms"
-    composes_with: [bpmn-timer, bpmn-signals]
+    composes_with: [bpmn-timer, bpmn-signals, bpmn-timer-start-event]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Starting-workflows#the-bpms-starts-it
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Workflow-aggregates
@@ -803,6 +803,33 @@ blueprints:
         status: available
         repo: https://github.com/vanillabp-blueprints/bpmn-bpms-initiated-start-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-bpms-initiated-start-quarkus/main/AGENTS.md
+
+  - id: bpmn-timer-start-event
+    title: A timer start event, and a method per start event
+    summary: >
+      A process with a timer start event and a signal start event. The engine starts a workflow
+      on its own, and each start event has its own @WorkflowStartedByBpms(id = ...) method,
+      which builds a different workflow aggregate.
+    category: bpmn
+    base: module-single
+    bpms: [camunda7, camunda8, operaton, cibseven]
+    persistence: [jpa]
+    covers:
+      bpmn:
+        - bpmn:StartEvent
+        - bpmn:TimerEventDefinition
+        - bpmn:SignalEventDefinition
+      spi:
+        - "@WorkflowStartedByBpms"
+    composes_with: [bpmn-bpms-initiated-start, bpmn-timer, bpmn-signals]
+    docs:
+      - https://github.com/vanillabp/spi-for-java/wiki/Starting-and-ending-workflows#a-workflow-nobody-started-through-vanillabp
+      - https://github.com/vanillabp/adapter-platform-integration/wiki/Timers#where-a-timer-sits-in-a-model
+    platforms:
+      springboot:
+        status: planned
+      quarkus:
+        status: planned
 
   - id: bpmn-timer
     title: Timers
