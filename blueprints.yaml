@@ -827,9 +827,13 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Timers#where-a-timer-sits-in-a-model
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-timer-start-event-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-timer-start-event-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-timer-start-event-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-timer-start-event-quarkus/main/AGENTS.md
 
   - id: bpmn-timer
     title: Timers
@@ -1107,9 +1111,13 @@ blueprints:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Message-correlation
     platforms:
       springboot:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-call-activity-reuse-springboot
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-call-activity-reuse-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/bpmn-call-activity-reuse-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/bpmn-call-activity-reuse-quarkus/main/AGENTS.md
 
   - id: bpmn-multi-instance-task
     title: Multi-instance tasks
