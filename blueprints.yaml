@@ -369,7 +369,9 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/module-process-driver-springboot
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-process-driver-springboot/main/AGENTS.md
       quarkus:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/module-process-driver-quarkus
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/module-process-driver-quarkus/main/AGENTS.md
 
   # ----------------------------------------------------------------------------------
   # Persistence of workflow aggregates
