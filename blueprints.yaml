@@ -9,6 +9,14 @@
 # 'bpms' names what a blueprint is built and tested against. That is why no entry lists
 # process-engine-api. That adapter is developed against a mock first and has no engine behind
 # it, so a blueprint could not run a workflow on it. It comes back per entry once it can.
+#
+# 'choose_one' says which entries are alternatives. Entries with the same value form a group,
+# and you take at most one entry of a group. Take exactly one of 'module-structure'. For every
+# other group, taking none of it keeps what module-single does, or fits an application which
+# does not need the subject. The schema says which per group. An entry without 'choose_one'
+# is an addition: take it on top of the others whenever it fits what you build, even if its
+# category is the one of a group. module-process-driver, for example, is a module entry you
+# take next to module-single. So go through every entry, and know why you left each one out.
 version: 2
 blueprints:
 
@@ -24,6 +32,7 @@ blueprints:
       files, an integration test against the workflow module and a smoke test of the
       application.
     category: module
+    choose_one: module-structure
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
@@ -56,6 +65,7 @@ blueprints:
       share code without coupling their processes: a library JAR, and the list of what must
       never be shared.
     category: module
+    choose_one: module-structure
     base: module-single
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
@@ -86,6 +96,7 @@ blueprints:
       itself can be the workflow module. Zero configuration: adding the adapter dependency is
       all it takes.
     category: module
+    choose_one: module-structure
     base: module-single
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
@@ -383,6 +394,7 @@ blueprints:
       The workflow aggregate stored in MongoDB instead of a relational database. This also
       changes the transaction outbox which starts workflows reliably.
     category: persistence
+    choose_one: aggregate-storage
     base: module-single
     # Camunda 8 only: an embedded engine needs a relational database, and this blueprint has
     # none. That is what it is about. Running both anyway means that the engine and the
@@ -414,6 +426,7 @@ blueprints:
       A reference implementation in memory. It shows what VanillaBP needs from a persistence
       technology it does not support out of the box.
     category: persistence
+    choose_one: aggregate-storage
     base: module-single
     # Camunda 8 only: an embedded engine needs a relational database, and this blueprint has
     # none. That is what it is about. Running both anyway means that the engine and the
@@ -477,6 +490,7 @@ blueprints:
       embedded engine would create themselves. Every workflow module brings its own changelog,
       and one changelog table tells the owners apart by the logical path of each changelog.
     category: persistence
+    choose_one: schema-migration
     base: module-single
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
@@ -507,6 +521,7 @@ blueprints:
       of changelogs, and nothing created at runtime. VanillaBP, each workflow module and the
       application each get a Flyway instance and a migration history of their own.
     category: persistence
+    choose_one: schema-migration
     base: module-single
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
@@ -574,6 +589,7 @@ blueprints:
       each aggregate itself, and says which one it found while the application is built. So one
       workflow module holds a JPA aggregate and a MongoDB one side by side.
     category: persistence
+    choose_one: aggregate-storage
     base: module-single
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa, mongodb]
@@ -644,6 +660,7 @@ blueprints:
       A user task is created, its task ID is stored in the workflow aggregate and the task
       is later completed or canceled through the API.
     category: bpmn
+    choose_one: user-task-state
     base: module-single
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
@@ -1428,6 +1445,7 @@ blueprints:
       the UI JAR of one of the frontends. A smoke test boots it, and CI builds it once per UI
       framework. A Docker Compose file starts it next to a cockpit.
     category: cockpit
+    choose_one: cockpit-ui-delivery
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
@@ -1454,6 +1472,7 @@ blueprints:
       as one library. An application with several workflow modules takes it as a single
       dependency. A small application in the test takes the bundle and boots.
     category: cockpit
+    choose_one: cockpit-ui-delivery
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
@@ -1482,6 +1501,7 @@ blueprints:
       deploy on their own during development and test. For production, the bundled
       application is the better choice.
     category: cockpit
+    choose_one: cockpit-ui-delivery
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]
     covers:
@@ -1721,6 +1741,7 @@ blueprints:
       authority of the module. Use it instead of bpmn-user-task when a task is open more than
       once or its form keeps drafts.
     category: cockpit
+    choose_one: user-task-state
     base: bpmn-user-task
     bpms: [camunda7, camunda8, operaton, cibseven]
     persistence: [jpa]

@@ -49,9 +49,16 @@ Two terms appear everywhere:
    picked.
 3. Match against `blueprints.yaml`. Compare the element types with `covers.bpmn`, and pick for
    the target platform:
-   - one workflow module structure (`module-*`, start with `module-single`),
-   - one persistence (`persistence-*`, JPA unless told otherwise),
-   - the BPMN scenarios (`bpmn-*`) the model requires.
+   - one workflow module structure, the group `choose_one: module-structure` (start with
+     `module-single`),
+   - at most one entry of each other `choose_one` group, for example one way to store the
+     aggregate (`aggregate-storage`, JPA unless told otherwise, which needs none of them),
+   - every entry without `choose_one` which fits, whatever its category: the BPMN scenarios
+     (`bpmn-*`) the model requires, and additions such as `module-process-driver` or
+     `persistence-parallel-branches`.
+
+   Go through every entry, not only the first one of a category, and know why you leave
+   each one out.
 
    Read the summaries as well. Some blueprints answer a need and not an element type.
    `bpmn:EndEvent` is in every model, so `bpmn-workflow-ended` is the one to pick when the

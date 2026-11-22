@@ -23,6 +23,18 @@
       "description": "'<category>-<aspect>', lower case, hyphens.",
       "pattern": "^(module|persistence|bpmn|cockpit|showcase)-[a-z0-9]+(-[a-z0-9]+)*$"
     },
+    "chooseOneGroup": {
+      "type": "string",
+      "description": "Optional. Entries with the same value are alternatives: take at most one entry of a group. An entry without it is an addition, taken on top of the others whenever it fits. The groups: 'module-structure' says how the application and its workflow modules are cut, take exactly one. 'aggregate-storage' says where and how the workflow aggregate is stored, none means JPA with a repository, as in module-single. 'schema-migration' names the tool which creates the database schema, none means the runtime creates it, as in module-single. 'user-task-state' says where the state of a user task lives, none fits a model without user tasks. 'cockpit-ui-delivery' says how the forms of a module reach the Business Cockpit, none fits a module without forms.",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "enum": [
+        "module-structure",
+        "aggregate-storage",
+        "schema-migration",
+        "user-task-state",
+        "cockpit-ui-delivery"
+      ]
+    },
     "frontendPlatforms": {
       "description": "Platforms which name at least one UI framework, the mark of a cockpit frontend.",
       "anyOf": [
@@ -150,6 +162,7 @@
             }
           }
         },
+        "choose_one": { "$ref": "#/$defs/chooseOneGroup" },
         "composes_with": {
           "description": "Blueprints which are typically combined with this one. Every entry has to be the ID of another blueprint.",
           "type": "array",
