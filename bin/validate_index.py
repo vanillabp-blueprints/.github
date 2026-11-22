@@ -45,6 +45,12 @@ def semantic_errors(index):
     for duplicate in sorted({i for i in ids if ids.count(i) > 1}):
         errors.append(f"blueprint ID '{duplicate}' is used more than once")
 
+    # A group of one has no alternative to choose from. Its entry is an addition, and the
+    # value would only make an agent look for a second entry which is not there.
+    groups = [blueprint["choose_one"] for blueprint in blueprints if "choose_one" in blueprint]
+    for group in sorted({g for g in groups if groups.count(g) < 2}):
+        errors.append(f"'choose_one' group '{group}' has only one entry")
+
     known = set(ids)
     for blueprint in blueprints:
         blueprint_id = blueprint.get("id")
