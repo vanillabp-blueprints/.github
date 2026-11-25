@@ -1731,9 +1731,13 @@ blueprints:
         status: not-applicable
         reason: A frontend runs in the browser and is built with npm, not on a Java platform.
       react:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-process-view-frontend-react
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-process-view-frontend-react/main/AGENTS.md
       vue:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-process-view-frontend-vue
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-process-view-frontend-vue/main/AGENTS.md
 
   - id: cockpit-process-driver-frontend
     title: A case in any state with one click, forms and dev shell
