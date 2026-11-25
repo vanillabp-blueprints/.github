@@ -60,7 +60,7 @@ core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-56 blueprints, published today: 49 of 50 for Spring Boot, 50 of 51 for Quarkus, 6 of 10 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
+56 blueprints, published today: 49 of 50 for Spring Boot, 50 of 51 for Quarkus, 8 of 10 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -129,10 +129,10 @@ Blueprints for a workflow module whose user tasks the [Business Cockpit](https:/
 | `cockpit-user-task-bundle` | User tasks in the Business Cockpit, workflow module and UI as one library | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-user-task-bundle-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/cockpit-user-task-bundle-quarkus) |
 | `cockpit-user-task-application-proxy` | User tasks in the Business Cockpit, UI served by nginx behind the application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-user-task-application-proxy-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/cockpit-user-task-application-proxy-quarkus) |
 | `cockpit-workflow-details-backend` | The page of a case in the Business Cockpit, backend | `bpmn:UserTask`, `bpmn:SubProcess`, `bpmn:MessageEventDefinition`, `bpmn:ServiceTask` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-workflow-details-backend-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/cockpit-workflow-details-backend-quarkus) |
-| `cockpit-workflow-details-frontend` | The page of a case in the Business Cockpit, case page | — | [React](https://github.com/vanillabp-blueprints/cockpit-workflow-details-frontend-react)<br>Vue *(planned)* |
+| `cockpit-workflow-details-frontend` | The page of a case in the Business Cockpit, case page | — | [React](https://github.com/vanillabp-blueprints/cockpit-workflow-details-frontend-react)<br>[Vue](https://github.com/vanillabp-blueprints/cockpit-workflow-details-frontend-vue) |
 | `cockpit-workflow-details-application` | The page of a case in the Business Cockpit, application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-workflow-details-application-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/cockpit-workflow-details-application-quarkus) |
 | `cockpit-header-extension-backend` | A button in the header of the Business Cockpit, backend | `bpmn:UserTask` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-header-extension-backend-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/cockpit-header-extension-backend-quarkus) |
-| `cockpit-header-extension-frontend` | A button in the header of the Business Cockpit, button and start form | — | [React](https://github.com/vanillabp-blueprints/cockpit-header-extension-frontend-react)<br>Vue *(planned)* |
+| `cockpit-header-extension-frontend` | A button in the header of the Business Cockpit, button and start form | — | [React](https://github.com/vanillabp-blueprints/cockpit-header-extension-frontend-react)<br>[Vue](https://github.com/vanillabp-blueprints/cockpit-header-extension-frontend-vue) |
 | `cockpit-header-extension-application` | A button in the header of the Business Cockpit, application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-header-extension-application-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/cockpit-header-extension-application-quarkus) |
 | `cockpit-process-view-frontend` | The process of a case in the Business Cockpit, drawn with bpmn-js | — | React *(planned)*<br>Vue *(planned)* |
 | `cockpit-process-driver-frontend` | A case in any state with one click, forms and dev shell | `bpmn:UserTask` | [React](https://github.com/vanillabp-blueprints/cockpit-process-driver-frontend-react) |
