@@ -60,7 +60,7 @@ core files, and how to add it to an existing project.
 
 <!-- BEGIN GENERATED - edit blueprints.yaml, not this section -->
 
-55 blueprints, published today: 49 of 50 for Spring Boot, 50 of 51 for Quarkus, 6 of 8 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
+56 blueprints, published today: 49 of 50 for Spring Boot, 50 of 51 for Quarkus, 6 of 10 for the frontends of the Business Cockpit. If a blueprint has not been published for a platform yet, the platform is listed as planned, not left out. If a blueprint cannot exist for a platform, the platform is listed as not applicable, with the reason.
 
 ### Workflow module structure and runtime
 
@@ -134,6 +134,7 @@ Blueprints for a workflow module whose user tasks the [Business Cockpit](https:/
 | `cockpit-header-extension-backend` | A button in the header of the Business Cockpit, backend | `bpmn:UserTask` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-header-extension-backend-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/cockpit-header-extension-backend-quarkus) |
 | `cockpit-header-extension-frontend` | A button in the header of the Business Cockpit, button and start form | — | [React](https://github.com/vanillabp-blueprints/cockpit-header-extension-frontend-react)<br>Vue *(planned)* |
 | `cockpit-header-extension-application` | A button in the header of the Business Cockpit, application | — | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-header-extension-application-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/cockpit-header-extension-application-quarkus) |
+| `cockpit-process-view-frontend` | The process of a case in the Business Cockpit, drawn with bpmn-js | — | React *(planned)*<br>Vue *(planned)* |
 | `cockpit-process-driver-frontend` | A case in any state with one click, forms and dev shell | `bpmn:UserTask` | [React](https://github.com/vanillabp-blueprints/cockpit-process-driver-frontend-react) |
 | `cockpit-usertasks-in-the-application` | User tasks in the application | `bpmn:UserTask`, `bpmn:ParallelGateway`, `bpmn:MultiInstanceLoopCharacteristics`, `bpmn:TerminateEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-usertasks-in-the-application-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/cockpit-usertasks-in-the-application-quarkus) |
 | `cockpit-organizing-usertasks` | Organizing user tasks | `bpmn:UserTask`, `bpmn:BoundaryEvent`, `bpmn:MessageEventDefinition`, `bpmn:BoundaryEvent/bpmn:MessageEventDefinition` | [Spring Boot](https://github.com/vanillabp-blueprints/cockpit-organizing-usertasks-springboot)<br>[Quarkus](https://github.com/vanillabp-blueprints/cockpit-organizing-usertasks-quarkus) |

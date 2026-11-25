@@ -1271,7 +1271,7 @@ blueprints:
         - "ProcessService#getWorkflowHistory"
         - "ProcessService#getProcessDefinitions"
         - "WorkflowElementType"
-    composes_with: [bpmn-call-activity-decomposition]
+    composes_with: [bpmn-call-activity-decomposition, cockpit-process-view-frontend]
     docs:
       - https://github.com/vanillabp/adapter-platform-integration/wiki/Viewing-workflows
       - https://github.com/vanillabp/spi-for-java/wiki/Showing-BPMN-and-history
@@ -1700,6 +1700,36 @@ blueprints:
         status: available
         repo: https://github.com/vanillabp-blueprints/cockpit-header-extension-application-quarkus
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-header-extension-application-quarkus/main/AGENTS.md
+
+  - id: cockpit-process-view-frontend
+    title: The process of a case in the Business Cockpit, drawn with bpmn-js
+    summary: >
+      The page of a case which draws its process with the Viewer of bpmn-js and marks the steps
+      the case passed and the step where it stands. The BPMN XML and the history come from the
+      API of bpmn-history-and-diagram. bpmn-js is a chunk of its own, loaded only by this page,
+      its styles go into the shadow root of the page, and the bpmn.io logo stays visible. Built
+      with npm alone into a UI JAR and an nginx image, with browser tests in the host of the
+      module kit, with areas and without.
+    category: cockpit
+    covers:
+      bpmn: []
+      spi: [WorkflowPage, defineBcElement, "ProcessService#getBpmnXml", "ProcessService#getWorkflowHistory"]
+    composes_with: [bpmn-history-and-diagram, cockpit-workflow-details-frontend]
+    docs:
+      - https://bpmn.io/toolkit/bpmn-js/
+      - https://github.com/vanillabp/business-cockpit/blob/main/skills/business-cockpit-creator/references/module-loading.md
+      - https://github.com/vanillabp/business-cockpit-module-kit
+    platforms:
+      springboot:
+        status: not-applicable
+        reason: A frontend runs in the browser and is built with npm, not on a Java platform.
+      quarkus:
+        status: not-applicable
+        reason: A frontend runs in the browser and is built with npm, not on a Java platform.
+      react:
+        status: planned
+      vue:
+        status: planned
 
   - id: cockpit-process-driver-frontend
     title: A case in any state with one click, forms and dev shell
