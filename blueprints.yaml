@@ -1582,7 +1582,9 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/cockpit-workflow-details-frontend-react
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-workflow-details-frontend-react/main/AGENTS.md
       vue:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-workflow-details-frontend-vue
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-workflow-details-frontend-vue/main/AGENTS.md
 
   - id: cockpit-workflow-details-application
     title: The page of a case in the Business Cockpit, application
@@ -1672,7 +1674,9 @@ blueprints:
         repo: https://github.com/vanillabp-blueprints/cockpit-header-extension-frontend-react
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-header-extension-frontend-react/main/AGENTS.md
       vue:
-        status: planned
+        status: available
+        repo: https://github.com/vanillabp-blueprints/cockpit-header-extension-frontend-vue
+        agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-header-extension-frontend-vue/main/AGENTS.md
 
   - id: cockpit-header-extension-application
     title: A button in the header of the Business Cockpit, application
