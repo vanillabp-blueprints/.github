@@ -1581,6 +1581,8 @@ blueprints:
         status: available
         repo: https://github.com/vanillabp-blueprints/cockpit-workflow-details-frontend-react
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-workflow-details-frontend-react/main/AGENTS.md
+      vue:
+        status: planned
 
   - id: cockpit-workflow-details-application
     title: The page of a case in the Business Cockpit, application
@@ -1669,6 +1671,8 @@ blueprints:
         status: available
         repo: https://github.com/vanillabp-blueprints/cockpit-header-extension-frontend-react
         agents_md: https://raw.githubusercontent.com/vanillabp-blueprints/cockpit-header-extension-frontend-react/main/AGENTS.md
+      vue:
+        status: planned
 
   - id: cockpit-header-extension-application
     title: A button in the header of the Business Cockpit, application
